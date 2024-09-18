@@ -68,8 +68,10 @@ app.get('/login_data', async (req, res) => {
         res.json(profileResponse.data);
 
           // const userInfo = await userResponse.json();
-          const userId = profileResponse.userId;
-          const displayName = profileResponse.displayName;
+          const profileData = profileResponse.data;
+
+          const userId = profileData.userId;
+          const displayName = profileData.displayName;
           console.log(userId)
           console.log(displayName)          
           // Check if user exists and add to Firebase if not
