@@ -66,7 +66,6 @@ app.get('/login_data', async (req, res) => {
           },
         });
     
-        res.json(profileResponse.data);
 
           // const userInfo = await userResponse.json();
           const profileData = profileResponse.data;
@@ -77,11 +76,13 @@ app.get('/login_data', async (req, res) => {
           console.log(displayName)          
           // Check if user exists and add to Firebase if not
           const userRef = db.ref('/user/login/');
+                  // db.ref('/user/login/').orderByChild('userID').equalTo(userId).once('value', function(snapshot) {
+
           const snapshot = await userRef.orderByChild('userID').equalTo(userId).once('value');
 
           if (snapshot.exists()) {
               res.send("User exists");
-              window.location.href('/')
+              res.redirect('/');
           } else {
               await userRef.push({
                   username: displayName,
@@ -94,7 +95,7 @@ app.get('/login_data', async (req, res) => {
                   Goals: 0,
                   level: 3
               });
-              res.send("User added successfully");
+              res.redirect('/');
           }
       } catch (error) {
           console.error('Error:', error);
