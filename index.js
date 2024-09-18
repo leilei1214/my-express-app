@@ -87,7 +87,7 @@ app.get('/login_data', async (req, res) => {
       //         });
       //         res.send("User added successfully");
       //     }
-      // } catch (error) {
+      } catch (error) {
           console.error('Error:', error);
           res.status(500).send('An error occurred');
       }
