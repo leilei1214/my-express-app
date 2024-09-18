@@ -1,5 +1,7 @@
 const express = require('express');
 const admin = require('firebase-admin');
+const axios = require('axios');
+const querystring = require('querystring');
 const path = require('path');
 const port = process.env.PORT || 3000;  // 使用 Heroku 提供的 PORT 环境变量
 
