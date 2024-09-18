@@ -1,9 +1,9 @@
 const express = require('express');
 const admin = require('firebase-admin');
 const path = require('path');
+const port = process.env.PORT || 3000;  // 使用 Heroku 提供的 PORT 环境变量
 
 const app = express();
-const port = 3000;
 
 // Path to your service account key JSON file
 // const serviceAccount = require('./config/serviceAccountKey.json');
