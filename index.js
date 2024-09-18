@@ -15,6 +15,7 @@ admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
   databaseURL: "https://test-373e5.firebaseio.com" // Replace with your database URL
 });
+const db = admin.database();
 
 // 提供 public 文件夹中的静态文件
 app.use(express.static(path.join(__dirname, 'public')));
