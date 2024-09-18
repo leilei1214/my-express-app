@@ -81,7 +81,7 @@ app.get('/login_data', async (req, res) => {
           const snapshot = await userRef.orderByChild('userID').equalTo(userId).once('value');
 
           if (snapshot.exists()) {
-              res.send("User exists");
+              // res.send("User exists");
               res.redirect('/');
           } else {
               await userRef.push({
