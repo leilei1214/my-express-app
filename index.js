@@ -1,7 +1,15 @@
 const express = require('express');
 const path = require('path');
+const admin = require('firebase-admin');
 const app = express();
 const port = process.env.PORT || 3000;
+
+const serviceAccount = require('./config/serviceAccountKey.json');
+
+admin.initializeApp({
+    credential: admin.credential.cert(serviceAccount),
+    databaseURL: 'https://test-373e5.firebaseio.com'  // 替换为您的 Firebase 数据库 URL
+});
 
 // 提供 public 文件夹中的静态文件
 app.use(express.static(path.join(__dirname, 'public')));

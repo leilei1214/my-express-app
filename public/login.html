@@ -483,118 +483,118 @@
       // }
     </script>
     <script>
-        // URLパラメータからLINEの認証コードを取得
-        const urlParams = new URLSearchParams(window.location.search);
-        const code = urlParams.get('code');
+        // // URLパラメータからLINEの認証コードを取得
+        // const urlParams = new URLSearchParams(window.location.search);
+        // const code = urlParams.get('code');
 
-        if (code) {
-            // 認証コードをバックエンドに送信してトークンを取得
-            fetch('https://api.line.me/oauth2/v2.1/token', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded',
-                },
-                body: new URLSearchParams({
-                    'grant_type': 'authorization_code',
-                    'code': code,
-                    'redirect_uri': "https://leilei1214.github.io/login/site/login.html",
-                    'client_id': '1661291645',
-                    'client_secret': '3d1df453deb161a633a2166417b944f8',
-                })
-            })
-            .then(response => response.json())
-            .then(data => {
-                // アクセストークンを使用してユーザー情報を取得
-                const accessToken = data.access_token;
-                fetch('https://api.line.me/v2/profile', {
-                    headers: {
-                        'Authorization': `Bearer ${accessToken}`
-                    }
-                })
-                .then(response => response.json())
-                .then(userInfo => {
-                  // 這裡的 userId 和 displayName 是來自 Firebase 中的用戶信息
-                  const userId = userInfo.userId;
-                  const displayName = userInfo.displayName;
-                  // 使用範例
-                  checkIfUserExists(userId,displayName)
+        // if (code) {
+        //     // 認証コードをバックエンドに送信してトークンを取得
+        //     fetch('https://api.line.me/oauth2/v2.1/token', {
+        //         method: 'POST',
+        //         headers: {
+        //             'Content-Type': 'application/x-www-form-urlencoded',
+        //         },
+        //         body: new URLSearchParams({
+        //             'grant_type': 'authorization_code',
+        //             'code': code,
+        //             'redirect_uri': "https://leilei1214.github.io/login/site/login.html",
+        //             'client_id': '1661291645',
+        //             'client_secret': '3d1df453deb161a633a2166417b944f8',
+        //         })
+        //     })
+        //     .then(response => response.json())
+        //     .then(data => {
+        //         // アクセストークンを使用してユーザー情報を取得
+        //         const accessToken = data.access_token;
+        //         fetch('https://api.line.me/v2/profile', {
+        //             headers: {
+        //                 'Authorization': `Bearer ${accessToken}`
+        //             }
+        //         })
+        //         .then(response => response.json())
+        //         .then(userInfo => {
+        //           // 這裡的 userId 和 displayName 是來自 Firebase 中的用戶信息
+        //           const userId = userInfo.userId;
+        //           const displayName = userInfo.displayName;
+        //           // 使用範例
+        //           checkIfUserExists(userId,displayName)
 
-                  // 更新用戶界面
-                  // document.getElementById('userInfo').innerHTML = `
-                  //     <h2>Logged in as: ${userId}</h2>
-                  //     <h2>Display Name: ${displayName}</h2>
-                  //     <img src="${userInfo.pictureUrl}" alt="Profile Picture">
-                  // `;
+        //           // 更新用戶界面
+        //           // document.getElementById('userInfo').innerHTML = `
+        //           //     <h2>Logged in as: ${userId}</h2>
+        //           //     <h2>Display Name: ${displayName}</h2>
+        //           //     <img src="${userInfo.pictureUrl}" alt="Profile Picture">
+        //           // `;
 
-                  // 將用戶信息推送到 Firebase
-                  // 確保 Firebase 已經正確初始化
-                  // setTimeout(() => {
-                  //   db.ref('/user/login/').push({
-                  //       username: displayName,
-                  //       userID: userId
-                  //   })
-                  //   .then(() => {
-                  //       alert('User added successfully');
-                  //   })
-                  //   .catch((error) => {
-                  //       console.error('Error adding user:', error);
-                  //       alert('Failed to add user');
-                  //   });
-                  // }, 3000); // 延遲 1 秒
+        //           // 將用戶信息推送到 Firebase
+        //           // 確保 Firebase 已經正確初始化
+        //           // setTimeout(() => {
+        //           //   db.ref('/user/login/').push({
+        //           //       username: displayName,
+        //           //       userID: userId
+        //           //   })
+        //           //   .then(() => {
+        //           //       alert('User added successfully');
+        //           //   })
+        //           //   .catch((error) => {
+        //           //       console.error('Error adding user:', error);
+        //           //       alert('Failed to add user');
+        //           //   });
+        //           // }, 3000); // 延遲 1 秒
                   
-              })
-              .catch(error => {
-                  console.error('Error:', error);
-                  alert('An error occurred');
-              });
-            })
-            .catch(error => console.error('Error:', error));
-        }
+        //       })
+        //       .catch(error => {
+        //           console.error('Error:', error);
+        //           alert('An error occurred');
+        //       });
+        //     })
+        //     .catch(error => console.error('Error:', error));
+        // }
     </script>
     <script>
       // Your web app's Firebase configuration
-      var firebaseConfig = {
-        apiKey: "AIzaSyCRg4Bl-FDA1k48u1fymYT-VDJV3Hl7reM",
-        authDomain: "test-373e5.firebaseapp.com",
-        databaseURL: "https://test-373e5.firebaseio.com",
-        projectId: "test-373e5",
-        storageBucket: "test-373e5.appspot.com",
-        messagingSenderId: "154083517850",
-        appId: "1:154083517850:web:af50c245a6ba6aa8480623",
-        measurementId: "G-89M41XVPEY"
-      };
-      // Initialize Firebase
-      firebase.initializeApp(firebaseConfig);
-      var db = firebase.database();
+      // var firebaseConfig = {
+      //   apiKey: "AIzaSyCRg4Bl-FDA1k48u1fymYT-VDJV3Hl7reM",
+      //   authDomain: "test-373e5.firebaseapp.com",
+      //   databaseURL: "https://test-373e5.firebaseio.com",
+      //   projectId: "test-373e5",
+      //   storageBucket: "test-373e5.appspot.com",
+      //   messagingSenderId: "154083517850",
+      //   appId: "1:154083517850:web:af50c245a6ba6aa8480623",
+      //   measurementId: "G-89M41XVPEY"
+      // };
+      // // Initialize Firebase
+      // firebase.initializeApp(firebaseConfig);
+      // var db = firebase.database();
     </script>
     <script>
-      function query(user,email){
-          db.ref('/user/'+123).once('value',function(snapshot){
-              dataIn = snapshot.val();
-              keys = Object.keys(snapshot.val());
-              if(email == dataIn['email'] && user == dataIn['username']){
-                  window.localStorage.setItem("user",user);
-                  document.location.href="./car.html";
-              }
-              else{
-                  alert("使用者名稱或Email錯誤");
-              }
+    //   function query(user,email){
+    //       db.ref('/user/'+123).once('value',function(snapshot){
+    //           dataIn = snapshot.val();
+    //           keys = Object.keys(snapshot.val());
+    //           if(email == dataIn['email'] && user == dataIn['username']){
+    //               window.localStorage.setItem("user",user);
+    //               document.location.href="./car.html";
+    //           }
+    //           else{
+    //               alert("使用者名稱或Email錯誤");
+    //           }
 
-          });
-      }
-      function checkIfUserExists(userId, displayName) {
-        // 查詢 'users' 節點下所有的使用者
-        db.ref('/user/login/').orderByChild('userID').equalTo(userId).once('value', function(snapshot) {
-            if (snapshot.exists()) {
-                // 如果找到相符的 email，使用者已經註冊
-                alert("sucess")
-            } else {
-                // 沒有找到相符的 email，使用者尚未註冊
-                addUser(userId,displayName)
-                // callback(false, null);
-            }
-        });
-    }
+    //       });
+    //   }
+    //   function checkIfUserExists(userId, displayName) {
+    //     // 查詢 'users' 節點下所有的使用者
+    //     db.ref('/user/login/').orderByChild('userID').equalTo(userId).once('value', function(snapshot) {
+    //         if (snapshot.exists()) {
+    //             // 如果找到相符的 email，使用者已經註冊
+    //             alert("sucess")
+    //         } else {
+    //             // 沒有找到相符的 email，使用者尚未註冊
+    //             addUser(userId,displayName)
+    //             // callback(false, null);
+    //         }
+    //     });
+    // }
 
 
       function addUser(userId, user) {
