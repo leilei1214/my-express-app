@@ -73,8 +73,8 @@ app.get('/login_data', async (req, res) => {
           console.log(userId)
           console.log(displayName)          
           // Check if user exists and add to Firebase if not
-          const userRef = db.ref('/user/login/');
-          const snapshot = await userRef.orderByChild('userID').equalTo(userId).once('value');
+          // const userRef = db.ref('/user/login/');
+          // const snapshot = await userRef.orderByChild('userID').equalTo(userId).once('value');
 
           // if (snapshot.exists()) {
           //     res.send("User exists");
