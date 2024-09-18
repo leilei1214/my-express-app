@@ -42,34 +42,34 @@ app.get('/login_data', async (req, res) => {
 
   if (code) {
       try {
-          const tokenResponse = await fetch('https://api.line.me/oauth2/v2.1/token', {
-              method: 'POST',
-              headers: {
-                  'Content-Type': 'application/x-www-form-urlencoded',
-              },
-              body: new URLSearchParams({
-                  'grant_type': 'authorization_code',
-                  'code': code,
-                  'redirect_uri': "https://my-express-app-f63887bafc0f.herokuapp.com/login_data",
-                  'client_id': '1661291645',
-                  'client_secret': '3d1df453deb161a633a2166417b944f8',
-              })
-          });
+        const response = await axios.post('https://api.line.me/oauth2/v2.1/token', querystring.stringify({
+          grant_type: 'authorization_code',
+          code,
+          redirect_uri: REDIRECT_URI,
+          client_id: CHANNEL_ID,
+          client_secret: CHANNEL_SECRET,
+        }), {
+          headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+          },
+        });
+    
+        const { access_token } = response.data;
+    
+        // Use the access token to get user profile
+        const profileResponse = await axios.get('https://api.line.me/v2/profile', {
+          headers: {
+            Authorization: `Bearer ${access_token}`,
+          },
+        });
+    
+        res.json(profileResponse.data);
 
-          const tokenData = await tokenResponse.json();
-          const accessToken = tokenData.access_token;
-
-          const userResponse = await fetch('https://api.line.me/v2/profile', {
-              headers: {
-                  'Authorization': `Bearer ${accessToken}`
-              }
-          });
-
-          const userInfo = await userResponse.json();
-          const userId = userInfo.userId;
-          const displayName = userInfo.displayName;
-          console.log(userId)
-          console.log(displayName)          
+          // const userInfo = await userResponse.json();
+          // const userId = userInfo.userId;
+          // const displayName = userInfo.displayName;
+          // console.log(userId)
+          // console.log(displayName)          
       //     // Check if user exists and add to Firebase if not
       //     const userRef = db.ref('/user/login/');
       //     const snapshot = await userRef.orderByChild('userID').equalTo(userId).once('value');
