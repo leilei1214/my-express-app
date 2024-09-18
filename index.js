@@ -22,7 +22,7 @@ app.get('/login_data', (req, res) => {
   res.redirect(LineLoginUrl);
 });
 // Route to handle Line OAuth callback
-app.get('/callback', async (req, res) => {
+app.get('/login_data', async (req, res) => {
   const { code } = req.query;
 
   if (code) {
