@@ -75,26 +75,26 @@ app.get('/login_data', async (req, res) => {
           console.log(userId)
           console.log(displayName)          
           // Check if user exists and add to Firebase if not
-          // const userRef = db.ref('/user/login/');
-          // const snapshot = await userRef.orderByChild('userID').equalTo(userId).once('value');
+          const userRef = db.ref('/user/login/');
+          const snapshot = await userRef.orderByChild('userID').equalTo(userId).once('value');
 
-          // if (snapshot.exists()) {
-          //     res.send("User exists");
-          //     window.location.href('/')
-          // } else {
-          //     await userRef.push({
-          //         username: displayName,
-          //         userID: userId,
-          //         tag: 0,
-          //         Appearances: 0,
-          //         Absences: 0,
-          //         Unpaid: 0,
-          //         Assists: 0,
-          //         Goals: 0,
-          //         level: 3
-          //     });
-          //     res.send("User added successfully");
-          // }
+          if (snapshot.exists()) {
+              res.send("User exists");
+              window.location.href('/')
+          } else {
+              await userRef.push({
+                  username: displayName,
+                  userID: userId,
+                  tag: 0,
+                  Appearances: 0,
+                  Absences: 0,
+                  Unpaid: 0,
+                  Assists: 0,
+                  Goals: 0,
+                  level: 3
+              });
+              res.send("User added successfully");
+          }
       } catch (error) {
           console.error('Error:', error);
           res.status(500).send('An error occurred');
