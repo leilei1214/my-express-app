@@ -71,6 +71,7 @@ app.get('/login_data', async (req, res) => {
 
           if (snapshot.exists()) {
               res.send("User exists");
+              window.location.href('/')
           } else {
               await userRef.push({
                   username: displayName,
