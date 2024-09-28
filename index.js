@@ -107,8 +107,9 @@ app.get('/login_data', async (req, res) => {
           const displayName = profileData.displayName;
           console.log(userId)
           console.log(displayName)  
+          const client = await pool.connect(); // 获取数据库连接
+
           try {
-            const client = await pool.connect(); // 获取数据库连接
 
             const result = await client.query('SELECT * FROM users WHERE userID = $1', [userId]);
     
