@@ -121,7 +121,7 @@ app.get('/login_data', async (req, res) => {
 
               // Insert new user into PostgreSQL database
               await client.query(
-                'INSERT INTO users (username, userid, identifier) VALUES ($1, $2)',
+                'INSERT INTO users (username, userid, identifier) VALUES ($1, $2,$3)',
                 [displayName, userId,identifier]
               );
               res.redirect('/');
