@@ -108,6 +108,8 @@ app.get('/login_data', async (req, res) => {
           console.log(userId)
           console.log(displayName)  
           try {
+            const client = await pool.connect(); // 获取数据库连接
+
             const result = await client.query('SELECT * FROM users WHERE userID = $1', [userId]);
     
             if (result.rows.length > 0) {
