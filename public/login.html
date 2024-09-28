@@ -283,12 +283,29 @@
 
                     </div>
                     <div class="form-wrap">
-                      <select class="form-select form-input" aria-label="Default select example">
-                        <option selected>position(位置)</option>
+                      <label class="form-label rd-input-label" for="form-login-name-2">preferred position 1 (位置 1) : </label>
+
+                      <select class="form-select form-input" aria-label="Default select example" id="form-login-name-1" data-constraints="@Required">
+                        <option selected></option>
                         <option value="GK">GK(守門員)</option>
                         <option value="DF">DF(後衛)</option>
                         <option value="MF">MF(中場)</option>
                         <option value="FW">FW(前鋒)</option>
+                        <option value="libero">libero(自由人)</option>
+
+                      </select>
+                    </div>
+                    <div class="form-wrap">
+                      <label class="form-label rd-input-label" for="form-login-name-2">preferred position 2 (位置 2) : </label>
+
+                      <select class="form-select form-input" aria-label="Default select example" id="form-login-name-1" data-constraints="@Required">
+                        <option selected></option>
+                        <option value="GK">GK(守門員)</option>
+                        <option value="DF">DF(後衛)</option>
+                        <option value="MF">MF(中場)</option>
+                        <option value="FW">FW(前鋒)</option>
+                        <option value="libero">libero(自由人)</option>
+
                       </select>
                     </div>
                     <div class="form-wrap">
