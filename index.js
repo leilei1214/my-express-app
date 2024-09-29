@@ -6,7 +6,10 @@ const path = require('path');
 const { Pool } = require('pg');
 const port = process.env.PORT || 3000;  // 使用 Heroku 提供的 PORT 环境变量
 const session = require('express-session');
+const cors = require('cors');
 
+const app = express();
+app.use(cors());
 // 初始化 session 中間件
 app.use(session({
   secret: 'your-secret-key',
@@ -14,8 +17,6 @@ app.use(session({
   saveUninitialized: true,
   cookie: { secure: false } // 如果是 HTTPS，設為 true
 }));
-const app = express();
-
 // Path to your service account key JSON file
 // const serviceAccount = require('./config/serviceAccountKey.json');
 
@@ -76,6 +77,7 @@ app.post('/save-to-session', (req, res) => {
   req.session.user = { birthday, position1,position2 };
 
   res.json({ message: 'User data saved to session' });
+  res.redirect('/line_login');
 });
 // LINE credentials
 const CHANNEL_ID = '1661291645';
@@ -88,6 +90,7 @@ app.get('/line_login', (req, res) => {
   const state = generateState();
   const LineLoginUrl = `https://access.line.me/oauth2/v2.1/authorize?scope=profile%20openid&client_id=${client_id}&response_type=${response_type}&redirect_uri=${redirect_uri}&state=${state}`;
   res.redirect(LineLoginUrl);
+
 });
 // // Route to handle Line OAuth callback
 app.get('/login_data', async (req, res) => {
