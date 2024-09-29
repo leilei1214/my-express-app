@@ -10,6 +10,7 @@ const cors = require('cors');
 
 const app = express();
 app.use(cors());
+app.use(express.json());
 // 初始化 session 中間件
 app.use(session({
   secret: 'your-secret-key',
