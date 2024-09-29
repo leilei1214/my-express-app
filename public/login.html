@@ -279,13 +279,13 @@
                       <!-- <input type="date" class="form-control" id="dob" name="birthday" required> -->
                       <label class="form-label rd-input-label" for="form-login-name-1">Birthday(生日) : </label>
 
-                      <input  class="form-input form-control-has-validation form-control-last-child" id="form-login-name-1" type="date"  name="birthday" data-constraints="@Required" style="padding-left: 121px !important;">
+                      <input  class="form-input form-control-has-validation form-control-last-child" id="form-login-name-1 " type="date"  name="birthday" data-constraints="@Required" style="padding-left: 121px !important;">
 
                     </div>
                     <div class="form-wrap">
-                      <label class="form-label rd-input-label" for="form-login-name-2">preferred position 1 (位置 1) : </label>
+                      <label class="form-label rd-input-label" for="form-login-name-2">position 1 (位置 1) : </label>
 
-                      <select class="form-select form-input" aria-label="Default select example" id="form-login-name-1" data-constraints="@Required">
+                      <select class="form-select form-input" aria-label="Default select example" id="form-login-name-1" name="position1"  data-constraints="@Required" style="padding-left: 131px;">
                         <option selected></option>
                         <option value="GK">GK(守門員)</option>
                         <option value="DF">DF(後衛)</option>
@@ -296,9 +296,9 @@
                       </select>
                     </div>
                     <div class="form-wrap">
-                      <label class="form-label rd-input-label" for="form-login-name-2">preferred position 2 (位置 2) : </label>
+                      <label class="form-label rd-input-label" for="form-login-name-2">position 2 (位置 2) : </label>
 
-                      <select class="form-select form-input" aria-label="Default select example" id="form-login-name-1" data-constraints="@Required">
+                      <select class="form-select form-input" aria-label="Default select example" id="form-login-name-1" name="position2"  data-constraints="@Required" style="padding-left: 131px;">
                         <option selected></option>
                         <option value="GK">GK(守門員)</option>
                         <option value="DF">DF(後衛)</option>
@@ -312,7 +312,7 @@
                     </div>
                     <div class="form-wrap">
 
-                      <a style="width: 100%;" class="button button-google button-icon button-icon-left button-round button-lg" href="#" onclick="line_login()">
+                      <a style="width: 100%;" class="button button-google button-icon button-icon-left button-round button-lg" href="#" onclick="line_register()">
                         <img src="./images/icons8-line-red.svg" alt="" style="width: 30px;margin-right: 20px;">
                         <span>使用line註冊</span></a>
                     </div>
@@ -511,6 +511,36 @@
           // var state =  NewGuid().toUpperCase()
           // const LineLoginUrl = "https://access.line.me/oauth2/v2.1/authorize?scope=profile%20openid&client_id=" + client_id + "&response_type=" + response_type + "&redirect_uri=" + redirect_uri + "&state=randomstring&nonce=randomnonce";
           // window.location.href = LineLoginUrl;
+      }
+      function line_register(){
+          // 抓取表單值
+        event.preventDefault(); 
+        const birthday =document.getElementsByName('birthday')[0].value;
+        const position1 = document.getElementsByName('position1')[0].value;
+        const position2 = document.getElementsByName('position2')[0].value;
+
+        // 檢查是否為空
+        if (!birthday || !position1 || !position2) {
+          alert('請填寫所有必填項目');
+          
+        }else{
+            // 使用 fetch 发送 POST 请求到服务器以保存到 session
+          fetch('/save-to-session', {
+              method: 'POST',
+              headers: {
+                  'Content-Type': 'application/json',
+              },
+              body: JSON.stringify({ birthday: birthday, position1: position1, position2: position2 }),
+          })
+          .then(response => response.json())
+          .then(data => {
+              console.log('Session saved:', data);
+          })
+          .catch((error) => {
+              console.error('Error:', error);
+          });
+        }
+
       }
       // const g = function () {
       //     return (((1 + Math.random()) * 0x10000) | 0).toString(16).substring(1);

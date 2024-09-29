@@ -5,7 +5,15 @@ const querystring = require('querystring');
 const path = require('path');
 const { Pool } = require('pg');
 const port = process.env.PORT || 3000;  // 使用 Heroku 提供的 PORT 环境变量
+const session = require('express-session');
 
+// 初始化 session 中間件
+app.use(session({
+  secret: 'your-secret-key',
+  resave: false,
+  saveUninitialized: true,
+  cookie: { secure: false } // 如果是 HTTPS，設為 true
+}));
 const app = express();
 
 // Path to your service account key JSON file
@@ -59,6 +67,15 @@ app.listen(port, () => {
 // 登录页面路由
 app.get('/login', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'login.html'));
+});
+// 處理前端發來的 POST 請求，將用戶資料存儲到 session
+app.post('/save-to-session', (req, res) => {
+  const { birthday, position1,position2 } = req.body;
+
+  // 保存用戶資料到 session 中
+  req.session.user = { birthday, position1,position2 };
+
+  res.json({ message: 'User data saved to session' });
 });
 // LINE credentials
 const CHANNEL_ID = '1661291645';
@@ -118,11 +135,12 @@ app.get('/login_data', async (req, res) => {
               res.redirect('/');
             } else {
               const identifier = await generateUniqueIdentifier(client); // 生成唯一的 identifier
-
+              const userSession = req.session.user;
+              const { birthday, position1, position2} = userSession;
               // Insert new user into PostgreSQL database
               await client.query(
-                'INSERT INTO users (username, userid, identifier) VALUES ($1, $2,$3)',
-                [displayName, userId,identifier]
+                'INSERT INTO users (username, userid, identifier,birthday,preferred_position1,preferred_position2) VALUES ($1, $2,$3,$4,$5,$6)',
+                [displayName, userId,identifier,birthday,position1,position2]
               );
               res.redirect('/');
             }
