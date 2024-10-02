@@ -73,12 +73,10 @@ app.get('/login', (req, res) => {
 // 處理前端發來的 POST 請求，將用戶資料存儲到 session
 app.post('/save-to-session', (req, res) => {
   const { birthday, position1,position2 } = req.body;
-
   // 保存用戶資料到 session 中
   req.session.user = { birthday, position1,position2 };
-
-  res.json({ message: 'User data saved to session' });
-  res.redirect('/line_login');
+  res.json({ message: 200 });
+  // res.redirect('/line_login');
 });
 // LINE credentials
 const CHANNEL_ID = '1661291645';
