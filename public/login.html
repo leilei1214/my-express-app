@@ -247,45 +247,31 @@
               <div class="card-login-register" id="card-l-r">
                 <div class="card-top-panel">
                   <div class="card-top-panel-left">
-                    <h5 class="card-title card-subtitle-login">Register</h5>
-                    <h5 class="card-title card-title-register">Login</h5>
-
+                    <h5 class="card-title card-title-login">Login</h5>
+                    <h5 class="card-title card-title-register">Register</h5>
                   </div>
                   <div class="card-top-panel-right"><span class="card-subtitle"><span class="card-subtitle-login">Register now</span><span class="card-subtitle-register">Sign in</span></span>
                     <button class="card-toggle" data-custom-toggle="#card-l-r"><span class="card-toggle-circle"></span></button>
                   </div>
                 </div>
-                <div class="card-form card-form-register">
+                <div class="card-form card-form-login">
                   <form class="rd-form rd-mailform" novalidate="novalidate">
-                    <!-- <div class="form-wrap">
-                      <label class="form-label rd-input-label" for="form-login-name-1">Login</label>
-                      <input class="form-input form-control-has-validation form-control-last-child" id="form-login-name-1" type="text" name="form-input" data-constraints="@Required"><span class="form-validation"></span>
-                    </div>
-                    <div class="form-wrap">
-                      <label class="form-label rd-input-label" for="form-login-password-1">Password</label>
-                      <input class="form-input form-control-has-validation form-control-last-child" id="form-login-password-1" type="password" name="password" data-constraints="@Required"><span class="form-validation"></span>
-                    </div> -->
-
                     <button class="button button-lg button-primary button-block" type="submit" onclick="line_login()">
                       <img src="./images/icons8-line.svg" alt="" style="width: 30px;margin-right: 20px;">
                       使用line登入
                     </button>
                   </form>
                 </div>
-                <div class="card-form card-form-login">
+                <div class="card-form card-form-register">
                   <form class="rd-form rd-mailform" novalidate="novalidate">
                     <div class="form-wrap">
-                      <!-- <label for="dob" class="form-label">Date of Birth</label> -->
-                      <!-- <input type="date" class="form-control" id="dob" name="birthday" required> -->
-                      <label class="form-label rd-input-label" for="form-login-name-1">Birthday(生日) : </label>
-
-                      <input  class="form-input form-control-has-validation form-control-last-child" id="form-login-name-1 " type="date"  name="birthday" data-constraints="@Required" style="padding-left: 121px !important;">
-
+                      <label class="form-label rd-input-label" for="form-register-email">Birthday(生日) : </label>
+                      <input class="form-input form-control-has-validation form-control-last-child" id="form-register-email" type="date"  name="birthday"  data-constraints="@Required" style="padding-left: 121px !important;">
                     </div>
                     <div class="form-wrap">
                       <label class="form-label rd-input-label" for="form-login-name-2">position 1 (位置 1) : </label>
-
-                      <select class="form-select form-input" aria-label="Default select example" id="form-login-name-1" name="position1"  data-constraints="@Required" style="padding-left: 131px;">
+                      <!-- <input class="form-input form-control-has-validation form-control-last-child" id="form-login-name-2" type="text" name="form-input" data-constraints="@Required"><span class="form-validation"></span> -->
+                      <select class="form-select form-input" aria-label="Default select example" id="form-login-name-2" name="position1"  data-constraints="@Required" style="padding-left: 131px;">
                         <option selected></option>
                         <option value="GK">GK(守門員)</option>
                         <option value="DF">DF(後衛)</option>
@@ -315,10 +301,9 @@
                       <a style="width: 100%;" class="button button-google button-icon button-icon-left button-round button-lg" href="#" onclick="line_register()">
                         <img src="./images/icons8-line-red.svg" alt="" style="width: 30px;margin-right: 20px;">
                         <span>使用line註冊</span></a>
-                    </div>
-                  </form>
+                    </div>                  </form>
+                  <!-- <div class="group-sm group-sm-justify group-middle"><a class="button button-google button-icon button-icon-left button-round" href="#"><span class="icon fa fa-google-plus"></span><span>Google+</span></a><a class="button button-twitter button-icon button-icon-left button-round" href="#"><span class="icon fa fa-twitter"></span><span>Twitter</span></a><a class="button button-facebook button-icon button-icon-left button-round" href="#"><span class="icon fa fa-facebook"></span><span>Facebook</span></a></div> -->
                 </div>
-                <div id="userInfo"></div>
               </div>
             </div>
           </div>
