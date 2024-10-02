@@ -134,6 +134,15 @@ app.get('/login_data', async (req, res) => {
     
             if (result.rows.length > 0) {
               // User exists, redirect to homepage
+              const user = result.rows[0]; // 取出第一条记录
+              const displayName = user.displayName; // 读取 username 列
+              const identifier = user.identifier; // 读取 email 列
+              const birthday = user.birthday; // 读取 email 列
+              const position1 = user.preferred_position1; // 读取 email 列
+              const position2 = user.preferred_position2; // 读取 email 列
+              const level = user.level; 
+              req.session.user = { displayName, identifier,birthday,position1,position2,level };
+
               res.redirect('/');
             } else {
               const identifier = await generateUniqueIdentifier(client); // 生成唯一的 identifier
@@ -181,9 +190,35 @@ app.get('/login_data', async (req, res) => {
       res.status(400).send('No authorization code found');
   }
 });
+
 function generateState() {
   return ((1 + Math.random()) * 0x10000 | 0).toString(16).substring(1);
 }
 const NewGuid = function () {
     return (g() + g() + "-" + g() + "-" + g() + "-" + g() + "-" + g() + g() + g());
 }
+
+app.post('/user_data', (req, res) => {
+  // const { birthday, position1,position2 } = req.body;
+  // 保存用戶資料到 session 中
+
+  const userSession = req.session.user;
+  const { birthday, position1, position2} = userSession;
+  req.session.user = { displayName,identifier,birthday, position1,position2,level };
+
+  if (req.session.user) {
+    // 返回包含用戶資料的 JSON 響應
+    res.json({ 
+      message: 'User data saved successfully', 
+      status: 200, 
+      user: req.session.user // 返回 session 中的用戶資料
+    });
+  } else {
+    // 返回錯誤響應
+    res.status(500).json({ 
+      message: 'Failed to save user data', 
+      status: 500 
+    });
+  }
+  // res.redirect('/line_login');
+});

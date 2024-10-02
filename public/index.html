@@ -120,7 +120,7 @@
                         </article>
                       </div>
                     </li>
-                    <li><a class="link link-icon link-icon-left link-classic" href="#"><span class="icon fl-bigmug-line-login12"></span><span class="link-icon-text">Your Account</span></a></li>
+                    <li id="login_status"><a class="link link-icon link-icon-left link-classic" href="#"><span class="icon fl-bigmug-line-login12"></span><span class="link-icon-text" id="employee">Your Account</span></a></li>
                   </ul>
                 </div>
                 <div class="rd-navbar-collapse-toggle rd-navbar-fixed-element-1" data-rd-navbar-toggle=".rd-navbar-collapse"><span></span></div>
@@ -1297,5 +1297,43 @@ Sevens head coach</a></h3>
     <!-- Javascript-->
     <script src="js/core.min.js"></script>
     <script src="js/script.js"></script>
+    <script>
+          fetch('/user_data', {
+              method: 'POST',
+              headers: {
+                  'Content-Type': 'application/json;charset=utf-8'
+              },
+              body: JSON.stringify({ identifier: "none" }),
+          })
+          .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok: ' + response.statusText);
+            }
+            return response.json(); // 解析 JSON 響應
+          })
+          .then(data => {
+            console.log('Response data:', data); // 查看完整響應
+            if (data.status === 200) {
+                
+                const { displayName, identifier, birthday, position1, position2, level } = data.user;
+                console.log('User data:', displayName, identifier, birthday, position1, position2, level); // 獲取並輸出用戶資料
+                const element = document.querySelector('.fl-bigmug-line-login12');
+                if (element) {
+                    element.className = 'fa-user-o'; // 將 class 改為 'new-class'
+                    document.getElementById('employee').innerHTML = displayName
+                    console.log('Class changed to:', element.className); // 確認 class 已更改
+                }
+                // 在這裡可以進行其他操作，例如顯示在頁面上
+            } else {
+                console.error('Error:', data.message); // 處理錯誤情況
+            }
+              // if( data.message == 200){
+              //   window.location.href ="/line_login";
+              // }
+          })
+          .catch((error) => {
+              console.error('Error:', error);
+          });
+    </script>
   </body>
 </html>
