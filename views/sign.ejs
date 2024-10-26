@@ -47,7 +47,7 @@
     Instascan.Camera.getCameras().then(function (cameras) {
       if (cameras.length > 0) {
         // 嘗試使用第一個可用相機
-        scanner.start(cameras[0]);
+        scanner.start(cameras[1]);
         document.getElementById('message').textContent = "掃描器已啟動";
       } else {
         document.getElementById('message').textContent = "未找到相機，請檢查設備";
