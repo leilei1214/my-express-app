@@ -61,14 +61,31 @@ async function generateUniqueIdentifier(client) {
   return result; // 返回唯一的 identifier
 }
 // 提供 public 文件夹中的静态文件
-app.use(express.static(path.join(__dirname, 'public')));
+// 設置 EJS 為視圖引擎
+app.set('view engine', 'ejs');
+app.set('views', __dirname + '/views');
 
+// 提供靜態文件，如 CSS, JS
+app.use(express.static('public'));
 app.listen(port, () => {
     console.log(`Server running at http://localhost:${port}`);
 });
+// 路由處理
+app.get('/', (req, res) => {
+  res.render('index', { pageTitle: 'Home Page' });
+});
+app.get('/event', (req, res) => {
+  res.render('event', { pageTitle: 'event LIST' });
+});
+app.get('/event_content', (req, res) => {
+  res.render('event_content', { pageTitle: 'event Page' });
+});
 // 登录页面路由
 app.get('/login', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public', 'login.html'));
+  res.render('login', { pageTitle: 'Login Page' });
+});
+app.get('/sign', (req, res) => {
+  res.render('sign', { pageTitle: 'sign Page' });
 });
 // 處理前端發來的 POST 請求，將用戶資料存儲到 session
 app.post('/save-to-session', (req, res) => {
@@ -199,26 +216,42 @@ const NewGuid = function () {
 }
 
 app.post('/user_data', (req, res) => {
-  // const { birthday, position1,position2 } = req.body;
-  // 保存用戶資料到 session 中
-
+    req.session.user = {
+      displayName: 'Test User',
+      identifier: '1234567890',
+      birthday: '1990-01-01',
+      position1: 'Forward',
+      position2: 'Midfield',
+      level: 'Beginner'
+  };
   const userSession = req.session.user;
-  const { birthday, position1, position2} = userSession;
-  req.session.user = { displayName,identifier,birthday, position1,position2,level };
 
-  if (req.session.user) {
-    // 返回包含用戶資料的 JSON 響應
-    res.json({ 
-      message: 'User data saved successfully', 
-      status: 200, 
-      user: req.session.user // 返回 session 中的用戶資料
-    });
-  } else {
-    // 返回錯誤響應
-    res.status(500).json({ 
-      message: 'Failed to save user data', 
-      status: 500 
-    });
+  if (!userSession) {
+      // 如果 session 中沒有 user，返回錯誤響應
+      return res.status(400).json({ 
+          message: 'User session not found', 
+          status: 400 
+      });
   }
+
+  // 如果 session 存在，才進行解構
+  const { birthday, position1, position2 } = userSession;
+
+  const displayName = userSession.displayName;
+  const identifier = userSession.identifier;
+  const level = userSession.level;
+
+  req.session.user = { displayName, identifier, birthday: userSession.birthday, position1: userSession.position1, position2: userSession.position2, level };
+
+
+  // 更新 session 中的用戶資料
+  req.session.user = { displayName, identifier, birthday, position1, position2, level };
+
+  // 返回成功響應
+  res.json({
+      message: 'User data saved successfully',
+      status: 200,
+      user: req.session.user
+  });
   // res.redirect('/line_login');
 });

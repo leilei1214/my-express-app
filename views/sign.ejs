@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="zh-tw">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>QR Code 掃描器</title>
+  <script src="https://rawgit.com/schmich/instascan-builds/master/instascan.min.js"></script>
+  <style>
+    body {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      background-color: #f4f4f9;
+    }
+    video {
+      width: 100%;
+      max-width: 400px;
+      border: 2px solid #333;
+      border-radius: 8px;
+    }
+    #message {
+      margin-top: 15px;
+      font-size: 1.2em;
+      color: #555;
+    }
+  </style>
+</head>
+<body>
+  <h1>QR Code 掃描器</h1>
+  <video id="preview" autoplay></video>
+  <div id="message">請將 QR Code 對準掃描框</div>
+  <script type="text/javascript">
+    let scanner = new Instascan.Scanner({
+      continuous: true,
+      video: document.getElementById('preview'),
+    });
+
+    scanner.addListener('scan', function (content) {
+      alert("掃描結果：" + content);
+      if (/^https?:\/\//i.test(content)) {
+        window.open(content, "_blank");
+      }
+    });
+
+    Instascan.Camera.getCameras().then(function (cameras) {
+      if (cameras.length > 0) {
+        // 嘗試使用第一個可用相機
+        scanner.start(cameras[0]);
+        document.getElementById('message').textContent = "掃描器已啟動";
+      } else {
+        document.getElementById('message').textContent = "未找到相機，請檢查設備";
+      }
+    }).catch(function (e) {
+      document.getElementById('message').textContent = "相機初始化失敗";
+      console.error(e);
+    });
+  </script>
+</body>
+</html>
