@@ -45,16 +45,14 @@
     });
 
     Instascan.Camera.getCameras().then(function (cameras) {
-      if (cameras.length > 0) {
-        // 嘗試使用第一個可用相機
-        scanner.start(cameras[1]);
-        document.getElementById('message').textContent = "掃描器已啟動";
-      } else {
-        document.getElementById('message').textContent = "未找到相機，請檢查設備";
-      }
+    let rearCamera = cameras.find(camera => camera.name.toLowerCase().includes('back'));
+    if (rearCamera) {
+        scanner.start(rearCamera); // 使用後鏡頭
+    } else {
+        console.error('沒有找到後置相機');
+    }
     }).catch(function (e) {
-      document.getElementById('message').textContent = "相機初始化失敗";
-      console.error(e);
+        console.error(e);
     });
   </script>
 </body>
