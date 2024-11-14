@@ -105,28 +105,51 @@
         <div class="container">
           <div class="row row-50">
             <div class="col-lg-8">
+              <ul class="list-inline mx-auto list-inline-xs "  style="margin-bottom: -4px;">
+                <li class="pl-0 pr-0"><a class=" button-md icon-media icon-media-round icon-media-instagram " href="#">編輯</a></li>
+                <li class="pl-0 pr-0"><a class="button-md icon-media icon-media-round icon-media-instagram " href="#">簽退</a></li>
+                <li class="pl-0 pr-0"><a class="button-md icon-media icon-media-round icon-media-google " href="#">刪除</a></li>
+
+              </ul>
+
               <div class="blog-post">
                 <!-- Badge-->
-                <div class="badge badge-secondary">The Team
-                </div>
-                <h3 class="blog-post-title">新手課程，會有教練上課</h3>
+                 <div id="activity_level">
+
+                 </div>
+                <!-- <div class="badge badge-secondary">The Team
+                </div> -->
+                <!-- <div class="badge badge-secondary">The Team
+                </div> -->
+                <h3 class="blog-post-title"></h3>
                 <div class="blog-post-header">
                   <div class="blog-post-author">
                     <img class="img-circle" src="images/logo.png" alt="" width="63" height="63">
 
                     <!-- <img class="img-circle" src="images/user-3-63x63.jpg" alt="" width="63" height="63"> -->
-                    <p class="post-author">圖斯特</p>
+                    <p class="post-author organizer"></p>
                   </div>
                   <div class="blog-post-meta">
-                    <time class="blog-post-time" datetime="2024"><span class="icon mdi mdi-clock"></span><span>April 15, 2024</span></time>
-                    <div class="blog-post-comment"><span class="icon mdi mdi-map-marker"></span><span>西屯足球場</span></div>
-                    <div class="blog-post-view"><span class="icon mdi mdi-account-multiple"></span><span>12</span>/<span>20</span> </div>
+                    <time class="blog-post-time" datetime="2024"><span class="icon mdi mdi-clock"></span><span class="active_date"></span></time>
+                    <div class="blog-post-comment"><span class="icon mdi mdi-map-marker"></span><span class="location"></span></div>
+                    <div class="blog-post-view"><span class="icon mdi mdi-account-multiple"></span><span class="current_participants"></span>/<span class="max_participants"></span> </div>
+                    <div class="blog-post-view "><span class="icon">$</span><span class="icon amount"></div>
+
                   </div>
                 </div>
                 <div class="blog-post-author-quote">
-                  <p>我們熱烈歡迎各行各業的人參加，無論工作有多繁忙，每週都有一天專門為足球而設，我們迫不及待地期待每個人的加入，一同體驗這份樂趣。<br>
-                    鼓勵朋友們一同走出家門，放下手機，融入體育運動的懷抱中，共同享受運動所帶來的樂趣。</p>
+                  <p class="activity_intro"></p>
                 </div>
+
+              </div>
+              <div class="row">
+                <!-- mx-auto -->
+                <ul class="list-inline mx-auto list-inline-xs">
+                  <li><a class="button button-md button-primary" href="#">V 參加</a></li>
+                  <li><a class="button button-md button-primary" href="#">X 不參加</a></li>
+
+                </ul>
+
 
               </div>
               <div class="row">
@@ -147,9 +170,10 @@
                   <thead class="table-standings ">
                     <tr>
                       <th scope="col">#</th>
-                      <th scope="col">First</th>
-                      <th scope="col">Last</th>
-                      <th scope="col">Handle</th>
+                      <th scope="col">名字</th>
+                      <th scope="col">位置</th>
+                      <th scope="col">簽到</th>
+                      <th scope="col">簽退</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -185,7 +209,113 @@
                   <!-- Heading Component-->
                   <article class="heading-component">
                     <div class="heading-component-inner">
-                      <h5 class="heading-component-title">錄取名單
+                      <h5 class="heading-component-title">備取名單
+                    </div>
+                  </article>
+                  <!-- Table team-->
+                  <div class="table-custom-responsive">
+                    <table class="table-custom table-standings table-classic" style="table-layout: fixed; width: 100%;">
+                      <thead>
+                        <tr>
+                          <th>順序</th>
+                          <th>名字</th>
+                          <th>位置</th>
+                          <th>備註</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td><span>1</span></td>
+                          <td class="team-inline">
+                            <!-- <div class="team-figure"><img src="images/team-sportland-31x41.png" alt="" width="31" height="41"/>
+                            </div> -->
+                            <div class="team-title">
+                              <div class="team-name">Sportland</div>
+                              <!-- <div class="team-country">USA</div> -->
+                            </div>
+                          </td>
+                          <td>153</td>
+                          <td>30</td>
+                        </tr>
+                        <tr>
+                          <td><span>2</span></td>
+                          <td class="team-inline">
+                            <!-- <div class="team-figure"><img src="images/team-dream-team-34x34.png" alt="" width="34" height="34"/>
+                            </div> -->
+                            <div class="team-title">
+                              <div class="team-name">Dream team</div>
+                              <!-- <div class="team-country">Spain</div> -->
+                            </div>
+                          </td>
+                          <td>120</td>
+                          <td>30</td>
+                        </tr>
+                        <tr>
+                          <td><span>3</span></td>
+                          <td class="team-inline">
+                            <!-- <div class="team-figure"><img src="images/team-real-madrid-28x37.png" alt="" width="28" height="37"/>
+                            </div> -->
+                            <div class="team-title">
+                              <div class="team-name">Real Madrid</div>
+                              <!-- <div class="team-country">Spain</div> -->
+                            </div>
+                          </td>
+                          <td>100</td>
+                          <td>30</td>
+                        </tr>
+                        <tr>
+                          <td><span>4</span></td>
+                          <td class="team-inline">
+                            <!-- <div class="team-figure"><img src="images/team-celta-vigo-35x39.png" alt="" width="35" height="39"/>
+                            </div> -->
+                            <div class="team-title">
+                              <div class="team-name">Celta Vigo</div>
+                              <!-- <div class="team-country">Italy</div> -->
+                            </div>
+                          </td>
+                          <td>98</td>
+                          <td>30</td>
+                        </tr>
+                        <tr>
+                          <td><span>5</span></td>
+                          <td class="team-inline">
+                            <!-- <div class="team-figure"><img src="images/team-barcelona-30x35.png" alt="" width="30" height="35"/>
+                            </div> -->
+                            <div class="team-title">
+                              <div class="team-name">Barcelona</div>
+                              <!-- <div class="team-country">Spain</div> -->
+                            </div>
+                          </td>
+                          <td>98</td>
+                          <td>30</td>
+                        </tr>
+                        <tr>
+                          <td><span>6</span></td>
+                          <td class="team-inline">
+                            <!-- <div class="team-figure"><img src="images/team-bavaria-fc-26x34.png" alt="" width="26" height="34"/>
+                            </div> -->
+                            <div class="team-title">
+                              <div class="team-name">Bavaria FC</div>
+                              <!-- <div class="team-country">Germany</div> -->
+                            </div>
+                          </td>
+                          <td>98</td>
+                          <td>30</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </aside>
+            </div>
+            <div class="col-sm-12 col-md-12 col-lg-4">
+              <aside class="aside-components"  style="display: contents;">
+
+                <div class="aside-component">
+                  <!-- Heading Component-->
+                  <article class="heading-component">
+                    <div class="heading-component-inner">
+                      <h5 class="heading-component-title">不參加名單
                     </div>
                   </article>
                   <!-- Table team-->
@@ -465,12 +595,81 @@
     <!-- Javascript-->
     <script src="js/core.min.js"></script>
     <script src="js/script.js"></script>
+    <script src="js/myScript.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.8/js/select2.min.js" defer></script>
     <script src="my-component.js" defer></script>
 
     <!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> -->
     <script>
-      
+      fetchEventData()
+      async function fetchEventData() {
+            const listId = getURLParameter('list_id');
+            console.log(listId);
+            const response = await fetch(`/api/event_content?list_id=${listId}`);
+            const eventContentDiv = document.getElementById('event-content');
+            // <div class="badge badge-secondary">The Team
+            // </div>
+            if (response.ok) {
+                const data = await response.json();
+                console.log(data)
+                // 遍歷陣列並輸出每個元素
+                for (const item of data.activity_category) {
+                  document.getElementById('activity_level').innerHTML += `
+                    <div class="badge badge-secondary">${item}
+                    </div>
+                  `
+                }
+                for (const item of data.activity_level) {
+                  if( item == "新手"){
+                    document.getElementById('activity_level').innerHTML += `
+                      <div class="badge badge-primary">${item}
+                      </div>
+                    `
+                  }
+                  if( item == "自由"){
+                    document.getElementById('activity_level').innerHTML += `
+                      <div class="badge badge-red">${item}
+                      </div>
+                    `
+                  }
+
+                }
+                $(".blog-post-title").html(data.activity_notice)
+
+                const date = new Date(data.time);
+
+                // 提取年月日和小時分鐘
+                const year = date.getFullYear();
+                const month = String(date.getMonth() + 1).padStart(2, '0'); // 月份從0開始，需要+1
+                const day = String(date.getDate()).padStart(2, '0');
+                const hours = String(date.getHours()).padStart(2, '0');
+                const minutes = String(date.getMinutes()).padStart(2, '0');
+
+                // 組合成所需格式
+                const formattedDate = `${year}-${month}-${day} ${hours}:${minutes}`;
+                console.log(formattedDate); // "2024-11-01 06:00"
+                $(".amount").html(data.amount)
+                $(".current_participants").html(data.current_participants)
+                $(".max_participants").html(data.max_participants)
+                $(".location").html(data.location)
+                $(".organizer").html(data.organizer)
+                $(".active_date").html(formattedDate)
+                $(".activity_intro").html(data.activity_intro)
+
+                
+                // activity_level
+                // eventContentDiv.innerHTML = `
+                //     <p><strong>活動名稱：</strong> ${data.activity_name || '無資料'}</p>
+                //     <p><strong>地點：</strong> ${data.location || '無資料'}</p>
+                //     <p><strong>簡介：</strong> ${data.activity_intro || '無資料'}</p>
+                //     <p><strong>時間：</strong> ${data.time || '無資料'}</p>
+                //     <p><strong>參加人數：</strong> ${data.current_participants || 0} / ${data.max_participants || '無限制'}</p>
+                // `;
+            } else {
+                console.log("找不到活動或查詢失敗")
+                // eventContentDiv.innerHTML = `<p>找不到活動或查詢失敗。</p>`;
+            }
+        }
       // $('#header').load('header.html', function(response, status, xhr) {
       //     if (status == "error") {
       //         console.log("Error loading header: " + xhr.status + " " + xhr.statusText);

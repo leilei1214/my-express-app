@@ -255,3 +255,32 @@ app.post('/user_data', (req, res) => {
   });
   // res.redirect('/line_login');
 });
+
+// 定義 API 路由來查詢活動內容
+app.get('/api/event_content', async (req, res) => {
+  const listId = req.query.list_id; // 從查詢參數中取得 list_id
+
+  if (!listId || isNaN(listId)) {
+    return res.status(400).send('無效的 list_id 參數');
+  }
+
+  try {
+    // 獲取數據庫連接並查詢資料
+    const client = await pool.connect();
+    const query = 'SELECT * FROM activities WHERE id = $1';
+    const result = await client.query(query, [listId]);
+
+    // 釋放連接
+    client.release();
+
+    if (result.rows.length === 0) {
+      res.status(404).send('找不到對應的活動');
+    } else {
+      res.json(result.rows[0]); // 返回 JSON 格式的查詢結果
+    }
+  } catch (err) {
+    console.error('資料庫查詢失敗:', err);
+    res.status(500).send('資料庫查詢錯誤');
+  }
+});
+
