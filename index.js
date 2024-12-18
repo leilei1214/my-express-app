@@ -9,8 +9,11 @@ const session = require('express-session');
 const cors = require('cors');
 
 const app = express();
+
+
 app.use(cors());
 app.use(express.json());
+
 // 初始化 session 中間件
 app.use(session({
   secret: 'your-secret-key',
@@ -41,14 +44,15 @@ const pool = new Pool({
 
 // 生成随机的 identifier（与之前一致）
 function generateIdentifier() {
-  const digits = Math.floor(1000 + Math.random() * 9000).toString(); // 生成4位数字
+  const digits = Math.floor(1000 + Math.random() * 9000).toString();
   const letters = Array.from({ length: 4 }, () => 
-      String.fromCharCode(65 + Math.floor(Math.random() * 26)) // 生成4位大写字母
+      String.fromCharCode(65 + Math.floor(Math.random() * 26))
   ).join('');
   const identifierArray = (digits + letters).split('');
   const shuffledIdentifier = identifierArray.sort(() => Math.random() - 0.5).join('');
   return shuffledIdentifier;
 }
+
 async function generateUniqueIdentifier(client) {
   let result = ""; // 初始值为空
   while (result === "") {
@@ -87,6 +91,18 @@ app.get('/login', (req, res) => {
 app.get('/sign', (req, res) => {
   res.render('sign', { pageTitle: 'sign Page' });
 });
+app.get('/add_event', (req, res) => {
+  res.render('add_event', { pageTitle: 'add_event Page' });
+});
+const { handleActivitySubmission } = require('./add_activity');
+// multer 可以解析 multipart/form-data 类型的 HTTP 请求，提取其中的文件和字段。
+const multer = require('multer'); // For handling FormData
+const upload = multer();
+
+
+
+// 设置 POST 路由
+app.post('/submit_event', upload.none(), handleActivitySubmission);
 // 處理前端發來的 POST 請求，將用戶資料存儲到 session
 app.post('/save-to-session', (req, res) => {
   const { birthday, position1,position2 } = req.body;
