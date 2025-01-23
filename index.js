@@ -84,6 +84,11 @@ app.get('/event', (req, res) => {
 app.get('/event_content', (req, res) => {
   res.render('event_content', { pageTitle: 'event Page' });
 });
+
+app.get('/SignIn', (req, res) => {
+  res.render('SignIn', { pageTitle: 'SignIn' });
+});
+
 // 登录页面路由
 app.get('/login', (req, res) => {
   res.render('login', { pageTitle: 'Login Page' });
@@ -238,7 +243,8 @@ app.post('/user_data', (req, res) => {
       birthday: '1990-01-01',
       position1: 'Forward',
       position2: 'Midfield',
-      level: 'Beginner'
+      // 新手
+      level: 3
   };
   const userSession = req.session.user;
 
@@ -285,6 +291,13 @@ app.get('/api/event_content', async (req, res) => {
     const client = await pool.connect();
     const query = 'SELECT * FROM activities WHERE id = $1';
     const result = await client.query(query, [listId]);
+    const registrationQuery = `
+    SELECT * 
+    FROM registrations 
+    WHERE activity_id = $1 
+    ORDER BY id ASC
+    `;
+    const registrationResult = await client.query(registrationQuery, [listId]);
 
     // 釋放連接
     client.release();
@@ -292,11 +305,173 @@ app.get('/api/event_content', async (req, res) => {
     if (result.rows.length === 0) {
       res.status(404).send('找不到對應的活動');
     } else {
-      res.json(result.rows[0]); // 返回 JSON 格式的查詢結果
+        
+
+
+      // 返回活動與註冊資訊
+      res.json({
+        event: result.rows[0], // 單一活動內容
+        registrations: registrationResult.rows, // 該活動的註冊資訊
+      });
     }
   } catch (err) {
     console.error('資料庫查詢失敗:', err);
     res.status(500).send('資料庫查詢錯誤');
   }
+});
+// 定義 API 路由來查詢活動內容
+app.post('/api/event', async (req, res) => {
+
+  try {
+    // 獲取數據庫連接並查詢資料
+    const client = await pool.connect();
+    const query = 'SELECT * FROM activities ORDER BY time ASC;';
+    const result = await client.query(query);
+
+    // 釋放連接
+    client.release();
+
+    if (result.rows.length === 0) {
+      res.status(404).send('找不到對應的活動');
+    } else {
+      res.json(result.rows); // 返回 JSON 格式的查詢結果
+    }
+  } catch (err) {
+    console.error('資料庫查詢失敗:', err);
+    res.status(500).send('資料庫查詢錯誤');
+  }
+});
+app.post('/insert-event', async (req, res) => {
+  const userSession = req.session.user;
+
+  // 检查用户会话是否存在
+  if (!userSession) {
+      return res.status(400).json({ 
+          message: 'User session not found', 
+          status: 400 
+      });
+  }
+
+  // 从会话中获取数据
+  const { displayName, identifier, level } = userSession;
+
+  // 从前端获取其他插入数据
+  const { status_add,activityId,} = req.body;
+
+    // 建立連線
+
+    // SQL 插入語句
+    const query = `
+        INSERT INTO registrations (activity_id, participant_name, status_add, identifier)
+        VALUES ($1, $2, $3, $4)
+        RETURNING id;
+    `;
+
+    // 執行插入，傳遞參數避免 SQL 注入
+    const values = [activityId, displayName, status_add, identifier];
+
+    let client;
+
+
+    try {
+      const client = await pool.connect();
+      const result = await client.query(query, values);
+      console.log('Insert success:', result.rows[0]); // 檢查插入結果
+      res.status(200).json({ status: 200 });
+    } catch (err) {
+        console.error('資料庫插入失敗:', err);
+        res.status(500).json({ status: 500, message: '資料庫插入錯誤' });
+    } finally {
+      
+        if (client) client.release();
+    }
+
+});
+app.post('/Update_SignIn', async (req, res) => {
+  const userSession = req.session.user;
+
+  // 检查用户会话是否存在
+  if (!userSession) {
+      return res.status(400).json({ 
+          message: 'User session not found', 
+          status: 400 
+      });
+  }
+  res.status(200).json({ status: 200 });
+
+
+  // 从前端获取其他插入数据
+  const { jsonData,activityId,} = req.body;
+  console.log(jsonData)
+  
+  const client = await pool.connect();
+
+  for (const item of jsonData) {
+    // SignIn SignOut SignFree
+    let query = '';
+    const { checked, value, class: className } = item;
+    if(className == "SignIn"){
+      query = `
+      UPDATE registrations
+      SET 
+          check_in = $1,
+      WHERE 
+          activity_id = $2 AND identifier = $3
+      `;
+    }
+    else if(className == "SignOut"){
+      query = `
+      UPDATE registrations
+      SET 
+          check_out = $1,
+      WHERE 
+          activity_id = $2 AND identifier = $3
+      `;
+    }
+    else if(className == "SignFree"){
+      query = `
+      UPDATE registrations
+      SET 
+          payment_status = $1,
+      WHERE 
+          activity_id = $2 AND identifier = $3
+      `;
+    }
+    Change_checked = 0
+    if(checked){
+      Change_checked = 1
+    }
+    console.log(query)
+    const values = [Change_checked, activityId, value];
+    await client.query(query, values);
+  }
+    // 建立連線
+
+    // SQL 插入語句
+    // const query = `
+    //     INSERT INTO registrations (activity_id, participant_name, status_add, identifier)
+    //     VALUES ($1, $2, $3, $4)
+    //     RETURNING id;
+    // `;
+
+    // 執行插入，傳遞參數避免 SQL 注入
+    // const values = [activityId, displayName, status_add, identifier];
+
+    // let client;
+
+
+    // try {
+    //   const client = await pool.connect();
+    //   const result = await client.query(query, values);
+    //   console.log('Insert success:', result.rows[0]); // 檢查插入結果
+    //   res.status(200).json({ status: 200 });
+    // } catch (err) {
+    //     console.error('資料庫插入失敗:', err);
+    //     res.status(500).json({ status: 500, message: '資料庫插入錯誤' });
+    // } finally {
+      
+    //     if (client) client.release();
+    // }
+
 });
 

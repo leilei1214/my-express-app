@@ -37,6 +37,9 @@
         .object-container::webkit-scrollbar {
             display: none; /* 隱藏滾動條 */
         }
+        td{
+          text-align: center;
+        }
 
     </style>
   </head>
@@ -145,8 +148,8 @@
               <div class="row">
                 <!-- mx-auto -->
                 <ul class="list-inline mx-auto list-inline-xs">
-                  <li><a class="button button-md button-primary" href="#">V 參加</a></li>
-                  <li><a class="button button-md button-primary" href="#">X 不參加</a></li>
+                  <li><a class="button button-md button-primary btn_add" href="#">V 參加</a></li>
+                  <li><a class="button button-md button-primary btn_Nadd" href="#">X 不參加</a></li>
 
                 </ul>
 
@@ -174,10 +177,12 @@
                       <th scope="col">位置</th>
                       <th scope="col">簽到</th>
                       <th scope="col">簽退</th>
+                      <th scope="col">繳費</th>
+
                     </tr>
                   </thead>
-                  <tbody>
-                    <tr>
+                  <tbody id="add_registrations">
+                    <!-- <tr>
                       <th scope="row">1</th>
                       <td>Mark</td>
                       <td>Otto</td>
@@ -194,7 +199,7 @@
                       <td>Larry</td>
                       <td>the Bird</td>
                       <td>@twitter</td>
-                    </tr>
+                    </tr> -->
                   </tbody>
                 </table>
               </div>
@@ -610,7 +615,9 @@
             // <div class="badge badge-secondary">The Team
             // </div>
             if (response.ok) {
-                const data = await response.json();
+                const res = await response.json();
+
+                const data = res.event
                 console.log(data)
                 // 遍歷陣列並輸出每個元素
                 for (const item of data.activity_category) {
@@ -656,7 +663,44 @@
                 $(".active_date").html(formattedDate)
                 $(".activity_intro").html(data.activity_intro)
 
-                
+                // #---------------------------------------------------------------------------------------
+                const registrations = res.registrations
+                console.log(registrations)
+                let add_registrations = ""; // Initialize the HTML string
+
+                registrations.forEach((registration, index) => {
+                    let check_in = "未簽到";
+                    if (registration.check_in == 1) {
+                        check_in = "已簽到";
+                    }
+
+                    let check_out = "未簽退"; // Corrected this line
+                    if (registration.check_out == 1) {
+                        check_out = "已簽退";
+                    }
+
+                    let payment_status = "未繳費";
+                    if (registration.payment_status) {
+                      payment_status = registration.payment_status; // Use the actual name
+                    }
+
+                    console.log(`Registration ${index + 1}:`, registration);
+
+                    add_registrations += `
+                      <tr>
+                        <th scope="row">${index + 1}</th>
+                        <td>${registration.participant_name}</td>
+                        <td>-</td>
+                        <td>${check_in}</td>
+                        <td>${check_out}</td>
+                        <td>${payment_status}</td>
+                      </tr>
+                    `;
+                });
+
+                $("#add_registrations").html(add_registrations); // Correct jQuery method
+
+
                 // activity_level
                 // eventContentDiv.innerHTML = `
                 //     <p><strong>活動名稱：</strong> ${data.activity_name || '無資料'}</p>
@@ -679,6 +723,7 @@
         
     </script>
     <script>
+        
         var timeout = setTimeout(function() {
 
           fetch('/user_data', {
@@ -707,6 +752,10 @@
                 const element = document.querySelector('.fl-bigmug-line-login12');
                 if (element) {
                     element.className = 'icon fa-user-o'; // 將 class 改為 'new-class'
+                    localStorage.setItem('displayName',displayName);
+                    localStorage.setItem('identifier',identifier);
+                    localStorage.setItem('level',level);
+
                     document.getElementById('employee').innerHTML = displayName
                     console.log('Class changed to:', element.className); // 確認 class 已更改
                 }
@@ -726,6 +775,37 @@
           });
         }, 1000);
     </script>
+    <script>
+      $(".btn_add").click(()=>{
+        const currentUrl = window.location.href;
 
+        // 使用 URLSearchParams 提取查詢參數
+        const urlParams = new URLSearchParams(window.location.search);
+
+        // 獲取 `list_id` 的值
+        const activityId = urlParams.get('list_id');
+        fetch('/insert-event', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+              status_add: 1,
+              activityId:activityId
+            }),
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.status == 200) {
+                alert("報名成功！");
+            } else {
+                alert("報名失败：" + data.message);
+            }
+        })
+        .catch(error => {
+            console.error("请求失败:", error);
+        });
+      })
+    </script>
   </body>
 </html>
