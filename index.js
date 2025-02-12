@@ -102,6 +102,7 @@ app.get('/add_event', (req, res) => {
 const { handleActivitySubmission } = require('./add_activity');
 // multer 可以解析 multipart/form-data 类型的 HTTP 请求，提取其中的文件和字段。
 const multer = require('multer'); // For handling FormData
+const { Console } = require('console');
 const upload = multer();
 
 
@@ -361,22 +362,65 @@ app.post('/insert-event', async (req, res) => {
     // 建立連線
 
     // SQL 插入語句
-    const query = `
-        INSERT INTO registrations (activity_id, participant_name, status_add, identifier)
-        VALUES ($1, $2, $3, $4)
-        RETURNING id;
-    `;
+    // const query = `
+    //     INSERT INTO registrations (activity_id, participant_name, status_add, identifier)
+    //     VALUES ($1, $2, $3, $4)
+    //     RETURNING id;
+    // `;
 
     // 執行插入，傳遞參數避免 SQL 注入
-    const values = [activityId, displayName, status_add, identifier];
+    // const values = [activityId, displayName, status_add, identifier];
 
     let client;
 
 
     try {
       const client = await pool.connect();
-      const result = await client.query(query, values);
-      console.log('Insert success:', result.rows[0]); // 檢查插入結果
+      // Step 1: Get max_participants from activities table
+      const activityResult = await client.query(
+        `SELECT max_participants FROM public.activities WHERE id = $1`,
+        [activityId]
+      );
+  
+      if (activityResult.rows.length === 0) {
+        throw new Error('Activity not found');
+      }
+      const maxParticipants = activityResult.rows[0].max_participants;
+      // ------------------------------------------------------------------
+      const countStatusAdd = await client.query(
+        `SELECT COUNT(*) AS count FROM public.registrations WHERE activity_id = $1 AND status_add = '1'`,
+        [activityId]
+      );
+      const currentStatusAdd = parseInt(countStatusAdd.rows[0].count, 10);
+      // --------------------------------------------------------------
+      // Step 2: Count registrations with status_add = 1 for the given activity
+      const countResult = await client.query(
+        `SELECT COUNT(*) AS count FROM public.registrations WHERE activity_id = $1 AND identifier = $2`,
+        [activityId,identifier]
+      );
+      const currentParticipants = parseInt(countResult.rows[0].count, 10);
+      console.log(currentParticipants)
+    // Step 3: Check if currentParticipants <= maxParticipants
+
+      if (currentParticipants > 0) {
+        // Step 5a: Update the existing record
+        await client.query(
+          `UPDATE public.registrations
+            SET status_add = $1
+            WHERE activity_id = $2 AND identifier = $3`,
+          [status_add, activityId, identifier]
+        );
+        console.log('Updated registration');
+      } else {
+        // Step 5b: Insert a new record
+        await client.query(
+          `INSERT INTO public.registrations (activity_id, identifier, status_add)
+            VALUES ($1, $2, $3)`,
+          [activityId, identifier, status_add]
+        );
+        console.log('Inserted new registration');
+      }
+      
       res.status(200).json({ status: 200 });
     } catch (err) {
         console.error('資料庫插入失敗:', err);
@@ -386,8 +430,9 @@ app.post('/insert-event', async (req, res) => {
         if (client) client.release();
     }
 
+
 });
-app.post('/Update_SignIn', async (req, res) => {
+app.post('/delete-event', async (req, res) => {
   const userSession = req.session.user;
 
   // 检查用户会话是否存在
@@ -397,54 +442,13 @@ app.post('/Update_SignIn', async (req, res) => {
           status: 400 
       });
   }
-  res.status(200).json({ status: 200 });
 
+  // 从会话中获取数据
+  const { displayName, identifier, level } = userSession;
 
   // 从前端获取其他插入数据
-  const { jsonData,activityId,} = req.body;
-  console.log(jsonData)
-  
-  const client = await pool.connect();
+  const { status_add,activityId,} = req.body;
 
-  for (const item of jsonData) {
-    // SignIn SignOut SignFree
-    let query = '';
-    const { checked, value, class: className } = item;
-    if(className == "SignIn"){
-      query = `
-      UPDATE registrations
-      SET 
-          check_in = $1,
-      WHERE 
-          activity_id = $2 AND identifier = $3
-      `;
-    }
-    else if(className == "SignOut"){
-      query = `
-      UPDATE registrations
-      SET 
-          check_out = $1,
-      WHERE 
-          activity_id = $2 AND identifier = $3
-      `;
-    }
-    else if(className == "SignFree"){
-      query = `
-      UPDATE registrations
-      SET 
-          payment_status = $1,
-      WHERE 
-          activity_id = $2 AND identifier = $3
-      `;
-    }
-    Change_checked = 0
-    if(checked){
-      Change_checked = 1
-    }
-    console.log(query)
-    const values = [Change_checked, activityId, value];
-    await client.query(query, values);
-  }
     // 建立連線
 
     // SQL 插入語句
@@ -457,21 +461,130 @@ app.post('/Update_SignIn', async (req, res) => {
     // 執行插入，傳遞參數避免 SQL 注入
     // const values = [activityId, displayName, status_add, identifier];
 
-    // let client;
+    let client;
 
 
-    // try {
-    //   const client = await pool.connect();
-    //   const result = await client.query(query, values);
-    //   console.log('Insert success:', result.rows[0]); // 檢查插入結果
-    //   res.status(200).json({ status: 200 });
-    // } catch (err) {
-    //     console.error('資料庫插入失敗:', err);
-    //     res.status(500).json({ status: 500, message: '資料庫插入錯誤' });
-    // } finally {
+    try {
+      const client = await pool.connect();
+ 
+      // ------------------------------------------------------------------
+
+      // --------------------------------------------------------------
+      // Step 2: Count registrations with status_add = 1 for the given activity
+      const countResult = await client.query(
+        `SELECT COUNT(*) AS count FROM public.registrations WHERE activity_id = $1 AND identifier = $2`,
+        [activityId,identifier]
+      );
+      const currentParticipants = parseInt(countResult.rows[0].count, 10);
+      console.log(currentParticipants)
+    // Step 3: Check if currentParticipants <= maxParticipants
+
+      if (currentParticipants > 0) {
+        // Step 5a: Update the existing record
+        await client.query(
+          `UPDATE public.registrations
+            SET status_add = $1
+            WHERE activity_id = $2 AND identifier = $3`,
+          [status_add, activityId, identifier]
+        );
+        console.log('Updated registration');
+      } else {
+        // Step 5b: Insert a new record
+        await client.query(
+          `INSERT INTO public.registrations (activity_id, identifier, status_add)
+            VALUES ($1, $2, $3)`,
+          [activityId, identifier, status_add]
+        );
+        console.log('Inserted new registration');
+      }
       
-    //     if (client) client.release();
-    // }
+      res.status(200).json({ status: 200 });
+    } catch (err) {
+        console.error('資料庫插入失敗:', err);
+        res.status(500).json({ status: 500, message: '資料庫插入錯誤' });
+    } finally {
+      
+        if (client) client.release();
+    }
+
 
 });
+app.post('/Update_SignIn', async (req, res) => {
+  const userSession = req.session.user;
+
+  // Check if the user session exists
+  if (!userSession) {
+    return res.status(400).json({
+      message: 'User session not found',
+      status: 400,
+    });
+  }
+
+  // Extract data from the request body
+  const { jsonData, activityId } = req.body;
+  const results = [];
+
+  // Establish a database connection
+  const client = await pool.connect();
+
+  try {
+    // Iterate through the provided JSON data and perform updates
+    for (const item of jsonData) {
+      let query = '';
+      let Change_checked;
+
+      const { checked, value, class: className } = item;
+
+      if (className === 'SignIn') {
+        query = `
+        UPDATE registrations
+        SET 
+            check_in = $1
+        WHERE 
+            activity_id = $2 AND identifier = $3
+        `;
+        Change_checked = checked ? 1 : 0;
+      } else if (className === 'SignOut') {
+        query = `
+        UPDATE registrations
+        SET 
+            check_out = $1
+        WHERE 
+            activity_id = $2 AND identifier = $3
+        `;
+        Change_checked = checked ? 1 : 0;
+      } else if (className === 'SignFree') {
+        query = `
+        UPDATE registrations
+        SET 
+            payment_status = $1
+        WHERE 
+            activity_id = $2 AND identifier = $3
+        `;
+        Change_checked = checked ? true : false;
+      }
+
+      const values = [Change_checked, activityId, value];
+      console.log(values);
+
+      try {
+        await client.query(query, values);
+        results.push({ status: 200 });
+      } catch (err) {
+        console.error('Database query failed:', err);
+        results.push({ status: 500, error: 'Database query failed' });
+      }
+    }
+
+    // Once all updates are done, send a single response
+    res.status(200).json({ status: 200, results });
+  } catch (err) {
+    console.error('Unexpected error:', err);
+    res.status(500).json({ status: 500, message: 'Unexpected server error' });
+  } finally {
+    // Ensure the client is always released back to the pool
+    client.release();
+  }
+});
+
 

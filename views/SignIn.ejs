@@ -456,31 +456,25 @@
                 registrations.forEach((registration, index) => {
                     let check_in = `
                     <label class="checkbox-inline input-filter input-filter-danube">
-                      <input name="input-checkbox-6" value="${registration.identifier}" type="checkbox" class="checkbox-custom SignIn"><span class="checkbox-custom-dummy"></span>
+                      <input name="input-checkbox-6" id="check_in-${registration.identifier}" value="${registration.identifier}" type="checkbox" class="checkbox-custom SignIn"><span class="checkbox-custom-dummy"></span>
                     </label>
                     `;
-                    if (registration.check_in == 1) {
-                        check_in = "已簽到";
-                    }
+
 
                     let check_out = `
                       <label class="checkbox-inline input-filter input-filter-geraldine">
-                      <input name="input-checkbox-9" value="${registration.identifier}" type="checkbox" class="checkbox-custom SignOut"><span class="checkbox-custom-dummy"></span>
+                      <input name="input-checkbox-9" id="check_out-${registration.identifier}" value="${registration.identifier}" type="checkbox" class="checkbox-custom SignOut"><span class="checkbox-custom-dummy"></span>
                     </label>
 
                     `; // Corrected this line
-                    if (registration.check_out == 1) {
-                        check_out = "已簽退";
-                    }
+
 
                     let payment_status = `
                     <label class="checkbox-inline input-filter input-filter-blue">
-                      <input name="input-checkbox-9" value="${registration.identifier}" type="checkbox" class="checkbox-custom SignFree"><span class="checkbox-custom-dummy"></span>
+                      <input name="input-checkbox-9" id="payment_status-${registration.identifier}" value="${registration.identifier}" type="checkbox" class="checkbox-custom SignFree"><span class="checkbox-custom-dummy"></span>
                     </label>
                     `;
-                    if (registration.payment_status) {
-                      payment_status = registration.payment_status; // Use the actual name
-                    }
+
 
                     console.log(`Registration ${index + 1}:`, registration);
 
@@ -494,9 +488,35 @@
                         <td>${payment_status}</td>
                       </tr>
                     `;
+                    document.getElementById("add_registrations").innerHTML += add_registrations
+                    if(registration.check_in == 1){
+
+                      const specificCheckbox = document.getElementById(`check_in-${registration.identifier}`);
+                      if (specificCheckbox) {
+                        specificCheckbox.checked = true;
+                        console.log(`Checkbox with id unique-checkbox-${registration.identifier} is checked.`);
+                      }
+                    }
+                    if (registration.check_out == 1) {
+                      const specificCheckbox = document.getElementById(`check_out-${registration.identifier}`);
+                      if (specificCheckbox) {
+                        specificCheckbox.checked = true;
+                        console.log(`Checkbox with id unique-checkbox-${registration.identifier} is checked.`);
+                      }
+                        // check_out = "已簽退";
+                    }
+                    if (registration.payment_status) {
+                      // payment_status = registration.payment_status; // Use the actual name
+                      const specificCheckbox = document.getElementById(`payment_status-${registration.identifier}`);
+                      if (specificCheckbox) {
+                        specificCheckbox.checked = true;
+                        console.log(`Checkbox with id unique-checkbox-${registration.identifier} is checked.`);
+                      }
+                    }
+                    add_registrations = ``
                 });
 
-                $("#add_registrations").html(add_registrations); // Correct jQuery method
+                // $("#add_registrations").html(add_registrations); // Correct jQuery method
 
 
                 // activity_level
@@ -638,9 +658,10 @@
           .then(response => response.json())
           .then(data => {
               if (data.status == 200) {
-                  alert("報名成功！");
+                  alert("儲存成功！");
+                  location.reload();
               } else {
-                  alert("報名失败：" + data.message);
+                  alert("儲存失败：" + data.message);
               }
           })
           .catch(error => {

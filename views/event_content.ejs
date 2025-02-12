@@ -669,33 +669,51 @@
                 let add_registrations = ""; // Initialize the HTML string
 
                 registrations.forEach((registration, index) => {
-                    let check_in = "未簽到";
-                    if (registration.check_in == 1) {
-                        check_in = "已簽到";
+                    if(registration.status_add == "1"){
+                      if(registration.identifier == localStorage.getItem("identifier") ){
+                        const element = document.querySelector('.btn_add');
+                        $(".btn_add").addClass("active")
+                        // Add inline styles
+                        element.style.background = '#888'; // Changes text color to red
+                        element.style.borderColor = '#888'; 
+                      }
+                      let check_in = "未簽到";
+                      if (registration.check_in == 1) {
+                          check_in = "已簽到";
+                      }
+
+                      let check_out = "未簽退"; // Corrected this line
+                      if (registration.check_out == 1) {
+                          check_out = "已簽退";
+                      }
+
+                      let payment_status = "未繳費";
+                      if (registration.payment_status) {
+                        payment_status ="已繳費"; // Use the actual name
+                      }
+
+                      console.log(`Registration ${index + 1}:`, registration);
+
+                      add_registrations += `
+                        <tr>
+                          <th scope="row">${index + 1}</th>
+                          <td>${registration.participant_name}</td>
+                          <td>-</td>
+                          <td>${check_in}</td>
+                          <td>${check_out}</td>
+                          <td>${payment_status}</td>
+                        </tr>
+                      `;
                     }
+                    else if(registration.status_add == "0"){
+                      $(".btn_Nadd").addClass("active")
+                        // Add inline styles
+                        const element = document.querySelector('.btn_Nadd');
 
-                    let check_out = "未簽退"; // Corrected this line
-                    if (registration.check_out == 1) {
-                        check_out = "已簽退";
+                        element.style.background = '#888'; // Changes text color to red
+                        element.style.borderColor = '#888'; 
                     }
-
-                    let payment_status = "未繳費";
-                    if (registration.payment_status) {
-                      payment_status = registration.payment_status; // Use the actual name
-                    }
-
-                    console.log(`Registration ${index + 1}:`, registration);
-
-                    add_registrations += `
-                      <tr>
-                        <th scope="row">${index + 1}</th>
-                        <td>${registration.participant_name}</td>
-                        <td>-</td>
-                        <td>${check_in}</td>
-                        <td>${check_out}</td>
-                        <td>${payment_status}</td>
-                      </tr>
-                    `;
+                    
                 });
 
                 $("#add_registrations").html(add_registrations); // Correct jQuery method
@@ -777,34 +795,74 @@
     </script>
     <script>
       $(".btn_add").click(()=>{
-        const currentUrl = window.location.href;
+        // if()
+        if($(".btn_add").hasClass("active")){
+          alert("已報名成功")
+        }else{
+          const currentUrl = window.location.href;
 
-        // 使用 URLSearchParams 提取查詢參數
-        const urlParams = new URLSearchParams(window.location.search);
+          // 使用 URLSearchParams 提取查詢參數
+          const urlParams = new URLSearchParams(window.location.search);
 
-        // 獲取 `list_id` 的值
-        const activityId = urlParams.get('list_id');
-        fetch('/insert-event', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-              status_add: 1,
-              activityId:activityId
-            }),
-        })
-        .then(response => response.json())
-        .then(data => {
-            if (data.status == 200) {
-                alert("報名成功！");
-            } else {
-                alert("報名失败：" + data.message);
-            }
-        })
-        .catch(error => {
-            console.error("请求失败:", error);
-        });
+          // 獲取 `list_id` 的值
+          const activityId = urlParams.get('list_id');
+          fetch('/insert-event', {
+              method: 'POST',
+              headers: {
+                  'Content-Type': 'application/json',
+              },
+              body: JSON.stringify({
+                status_add: 1,
+                activityId:activityId
+              }),
+          })
+          .then(response => response.json())
+          .then(data => {
+              if (data.status == 200) {
+                  alert("報名成功！");
+              } else {
+                  alert("報名失败：" + data.message);
+              }
+          })
+          .catch(error => {
+              console.error("请求失败:", error);
+          });
+        }
+      })
+
+      $(".btn_Nadd").click(()=>{
+        if($(".btn_Nadd").hasClass("active")){
+          alert("已取消報名")
+        }else{
+          const currentUrl = window.location.href;
+
+          // 使用 URLSearchParams 提取查詢參數
+          const urlParams = new URLSearchParams(window.location.search);
+
+          // 獲取 `list_id` 的值
+          const activityId = urlParams.get('list_id');
+          fetch('/delete-event', {
+              method: 'POST',
+              headers: {
+                  'Content-Type': 'application/json',
+              },
+              body: JSON.stringify({
+                status_add: 0,
+                activityId:activityId
+              }),
+          })
+          .then(response => response.json())
+          .then(data => {
+              if (data.status == 200) {
+                  alert("取消成功！");
+              } else {
+                  alert("取消失败：" + data.message);
+              }
+          })
+          .catch(error => {
+              console.error("请求失败:", error);
+          });
+        }
       })
     </script>
   </body>
