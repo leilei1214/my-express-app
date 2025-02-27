@@ -99,6 +99,10 @@ app.get('/sign', (req, res) => {
 app.get('/add_event', (req, res) => {
   res.render('add_event', { pageTitle: 'add_event Page' });
 });
+app.get('/list', (req, res) => {
+  res.render('list', { pageTitle: 'list Page' });
+});
+
 const { handleActivitySubmission } = require('./add_activity');
 // multer 可以解析 multipart/form-data 类型的 HTTP 请求，提取其中的文件和字段。
 const multer = require('multer'); // For handling FormData
