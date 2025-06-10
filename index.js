@@ -32,10 +32,10 @@ app.use(session({
 // const db = admin.database();
 // PostgreSQL database connection
 const pool = new Pool({
-  user: 'uaeb82e6is2sus',
-  host: 'ec2-35-169-98-228.compute-1.amazonaws.com',
-  database: 'd2vk99krc82blt',
-  password: 'p2309a9479355793bfada794ca6d8c67fbd6aeb6e8f3dbbacdaae6182c0e70a88',
+  user: 'neondb_owner',
+  host: 'ep-damp-rain-a85ghmem-pooler.eastus2.azure.neon.tech',
+  database: 'neondb',
+  password: 'npg_BORmjcDE8l1P',
   port: 5432,
   ssl: {
     rejectUnauthorized: false,
@@ -99,9 +99,7 @@ app.get('/sign', (req, res) => {
 app.get('/add_event', (req, res) => {
   res.render('add_event', { pageTitle: 'add_event Page' });
 });
-app.get('/list', (req, res) => {
-  res.render('list', { pageTitle: 'list Page' });
-});
+
 
 const { handleActivitySubmission } = require('./add_activity');
 // multer 可以解析 multipart/form-data 类型的 HTTP 请求，提取其中的文件和字段。
@@ -591,4 +589,36 @@ app.post('/Update_SignIn', async (req, res) => {
   }
 });
 
+// 定義 API 路由來查詢活動內容
+app.post('/api/list_content', async (req, res) => {
+  console.log(111)
+  try {
+    // 獲取數據庫連接並查詢資料
+    const client = await pool.connect();
+    const query = 'SELECT * FROM users ORDER BY id ASC;';
+    const result = await client.query(query);
+
+    // 釋放連接
+    client.release();
+
+    if (result.rows.length === 0) {
+      res.status(404).send('找不到對應的活動');
+    } else {
+      console.log(result.rows)
+      res.json(result.rows); // 返回 JSON 格式的查詢結果
+    }
+  } catch (err) {
+    console.error('資料庫查詢失敗:', err);
+    res.status(500).send('資料庫查詢錯誤');
+  }
+});
+
+
+//會員網頁
+app.get('/ListMember', (req, res) => {
+  res.render('ListMember', { pageTitle: 'ListMember' });
+});
+//會員清單
+
+//會員編輯
 

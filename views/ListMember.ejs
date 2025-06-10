@@ -16,16 +16,70 @@
 
     <style>.ie-panel{display: none;background: #212121;padding: 10px 0;box-shadow: 3px 3px 5px 0 rgba(0,0,0,.3);clear: both;text-align:center;position: relative;z-index: 1;} html.ie-10 .ie-panel, html.lt-ie-10 .ie-panel {display: block;}</style>
     <style>
-      .progress-bar-modern .progress-value:after {
-          content: "次";
+      .form-group .col-sm-2 {
+        color: #35ad79;
+        font-weight: 600;
       }
-      a:not([href]) {
-          color: #fff;
+      .radio .radio-custom, .radio .radio-custom-dummy, .radio-inline .radio-custom, .radio-inline .radio-custom-dummy, .checkbox .checkbox-custom, .checkbox .checkbox-custom-dummy, .checkbox-inline .checkbox-custom, .checkbox-inline .checkbox-custom-dummy{
+          border: 1px solid #707279;
+          box-shadow: 0 0 1px 1px #707279;
       }
-      .table-standings th:first-child {
-          text-align: left;
-          width: 65px;
+      .select2-chosen{
+        font-family: "Kanit", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+        font-weight: 600;
+        
       }
+      
+      .form-control{
+        border: 3px solid #707279;
+        font-family: "Kanit", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+        font-weight: 600;
+      }
+      .stepper{
+        max-width: 300px;
+        width: auto;
+      } 
+      .select2-container{
+        display: block;
+      }
+      .table-roster tbody td:nth-child(1) {
+         
+          font-weight: 900;
+      }
+      .select2-container .select2-choice{
+        display: block;
+        width: 87px;
+        height: calc(1.5em + 0.75rem + 2px);
+        padding: 0.375rem 0.75rem;
+        font-size: 13px;
+        font-weight: 400;
+        line-height: 1.5;
+        color: #495057;
+        background-color: #fff;
+        background-clip: padding-box;
+        border: 3px solid #707279;
+        border-radius: 0.25rem;
+        
+      }
+
+      .list_class_table button{
+        height: calc(1.5em + 0.75rem + 2px);
+        padding: 0.375rem 0.75rem;
+        line-height: 1.5;
+        font-size: 13px;
+      }
+      .list_class_table tr td div{
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+      }
+      .table-roster tbody td:nth-child(1) {
+          width: 30%;
+          padding-left: 13px !important;
+      }
+        .product-header {
+
+            background: #d5deeb;
+        }
         .object-container {
             width: 100%;
             max-width: 1212px; /* 限制最大寬度 */
@@ -47,10 +101,18 @@
         .object-container::webkit-scrollbar {
             display: none; /* 隱藏滾動條 */
         }
-        td{
-          text-align: center;
+        .select2-drop{
+          width: 87px !important;
         }
-
+        @media (max-width: 991.98px){
+            .table-roster tbody td:nth-child(1) {
+                min-width: 90px;
+                font-weight: 900;
+            }
+            .table-roster tbody td:nth-child(2) {
+                min-width: 102px;
+            }
+        } 
     </style>
   </head>
   <body>
@@ -65,6 +127,9 @@
       <!-- Page Header-->
       <!-- <my-component></my-component> -->
       <%- include('header') %>
+      <!-- <div class="object-container">
+        <object id="cart-object" data="header.html" type="text/html"></object>
+      </div> -->
       <!-- Swiper-->
       <section class="section swiper-container swiper-slider swiper-classic bg-gray-2" data-loop="true" data-autoplay="4000" data-simulate-touch="false" data-slide-effect="fade">
         <div class="swiper-wrapper">
@@ -111,118 +176,226 @@
       </section>
       <section class="section section-md bg-gray-100">
         <div class="container">
-          <div class="aside-component">
-            <!-- Heading Component-->
-            <article class="heading-component">
-              <div class="heading-component-inner">
-                <h5 class="heading-component-title">Fan Voting
-                </h5>
-              </div>
-            </article>
-            <div class="block-voting">
-              <div class="group-md">
-                <!-- Player Voting Item-->
-                <div class="player-voting-item">
-                  <div class="player-voting-item-figure"><img src="images/player-5-152x144.jpg" alt="" width="152" height="144">
-                    <div class="player-number d-none"> 
-                      <p>21</p>
-                    </div>
-                  </div>
-                  <div class="player-voting-item-title">
-                    <p>Joe Montana</p>
-                    <div class="badge badge-secondary">新手團
-                    </div>
-                    <div class="badge badge-primary">復健團
-                    </div>
-                    <div class="badge badge-red">自由團
-                    </div>
-                  </div>
-                  <div class="player-voting-item-progress">
-                    <!-- Linear progress bar-->
+          <a class="button-icon-alternate button-icon-alternate-google" style="height: 50px;" href="#">
+            <!-- <span class="icon mdi mdi-plus"></span> -->
+            <span class="icon mdi mdi-plus"></span>
+            <div class="button-icon-alternate-title" style="font-size: 17px;">新建活動</div>
+          </a>
+          <div class="row row-50">
+            <div class="col-md-12">
+              <div class="main-component">
 
-                    <article class="progress-linear progress-bar-modern progress-bar-modern-red animated">
-                      <div class="progress-header">
-                        <p>出席次數</p>
+                <div class="owl-carousel-outer-navigation">
+                  <!-- Heading Component-->
+                  <article class="heading-component">
+                    <div class="heading-component-inner">
+                      <h5 class="heading-component-title">參加級別
+                      </h5>
+                      <div class="owl-carousel-arrows-outline">
+                        <div class="owl-nav">
+                          <button class="owl-arrow owl-arrow-prev"></button>
+                          <button class="owl-arrow owl-arrow-next"></button>
+                        </div>
                       </div>
-                      <div class="progress-bar-linear-wrap">
-                        <div class="progress-bar-linear" style="transition-duration: 1s; width: 95%;"></div>
-                      </div><span class="progress-value">-</span>
-                    </article>
+                    </div>
+                  </article>
+                  <!-- Owl Carousel-->
+                  <div class="col-12">
+                    <div class="table-custom-responsive">
+                        <table class="table-custom table-roster list_class_table">
+                          <thead>
+                            <tr>
+                              <th colspan="3">新手團</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <td>會員名字</td>
+                              <td>級別</td>
+                              <td>編輯</td>
+                            </tr>
+                            <tr>
+                              <td>會員名字</td>
+                              <td>
+                                <div class="col-sm-10  col-form-label">
+                                  <select class="form-select form-select-sm address"  aria-label="Default select example" style="height: 34px;padding: 0;">
+                                    <option value="1">新手</option>
+                                    <option value="2">復健</option>
+                                    <option value="3">自由</option>
+                                  </select>
+                                </div>
+                              </td>
+                              <td>
+                                <button class=" button button-primary" type="submit" aria-label="Send" onclick="addEvent()">
+                                  <span style="font-weight: 600;"> 確認送出</span>
+                                </button>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>3</td>
+                              <td>Jose Calderon</td>
+                              <td>Defender</td>
+                            </tr>
+                            <tr>
+                              <td>6</td>
+                              <td>Chris Balleron</td>
+                              <td>Defender</td>
+                            </tr>
+                            <tr>
+                              <td>5</td>
+                              <td>Sam Schmidt</td>
+                              <td>Defender</td>
+                            </tr>
+                            <tr>
+                              <td>22</td>
+                              <td>Jack Windsor</td>
+                              <td>Midfielder</td>
+                            </tr>
+                            <tr>
+                              <td>8</td>
+                              <td>Joe Perkins</td>
+                              <td>Midfielder</td>
+                            </tr>
+                            <tr>
+                              <td>7</td>
+                              <td>Ernesto Wilson</td>
+                              <td>Midfielder</td>
+                            </tr>
+                            <tr>
+                              <td>14</td>
+                              <td>Franklin Stevens</td>
+                              <td>Midfielder</td>
+                            </tr>
+                            <tr>
+                              <td>9</td>
+                              <td>Denis Shclyar</td>
+                              <td>Forward</td>
+                            </tr>
+                            <tr>
+                              <td>11</td>
+                              <td>David Hawkins</td>
+                              <td>Forward</td>
+                            </tr>
+                            <tr>
+                              <td>10</td>
+                              <td>James Peterson</td>
+                              <td>Forward</td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+>
+                    <div class="form-button pt-5 d-flex justify-content-center form-button">
+                      <button class=" button button-primary" type="submit" aria-label="Send" onclick="addEvent()">
+                        <span style="font-weight: 600;"> 確認送出</span>
+                      </button>
+                    </div>
+                  </div>
+                  <div class="owl-carousel owl-spacing-1 owl-loaded" data-items="3" data-dots="false" data-nav="true" data-autoplay="true" data-autoplay-speed="4000" data-stage-padding="0" data-loop="false" data-margin="30" id="myCarousel"  data-mouse-drag="false" data-nav-custom=".owl-carousel-outer-navigation">
                     
-                    <!-- Linear progress bar-->
-                    <article class="progress-linear progress-bar-modern animated">
-                      <div class="progress-header">
-                        <p>簽退次數</p>
-                      </div>
-                      <div class="progress-bar-linear-wrap">
-                        <div class="progress-bar-linear" style="transition-duration: 1s; width: 70%;"></div>
-                      </div><span class="progress-value">70</span>
-                    </article>
-                    <article class="progress-linear progress-bar-modern animated">
-                      <div class="progress-header">
-                        <p>未繳費次數</p>
-                      </div>
-                      <div class="progress-bar-linear-wrap">
-                        <div class="progress-bar-linear" style="transition-duration: 1s; width: 70%;"></div>
-                      </div><span class="progress-value">70</span>
-                    </article>
-                  </div>
-                  <button class="button button-block button-icon button-icon-left button-primary" type="button"><span>編輯</span></button>
-                </div>
-                <!-- Player Voting Item-->
-                <div class="player-voting-item">
-                  <div class="player-voting-item-figure"><img src="images/player-5-152x144.jpg" alt="" width="152" height="144">
-                    <div class="player-number d-none"> 
-                      <p>21</p>
-                    </div>
-                  </div>
-                  <div class="player-voting-item-title">
-                    <p>Joe Montana</p>
-                    <div class="badge badge-secondary">新手團
-                    </div>
-                    <div class="badge badge-primary">復健團
-                    </div>
-                    <div class="badge badge-red">自由團
-                    </div>
-                  </div>
-                  <div class="player-voting-item-progress">
-                    <!-- Linear progress bar-->
+                    
+                  <div id="select_event">
 
-                    <article class="progress-linear progress-bar-modern progress-bar-modern-red animated">
-                      <div class="progress-header">
-                        <p>出席次數</p>
-                      </div>
-                      <div class="progress-bar-linear-wrap">
-                        <div class="progress-bar-linear" style="transition-duration: 1s; width: 95%;"></div>
-                      </div><span class="progress-value">-</span>
-                    </article>
-                    
-                    <!-- Linear progress bar-->
-                    <article class="progress-linear progress-bar-modern animated">
-                      <div class="progress-header">
-                        <p>簽退次數</p>
-                      </div>
-                      <div class="progress-bar-linear-wrap">
-                        <div class="progress-bar-linear" style="transition-duration: 1s; width: 70%;"></div>
-                      </div><span class="progress-value">70</span>
-                    </article>
-                    <article class="progress-linear progress-bar-modern animated">
-                      <div class="progress-header">
-                        <p>未繳費次數</p>
-                      </div>
-                      <div class="progress-bar-linear-wrap">
-                        <div class="progress-bar-linear" style="transition-duration: 1s; width: 70%;"></div>
-                      </div><span class="progress-value">70</span>
-                    </article>
                   </div>
-                  <button class="button button-block button-icon button-icon-left button-primary" type="button"><span>編輯</span></button>
-                </div>
+
+
               </div>
+
             </div>
+            <!-- Aside Block-->
+
           </div>
         </div>
       </section>
+      <!-- Latest News-->
+      <!-- <section class="section section-md bg-gray-100">
+        <div class="col-12">
+            <div class="table-custom-responsive">
+                <table class="table-custom table-roster list_class_table">
+                  <thead>
+                    <tr>
+                      <th colspan="3">Atletico</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>NBR</td>
+                      <td>Player name</td>
+                      <td>Position</td>
+                    </tr>
+                    <tr>
+                      <td>1</td>
+                      <td>Harry Stevenson</td>
+                      <td>Goalkeeper</td>
+                    </tr>
+                    <tr>
+                      <td>3</td>
+                      <td>Jose Calderon</td>
+                      <td>Defender</td>
+                    </tr>
+                    <tr>
+                      <td>6</td>
+                      <td>Chris Balleron</td>
+                      <td>Defender</td>
+                    </tr>
+                    <tr>
+                      <td>5</td>
+                      <td>Sam Schmidt</td>
+                      <td>Defender</td>
+                    </tr>
+                    <tr>
+                      <td>22</td>
+                      <td>Jack Windsor</td>
+                      <td>Midfielder</td>
+                    </tr>
+                    <tr>
+                      <td>8</td>
+                      <td>Joe Perkins</td>
+                      <td>Midfielder</td>
+                    </tr>
+                    <tr>
+                      <td>7</td>
+                      <td>Ernesto Wilson</td>
+                      <td>Midfielder</td>
+                    </tr>
+                    <tr>
+                      <td>14</td>
+                      <td>Franklin Stevens</td>
+                      <td>Midfielder</td>
+                    </tr>
+                    <tr>
+                      <td>9</td>
+                      <td>Denis Shclyar</td>
+                      <td>Forward</td>
+                    </tr>
+                    <tr>
+                      <td>11</td>
+                      <td>David Hawkins</td>
+                      <td>Forward</td>
+                    </tr>
+                    <tr>
+                      <td>10</td>
+                      <td>James Peterson</td>
+                      <td>Forward</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            <div class="card index_page_edit">
 
+              <div class="card-body" style="background-color: #fff;border-radius: 0px 0px 16px 16px;">
+                <!-- <h4 class="card-title">Horizontal Two column</h4> -->
+
+
+              </div>
+            </div>
+            <div class="form-button pt-5 d-flex justify-content-center form-button">
+              <button class=" button button-primary" type="submit" aria-label="Send" onclick="addEvent()">
+                <span style="font-weight: 600;"> 確認送出</span>
+              </button>
+            </div>
+        </div>
+      </section> -->
       <!-- Page Footer--><a class="d-block" href="https://www.templatemonster.com/website-templates/allstar-multi-sports-website-template-63853.html" target="blank"><img class="d-block w-100" src="images/banner-free-02.jpg" alt=""></a>
       <footer class="section footer-classic footer-classic-dark context-dark">
         <div class="footer-classic-main">
@@ -399,188 +572,14 @@
     <div class="snackbars" id="form-output-global"></div>
     <!-- Javascript-->
     <script src="js/core.min.js"></script>
-    <script src="js/script.js"></script>
-    <script src="js/myScript.js"></script>
+    <script src="public/js/script.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.8/js/select2.min.js" defer></script>
     <script src="my-component.js" defer></script>
 
-    <!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> -->
+    <script src="js/add_event.js"></script>
+    <script src="https://livedemo00.template-help.com/wt_63853_v4/soccer/js/script.js"></script>
+
     <script>
-      fetchEventData()
-      async function fetchEventData() {
-            const listId = getURLParameter('list_id');
-            console.log(listId);
-            const response = await fetch(`/api/event_content?list_id=${listId}`);
-            const eventContentDiv = document.getElementById('event-content');
-            // <div class="badge badge-secondary">The Team
-            // </div>
-            if (response.ok) {
-                const res = await response.json();
-
-                const data = res.event
-                console.log(data)
-                // 遍歷陣列並輸出每個元素
-                for (const item of data.activity_category) {
-                  document.getElementById('activity_level').innerHTML += `
-                    <div class="badge badge-secondary">${item}
-                    </div>
-                  `
-                }
-                for (const item of data.activity_level) {
-                  if( item == "新手"){
-                    document.getElementById('activity_level').innerHTML += `
-                      <div class="badge badge-primary">${item}
-                      </div>
-                    `
-                  }
-                  if( item == "自由"){
-                    document.getElementById('activity_level').innerHTML += `
-                      <div class="badge badge-red">${item}
-                      </div>
-                    `
-                  }
-
-                }
-                $(".blog-post-title").html(data.activity_notice)
-
-                const date = new Date(data.time);
-
-                // 提取年月日和小時分鐘
-                const year = date.getFullYear();
-                const month = String(date.getMonth() + 1).padStart(2, '0'); // 月份從0開始，需要+1
-                const day = String(date.getDate()).padStart(2, '0');
-                const hours = String(date.getHours()).padStart(2, '0');
-                const minutes = String(date.getMinutes()).padStart(2, '0');
-
-                // 組合成所需格式
-                const formattedDate = `${year}-${month}-${day} ${hours}:${minutes}`;
-                console.log(formattedDate); // "2024-11-01 06:00"
-                $(".amount").html(data.amount)
-                $(".current_participants").html(data.current_participants)
-                $(".max_participants").html(data.max_participants)
-                $(".location").html(data.location)
-                $(".organizer").html(data.organizer)
-                $(".active_date").html(formattedDate)
-                $(".activity_intro").html(data.activity_intro)
-
-                // #---------------------------------------------------------------------------------------
-                const registrations = res.registrations
-                console.log(registrations)
-                let add_registrations = ""; // Initialize the HTML string
-                let Nadd_registrations = ""; // Initialize the HTML string
-                let Backup_registrations = "";
-                // 不參加名單
-                Istatus_Nadd = 0;
-                Istatus_add = 0;
-                // 備取生
-                Istatus_Badd = 0;
-                registrations.forEach((registration, index) => {
-                    Istatus_add += 1
-                    if(registration.status_add == "1"){
-                      
-                      if(registration.identifier == localStorage.getItem("identifier") ){
-                        const element = document.querySelector('.btn_add');
-                        $(".btn_add").addClass("active")
-                        // Add inline styles
-                        element.style.background = '#888'; // Changes text color to red
-                        element.style.borderColor = '#888'; 
-                      }
-                      let check_in = "未簽到";
-                      if (registration.check_in == 1) {
-                          check_in = "已簽到";
-                      }
-
-                      let check_out = "未簽退"; // Corrected this line
-                      if (registration.check_out == 1) {
-                          check_out = "已簽退";
-                      }
-
-                      let payment_status = "未繳費";
-                      if (registration.payment_status) {
-                        payment_status ="已繳費"; // Use the actual name
-                      }
-
-                      console.log(`Registration ${index + 1}:`, registration);
-                      if(Istatus_add <= data.max_participants){
-                        
-                        add_registrations += `
-                        <tr>
-                          <th scope="row">${Istatus_add}</th>
-                          <td>${registration.participant_name}</td>
-                          <td>-</td>
-                          <td>${check_in}</td>
-                          <td>${check_out}</td>
-                          <td>${payment_status}</td>
-                        </tr>
-                      `;
-                      }else{
-                        Istatus_Badd += 1
-                        Backup_registrations +=`
-                        <tr>
-                          <td><span>${Istatus_Badd}</span></td>
-                          <td class="team-inline">
-
-                            <div class="team-title">
-                              <div class="team-name">${registration.participant_name}</div>
-                            </div>
-                          </td>
-                          <td>備取${Istatus_Badd}</td>
-                        </tr>
-                        `
-                      }
-
-                    }
-
-                    else if(registration.status_add == "0"){
-
-                      Istatus_Nadd += 1
-                      $(".btn_Nadd").addClass("active")
-                        // Add inline styles
-                        const element = document.querySelector('.btn_Nadd');
-
-                        element.style.background = '#888'; // Changes text color to red
-                        element.style.borderColor = '#888'; 
-
-                        Nadd_registrations += `
-                        <tr>
-                          <td>${Istatus_Nadd}</th>
-                          <td>-</td>
-                          <td>${registration.participant_name}</td>
-                    
-                        </tr>
-                      `;
-                    }
-                    
-                });
-
-                $("#add_registrations").html(add_registrations); // Correct jQuery method
-                $("#Nadd_registrations").html(Nadd_registrations); // Correct jQuery method
-                $("#Backup_registrations").html(Backup_registrations); // Correct jQuery method
-
-                
-                // activity_level
-                // eventContentDiv.innerHTML = `
-                //     <p><strong>活動名稱：</strong> ${data.activity_name || '無資料'}</p>
-                //     <p><strong>地點：</strong> ${data.location || '無資料'}</p>
-                //     <p><strong>簡介：</strong> ${data.activity_intro || '無資料'}</p>
-                //     <p><strong>時間：</strong> ${data.time || '無資料'}</p>
-                //     <p><strong>參加人數：</strong> ${data.current_participants || 0} / ${data.max_participants || '無限制'}</p>
-                // `;
-            } else {
-                console.log("找不到活動或查詢失敗")
-                // eventContentDiv.innerHTML = `<p>找不到活動或查詢失敗。</p>`;
-            }
-        }
-      // $('#header').load('header.html', function(response, status, xhr) {
-      //     if (status == "error") {
-      //         console.log("Error loading header: " + xhr.status + " " + xhr.statusText);
-      //     }
-      // });
-          
-        
-    </script>
-    <script>
-        
         var timeout = setTimeout(function() {
 
           fetch('/user_data', {
@@ -609,10 +608,6 @@
                 const element = document.querySelector('.fl-bigmug-line-login12');
                 if (element) {
                     element.className = 'icon fa-user-o'; // 將 class 改為 'new-class'
-                    localStorage.setItem('displayName',displayName);
-                    localStorage.setItem('identifier',identifier);
-                    localStorage.setItem('level',level);
-
                     document.getElementById('employee').innerHTML = displayName
                     console.log('Class changed to:', element.className); // 確認 class 已更改
                 }
@@ -632,95 +627,29 @@
           });
         }, 1000);
     </script>
-    <script>
-      $(".btn_add").click(()=>{
-        // if()
-        if($(".btn_add").hasClass("active")){
-          alert("已報名成功")
-        }else{
-          const currentUrl = window.location.href;
-
-          // 使用 URLSearchParams 提取查詢參數
-          const urlParams = new URLSearchParams(window.location.search);
-
-          // 獲取 `list_id` 的值
-          const activityId = urlParams.get('list_id');
-          fetch('/insert-event', {
-              method: 'POST',
-              headers: {
-                  'Content-Type': 'application/json',
-              },
-              body: JSON.stringify({
-                status_add: 1,
-                activityId:activityId
-              }),
-          })
-          .then(response => response.json())
-          .then(data => {
-              if (data.status == 200) {
-                  alert("報名成功！");
-                  location.reload();
-
-              } else {
-                  alert("報名失败：" + data.message);
-              }
-          })
-          .catch(error => {
-              console.error("请求失败:", error);
-          });
+    <!-- <script>
+      function updateCarouselItems() {
+        var carousel = document.getElementById("myCarousel");
+    
+        if (window.innerWidth >= 1200) {
+          carousel.setAttribute('data-items', '3');
+        } else if (window.innerWidth >= 768) {
+          carousel.setAttribute('data-items', '2');
+        } else {
+          carousel.setAttribute('data-items', '1');
         }
-      })
-
-      $(".btn_Nadd").click(()=>{
-        if($(".btn_Nadd").hasClass("active")){
-          alert("已取消報名")
-        }else{
-          const currentUrl = window.location.href;
-
-          // 使用 URLSearchParams 提取查詢參數
-          const urlParams = new URLSearchParams(window.location.search);
-
-          // 獲取 `list_id` 的值
-          const activityId = urlParams.get('list_id');
-          fetch('/delete-event', {
-              method: 'POST',
-              headers: {
-                  'Content-Type': 'application/json',
-              },
-              body: JSON.stringify({
-                status_add: 0,
-                activityId:activityId
-              }),
-          })
-          .then(response => response.json())
-          .then(data => {
-              if (data.status == 200) {
-                  alert("取消成功！");
-                  location.reload();
-
-              } else {
-                  alert("取消失败：" + data.message);
-              }
-          })
-          .catch(error => {
-              console.error("请求失败:", error);
-          });
-        }
-      })
-    </script>
-    <script>
-      function ClockOut() {
-        const currentUrl = window.location.href;
-
-        // 使用 URLSearchParams 提取查詢參數
-        const urlParams = new URLSearchParams(window.location.search);
-
-        // 獲取 `list_id` 的值
-        const activityId = urlParams.get('list_id');
-
-        window.location.href ="/SignIn?list_id="+activityId
-
+    
+        // 若你需要重新初始化 Owl Carousel，你可以在這裡調用重啟方法
+        // $('.owl-carousel').trigger('refresh.owl.carousel');
       }
-    </script>
+    
+      // 初始加載時呼叫
+      updateCarouselItems();
+    
+      // 當視窗調整大小時呼叫
+      window.addEventListener('resize', function() {
+        updateCarouselItems();
+      });
+    </script> -->
   </body>
 </html>
