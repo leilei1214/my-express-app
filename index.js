@@ -122,11 +122,11 @@ app.post('/save-to-session', (req, res) => {
 // LINE credentials
 const CHANNEL_ID = '1661291645';
 const CHANNEL_SECRET = '3d1df453deb161a633a2166417b944f8';
-const REDIRECT_URI = "https://my-express-app-f63887bafc0f.herokuapp.com/login_data";
+const REDIRECT_URI = "http://dzl.9a1.mytemp.website/my-express-app/login_data";
 app.get('/line_login', (req, res) => {
   const client_id = "1661291645";
   const response_type = "code";
-  const redirect_uri = "https://my-express-app-f63887bafc0f.herokuapp.com/login_data";
+  const redirect_uri ="http://dzl.9a1.mytemp.website/my-express-app/login_data";
   const state = generateState();
   const LineLoginUrl = `https://access.line.me/oauth2/v2.1/authorize?scope=profile%20openid&client_id=${client_id}&response_type=${response_type}&redirect_uri=${redirect_uri}&state=${state}`;
   res.redirect(LineLoginUrl);

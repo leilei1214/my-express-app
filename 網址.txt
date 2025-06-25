@@ -1,0 +1,1 @@
+[~/public_html/my-express-app]$ pm2 start index.js --name my-express-app
