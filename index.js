@@ -7,7 +7,7 @@ const { Pool } = require('pg');
 const port = process.env.PORT || 3000;  // 使用 Heroku 提供的 PORT 环境变量
 const session = require('express-session');
 const cors = require('cors');
-
+const mysql = require('mysql2');
 const app = express();
 
 
