@@ -179,7 +179,7 @@ app.get('/login_data', async (req, res) => {
               
             }
             // res.status(299).send('An error occurred');
-            // res.redirect('./');
+            res.redirect('./');
           });
           // const client = await pool.connect(); // 获取数据库连接
 
