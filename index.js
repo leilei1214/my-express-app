@@ -178,7 +178,8 @@ app.get('/login_data', async (req, res) => {
               res.status(500).send('An error occurred');
               
             }
-            res.redirect('./');
+            // res.status(299).send('An error occurred');
+            // res.redirect('./');
           });
           // const client = await pool.connect(); // 获取数据库连接
 
