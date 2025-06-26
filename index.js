@@ -44,7 +44,7 @@ const pool = new Pool({
 const connection = mysql.createConnection({
   host: 'dzl.9a1.mytemp.website', // 通常 GoDaddy 提供的，不是 localhost
   user: 'football',
-  password: 'Aa0918625729',
+  password: '@Aa0918625729',
   database: 'football'
 });
 
