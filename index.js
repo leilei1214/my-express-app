@@ -178,7 +178,7 @@ app.get('/login_data', async (req, res) => {
 
           try {
 
-            const result = await MS_query('SELECT * FROM users WHERE userID = ?', [userId]);
+            const result = await MS_query('SELECT * FROM users WHERE userid = ?', [userId]);
     
             if (result.rows.length > 0) {
               // User exists, redirect to homepage
