@@ -175,10 +175,10 @@ app.get('/login_data', async (req, res) => {
           console.log(displayName)  
       
           // res.status(299).send('An error occurred');
-          pool.query('SELECT * FROM users WHERE userID = $1', [userId], (error, results) => {
+          pool.query('SELECT * FROM users WHERE userID = ?', [userId], (error, results) => {
             if (error) {
-              res.status(500).send('MySQL query error:', error);
-              
+              console.error('MySQL query error:', error);
+              res.status(500).json({ error: 'Database query failed', details: error.message })              
             } else {
               res.status(200).send(results);
             }
