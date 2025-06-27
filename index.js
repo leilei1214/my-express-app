@@ -47,7 +47,7 @@ const pool = mysql.createPool({
   password: '@Aa0918625729',
   database: 'football'
 });
-const query = util.promisify(pool.query).bind(pool);
+const MS_query = util.promisify(pool.query).bind(pool);
 
 // 生成随机的 identifier（与之前一致）
 function generateIdentifier() {
@@ -178,7 +178,7 @@ app.get('/login_data', async (req, res) => {
 
           try {
 
-            const result = await query('SELECT * FROM users WHERE userID = ?', [userId]);
+            const result = await MS_query('SELECT * FROM users WHERE userID = ?', [userId]);
     
             if (result.rows.length > 0) {
               // User exists, redirect to homepage
