@@ -172,13 +172,13 @@ app.get('/login_data', async (req, res) => {
 
           const userId = profileData.userId;
           const displayName = profileData.displayName;
-          console.log(175);
+          console.log("17");
           console.log(userId);
           console.log(displayName);  
       
 
 
-          console.log(182);
+          console.log("182");
           res.status(200).send('OK OK');
               // const result = await MS_query('SELECT * FROM users WHERE userid = ?', [userId]);
 
