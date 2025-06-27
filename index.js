@@ -197,14 +197,13 @@ app.get('/login_data', async (req, res) => {
               const userSession = req.session.user;
               const { birthday, position1, position2} = userSession;
               // Insert new user into PostgreSQL database
-              await client.query(
+              await MS_query(
                 'INSERT INTO users (username, userid, identifier,birthday,preferred_position1,preferred_position2) VALUES (?,?,?,?,?,?)',
                 [displayName, userId,identifier,birthday,position1,position2]
               );
-              res.redirect('/');
             }
           } finally {
-            client.release();
+            res.redirect('/');
           }
           
  
