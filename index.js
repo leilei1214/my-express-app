@@ -180,7 +180,7 @@ app.get('/login_data', async (req, res) => {
               console.error('MySQL query error:', error);
               res.status(500).json({ error: 'Database query failed', details: error.message })              
             } else {
-              res.status(200).send(results);
+              res.status(200).json(results);
             }
           });
           // try {
