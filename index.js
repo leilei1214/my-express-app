@@ -177,36 +177,36 @@ app.get('/login_data', async (req, res) => {
           // res.status(299).send('An error occurred');
           const client = await pool.connect(); // 获取数据库连接
 
-          try {
+          // try {
 
-            const result = await client.query('SELECT * FROM users WHERE userID = $1', [userId]);
+          //   const result = await client.query('SELECT * FROM users WHERE userID = $1', [userId]);
     
-            if (result.rows.length > 0) {
-              // User exists, redirect to homepage
-              const user = result.rows[0]; // 取出第一条记录
-              const displayName = user.displayName; // 读取 username 列
-              const identifier = user.identifier; // 读取 email 列
-              const birthday = user.birthday; // 读取 email 列
-              const position1 = user.preferred_position1; // 读取 email 列
-              const position2 = user.preferred_position2; // 读取 email 列
-              const level = user.level; 
-              req.session.user = { displayName, identifier,birthday,position1,position2,level };
+          //   if (result.rows.length > 0) {
+          //     // User exists, redirect to homepage
+          //     const user = result.rows[0]; // 取出第一条记录
+          //     const displayName = user.displayName; // 读取 username 列
+          //     const identifier = user.identifier; // 读取 email 列
+          //     const birthday = user.birthday; // 读取 email 列
+          //     const position1 = user.preferred_position1; // 读取 email 列
+          //     const position2 = user.preferred_position2; // 读取 email 列
+          //     const level = user.level; 
+          //     req.session.user = { displayName, identifier,birthday,position1,position2,level };
 
-              res.redirect('/');
-            } else {
-              const identifier = await generateUniqueIdentifier(client); // 生成唯一的 identifier
-              const userSession = req.session.user;
-              const { birthday, position1, position2} = userSession;
-              // Insert new user into PostgreSQL database
-              // await client.query(
-              //   'INSERT INTO users (username, userid, identifier,birthday,preferred_position1,preferred_position2) VALUES ($1, $2,$3,$4,$5,$6)',
-              //   [displayName, userId,identifier,birthday,position1,position2]
-              // );
-              res.redirect('/');
-            }
-          } finally {
-            client.release();
-          }
+          //     res.redirect('/');
+          //   } else {
+          //     const identifier = await generateUniqueIdentifier(client); // 生成唯一的 identifier
+          //     const userSession = req.session.user;
+          //     const { birthday, position1, position2} = userSession;
+          //     // Insert new user into PostgreSQL database
+          //     await client.query(
+          //       'INSERT INTO users (username, userid, identifier,birthday,preferred_position1,preferred_position2) VALUES ($1, $2,$3,$4,$5,$6)',
+          //       [displayName, userId,identifier,birthday,position1,position2]
+          //     );
+          //     res.redirect('/');
+          //   }
+          // } finally {
+          //   client.release();
+          // }
           
  
     
