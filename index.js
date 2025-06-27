@@ -177,10 +177,10 @@ app.get('/login_data', async (req, res) => {
       
 
 
-            // const result = await MS_query('SELECT * FROM users WHERE userid = ?', [userId]);
             console.log(182)
             res.status(200).send('OK');
-  
+              // const result = await MS_query('SELECT * FROM users WHERE userid = ?', [userId]);
+
             // if (result.rows.length > 0) {
             //   // User exists, redirect to homepage
             //   const user = result.rows[0]; // 取出第一条记录
