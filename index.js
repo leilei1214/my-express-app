@@ -41,13 +41,13 @@ app.use(session({
 //     rejectUnauthorized: false,
 //   },
 // });
-const pool = mysql.createConnection({
+const pool = mysql.createPool({
   host: 'dzl.9a1.mytemp.website', // 通常 GoDaddy 提供的，不是 localhost
   user: 'football',
   password: '@Aa0918625729',
   database: 'football'
 });
-
+module.exports = pool;
 // 生成随机的 identifier（与之前一致）
 function generateIdentifier() {
   const digits = Math.floor(1000 + Math.random() * 9000).toString();
@@ -175,8 +175,14 @@ app.get('/login_data', async (req, res) => {
           console.log(displayName)  
       
           // res.status(299).send('An error occurred');
-          const client = await pool.connect(); // 获取数据库连接
-
+          pool.query('SELECT * FROM users WHERE userID = $1', [userId], (error, results) => {
+            if (error) {
+              res.status(500).send('MySQL query error:', error);
+              
+            } else {
+              res.status(200).send(results);
+            }
+          });
           // try {
 
           //   const result = await client.query('SELECT * FROM users WHERE userID = $1', [userId]);
