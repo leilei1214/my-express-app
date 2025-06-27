@@ -201,6 +201,7 @@ app.get('/login_data', async (req, res) => {
                 'INSERT INTO users (username, userid, identifier,birthday,preferred_position1,preferred_position2) VALUES (?,?,?,?,?,?)',
                 [displayName, userId,identifier,birthday,position1,position2]
               );
+              res.redirect('/');
             }
           }
           catch(error){
