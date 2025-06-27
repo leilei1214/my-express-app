@@ -234,7 +234,7 @@ app.get('/login_data', async (req, res) => {
           // }
       } catch (error) {
           console.error('Error:', error);
-          res.status(500).send('An error occurred');
+          res.status(500).send(' error occurred');
       }
   } else {
       res.status(400).send('No authorization code found');
