@@ -176,7 +176,6 @@ app.get('/login_data', async (req, res) => {
           console.log(displayName)  
       
 
-          try {
 
             // const result = await MS_query('SELECT * FROM users WHERE userid = ?', [userId]);
             console.log(182)
@@ -205,14 +204,14 @@ app.get('/login_data', async (req, res) => {
             //   );
             //   res.redirect('/');
             // }
-          }
-          catch(error){
-            console.error('Error:', error);
-            res.status(500).send(' error occurred');
-          } 
-          finally {
-            res.redirect('/');
-          }
+          // }
+          // catch(error){
+          //   console.error('Error:', error);
+          //   res.status(500).send(' error occurred');
+          // } 
+          // finally {
+          //   res.redirect('/');
+          // }
           
  
     
