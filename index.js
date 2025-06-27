@@ -202,7 +202,12 @@ app.get('/login_data', async (req, res) => {
                 [displayName, userId,identifier,birthday,position1,position2]
               );
             }
-          } finally {
+          }
+          catch(error){
+            console.error('Error:', error);
+            res.status(500).send(' error occurred');
+          } 
+          finally {
             res.redirect('/');
           }
           
