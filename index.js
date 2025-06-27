@@ -31,17 +31,17 @@ app.use(session({
 // });
 // const db = admin.database();
 // PostgreSQL database connection
-const pool = new Pool({
-  user: 'neondb_owner',
-  host: 'ep-damp-rain-a85ghmem-pooler.eastus2.azure.neon.tech',
-  database: 'neondb',
-  password: 'npg_BORmjcDE8l1P',
-  port: 5432,
-  ssl: {
-    rejectUnauthorized: false,
-  },
-});
-const connection = mysql.createConnection({
+// const pool = new Pool({
+//   user: 'neondb_owner',
+//   host: 'ep-damp-rain-a85ghmem-pooler.eastus2.azure.neon.tech',
+//   database: 'neondb',
+//   password: 'npg_BORmjcDE8l1P',
+//   port: 5432,
+//   ssl: {
+//     rejectUnauthorized: false,
+//   },
+// });
+const pool = mysql.createConnection({
   host: 'dzl.9a1.mytemp.website', // 通常 GoDaddy 提供的，不是 localhost
   user: 'football',
   password: '@Aa0918625729',
