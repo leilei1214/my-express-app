@@ -26,7 +26,7 @@ function addEvent() {
     console.log(JSON.stringify(formData));  // Print the JSON data
 
     // Send the data using fetch
-    fetch('/submit_event', {
+    fetch('./submit_event', {
         method: 'POST',
         headers: { 
             'Content-Type': 'application/json'  // Ensure the request content type is JSON
