@@ -473,12 +473,12 @@
                 const data = res.event
                 console.log(data)
                 // 遍歷陣列並輸出每個元素
-                for (const item of data.activity_category) {
-                  document.getElementById('activity_level').innerHTML += `
-                    <div class="badge badge-secondary">${item}
-                    </div>
-                  `
-                }
+                // for (const item of data.activity_category) {
+                //   document.getElementById('activity_level').innerHTML += `
+                //     <div class="badge badge-secondary">${item}
+                //     </div>
+                //   `
+                // }
                 for (const item of data.activity_level) {
                   if( item == "新手"){
                     document.getElementById('activity_level').innerHTML += `
