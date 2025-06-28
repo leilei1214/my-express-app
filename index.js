@@ -65,8 +65,8 @@ async function generateUniqueIdentifier(client) {
   let result = ""; // 初始值为空
   while (result === "") {
       const identifier = generateIdentifier(); // 生成新的 identifier
-      const check = await client.query('SELECT * FROM users WHERE identifier = $1', [identifier]); // 检查是否重复
-      if (check.rows.length === 0) {
+      const check = await client('SELECT * FROM users WHERE identifier = ?', [identifier]); // 检查是否重复
+      if (check.length === 0) {
           result = identifier; // 找到唯一的 identifier
       }
   }
@@ -194,12 +194,10 @@ app.get('/login_data', async (req, res) => {
 
               res.redirect('/');
             } else {
-              console.log(196)
-              const identifier = await generateUniqueIdentifier(client); // 生成唯一的 identifier
+              const identifier = await generateUniqueIdentifier(MS_query); // 生成唯一的 identifier
               const userSession = req.session.user;
               const { birthday, position1, position2} = userSession;
               // Insert new user into PostgreSQL database
-              console.log(201)
               await MS_query(
                 'INSERT INTO users (username, userid, identifier,birthday,preferred_position1,preferred_position2) VALUES (?,?,?,?,?,?)',
                 [displayName, userId,identifier,birthday,position1,position2]
