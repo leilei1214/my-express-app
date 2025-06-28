@@ -4075,6 +4075,7 @@ textarea.form-input {
 	font-size: 18px;
 	line-height: 18px;
 	color: #35ad79;
+	z-index: 999;
 }
 
 .checkbox input:disabled ~ .checkbox-custom-dummy,
