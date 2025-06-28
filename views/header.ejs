@@ -214,7 +214,7 @@
               if (!response.ok) {
                   if (response.status == 400) {
                       // 如果狀態碼是 400，跳轉到登入頁
-                      window.location.href = "/login";
+                      window.location.href = "./login";
                   }
                   throw new Error(`Network response was not ok, status: ${response.status}`);
               }
