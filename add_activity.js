@@ -60,7 +60,7 @@ const handleActivitySubmission = async (req, res) => {
         console.log('Insert success:', result);
 
         // console.log('Insert success:', result[0]); // 檢查插入結果
-        res.status(200).json({ status: 200, data: result[0] });
+        res.status(200).json({ status: 200, data: result });
         // res.status(200).json({ status: 200 });
 
     } catch (err) {
