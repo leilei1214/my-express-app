@@ -314,7 +314,7 @@ app.get('/api/event_content', async (req, res) => {
     const registrationQuery = `
     SELECT * 
     FROM registrations 
-    WHERE activity_id = $1 
+    WHERE activity_id = ?
     ORDER BY id ASC
     `;
     const registrationResult = await MS_query(registrationQuery, [listId]);
