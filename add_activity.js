@@ -10,6 +10,16 @@
 //         rejectUnauthorized: false,
 //     },
 // });
+const mysql = require('mysql2');
+const util = require('util');
+const pool = mysql.createPool({
+  host: 'dzl.9a1.mytemp.website', // 通常 GoDaddy 提供的，不是 localhost
+  user: 'football',
+  password: '@Aa0918625729',
+  database: 'football'
+});
+const MS_query = util.promisify(pool.query).bind(pool);
+
 const formatArrayForPostgres = (arr) => `{${arr.join(',')}}`;  
 
 const handleActivitySubmission = async (req, res) => {
@@ -18,31 +28,31 @@ const handleActivitySubmission = async (req, res) => {
 
   
 
-    // let client;
-    // const query = `
-    // INSERT INTO activities (
-    //     activity_level, 
-    //     time, 
-    //     activity_notice, 
-    //     activity_intro, 
-    //     max_participants, 
-    //     phone, 
-    //     amount, 
-    //     location
-    // ) VALUES ($1, $2, $3, $4, $5, $6, $7, $8)
-    // RETURNING *;
-    // `;
+    let client;
+    const query = `
+    INSERT INTO activities (
+        activity_level, 
+        time, 
+        activity_notice, 
+        activity_intro, 
+        max_participants, 
+        phone, 
+        amount, 
+        location
+    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+    RETURNING *;
+    `;
 
-    // const values = [
-    //     formatArrayForPostgres(eventData.activity_level), // 轉換成 '{新手,復健}'
-    //     eventData.date || null,
-    //     eventData.activity_notice || null,
-    //     eventData.activity_intro || null,
-    //     eventData.max_participants || null,
-    //     eventData.phone || null,
-    //     eventData.amount || null,
-    //     eventData.address || null
-    // ];
+    const values = [
+        formatArrayForPostgres(eventData.activity_level), // 轉換成 '{新手,復健}'
+        eventData.date || null,
+        eventData.activity_notice || null,
+        eventData.activity_intro || null,
+        eventData.max_participants || null,
+        eventData.phone || null,
+        eventData.amount || null,
+        eventData.address || null
+    ];
 
     try {
         // const client = await pool.connect();
