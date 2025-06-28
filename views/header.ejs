@@ -164,13 +164,13 @@
                                         </li>
                                         <li class="rd-nav-item"><a class="rd-nav-link" href="https://livedemo00.template-help.com/wt_63853_v4/soccer/index.html">球員名單</a>
                                         </li>
-                                        <li class="rd-nav-item rd-navbar--has-dropdown rd-navbar-submenu">
-                                            <a class="rd-nav-link" href="#">Shop</a>
+                                        <li class="rd-nav-item rd-navbar--has-dropdown rd-navbar-submenu Boss">
+                                            <a class="rd-nav-link" href="#">管理中心</a>
                                             <!-- <span class="rd-navbar-submenu-toggle"></span> -->
                                             <ul class="rd-menu rd-navbar-dropdown">
-                                            <li class="rd-dropdown-item"><a class="rd-dropdown-link" href="shop-elements.html">Shop Elements</a>
+                                            <li class="rd-dropdown-item"><a class="rd-dropdown-link" href="shop-elements.html">新增活動</a>
                                             </li>
-                                            <li class="rd-dropdown-item"><a class="rd-dropdown-link" href="grid-shop.html">Grid Shop</a>
+                                            <li class="rd-dropdown-item"><a class="rd-dropdown-link" href="grid-shop.html">球員名冊</a>
                                             </li>
                                             <li class="rd-dropdown-item"><a class="rd-dropdown-link" href="list-shop.html">List Shop</a>
                                             </li>
@@ -199,6 +199,60 @@
             </nav>
         </div>
     </header>
+    <script>
+        
+        var timeout = setTimeout(function() {
+
+          fetch('/user_data', {
+              method: 'POST',
+              headers: {
+                  'Content-Type': 'application/json;charset=utf-8'
+              },
+              body: JSON.stringify({ identifier: "none" }),
+          })
+          .then(response => {
+              if (!response.ok) {
+                  if (response.status == 400) {
+                      // 如果狀態碼是 400，跳轉到登入頁
+                      window.location.href = "/login";
+                  }
+                  throw new Error(`Network response was not ok, status: ${response.status}`);
+              }
+              return response.json(); // 解析 JSON 響應
+          })
+          .then(data => {
+            console.log('Response data:', data); // 查看完整響應
+            if (data.status === 200) {
+                
+                const { displayName, identifier, birthday, position1, position2, level } = data.user;
+                console.log('User data:', displayName, identifier, birthday, position1, position2, level); // 獲取並輸出用戶資料
+                const element = document.querySelector('.fl-bigmug-line-login12');
+                if (element) {
+                    element.className = 'icon fa-user-o'; // 將 class 改為 'new-class'
+                    localStorage.setItem('displayName',displayName);
+                    localStorage.setItem('identifier',identifier);
+                    localStorage.setItem('level',level);
+
+                    document.getElementById('employee').innerHTML = displayName
+                    console.log('Class changed to:', element.className); // 確認 class 已更改
+                }
+                if(level === 1){
+                    $(".Boss").addClass("none")
+                }
+                
+                // 在這裡可以進行其他操作，例如顯示在頁面上
+            }
+            else {
+                console.error('Error:', data.message); // 處理錯誤情況
+            }
+   
+          })
+          .catch((error) => {
+
+              console.error('Error:', error);
+          });
+        }, 1000);
+    </script>
     <!-- <script src="js/core.min.js"></script>
     <script src="js/script.js"></script> -->
     <!-- <script>
