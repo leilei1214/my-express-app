@@ -41,6 +41,10 @@ function addEvent() {
     })
     .then(data => {
         console.log('Response Data:', data);  // Handle the returned data
+        if (data.status === 200){
+            const id = data.data["insertId"]
+            window.location.href = "./event_content";
+        }
     })
     .catch(error => {
         console.error('Error:', error);  // Catch any errors
