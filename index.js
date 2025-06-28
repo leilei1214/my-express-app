@@ -184,7 +184,7 @@ app.get('/login_data', async (req, res) => {
             if (result.length > 0) {
               // User exists, redirect to homepage
               const user = result[0]; // 取出第一条记录
-              const displayName = user.displayName; // 读取 username 列
+              const displayName = user.username; // 读取 username 列
               const identifier = user.identifier; // 读取 email 列
               const birthday = user.birthday; // 读取 email 列
               const position1 = user.preferred_position1; // 读取 email 列
