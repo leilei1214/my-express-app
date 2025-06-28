@@ -345,12 +345,10 @@ app.post('/api/event', async (req, res) => {
 
   try {
     // 獲取數據庫連接並查詢資料
-    const client = await pool.connect();
     const query = 'SELECT * FROM activities ORDER BY time ASC;';
-    const result = await client.query(query);
+    const result = await MS_query(query);
 
     // 釋放連接
-    client.release();
 
     if (result.rows.length === 0) {
       res.status(404).send('找不到對應的活動');
@@ -395,10 +393,9 @@ app.post('/insert-event', async (req, res) => {
 
 
     try {
-      const client = await pool.connect();
       // Step 1: Get max_participants from activities table
-      const activityResult = await client.query(
-        `SELECT max_participants FROM public.activities WHERE id = $1`,
+      const activityResult = await MS_query(
+        `SELECT max_participants FROM public.activities WHERE id = ?`,
         [activityId]
       );
   
@@ -407,15 +404,15 @@ app.post('/insert-event', async (req, res) => {
       }
       const maxParticipants = activityResult.rows[0].max_participants;
       // ------------------------------------------------------------------
-      const countStatusAdd = await client.query(
-        `SELECT COUNT(*) AS count FROM public.registrations WHERE activity_id = $1 AND status_add = '1'`,
+      const countStatusAdd = await MS_query(
+        `SELECT COUNT(*) AS count FROM public.registrations WHERE activity_id = ? AND status_add = '1'`,
         [activityId]
       );
       const currentStatusAdd = parseInt(countStatusAdd.rows[0].count, 10);
       // --------------------------------------------------------------
       // Step 2: Count registrations with status_add = 1 for the given activity
-      const countResult = await client.query(
-        `SELECT COUNT(*) AS count FROM public.registrations WHERE activity_id = $1 AND identifier = $2`,
+      const countResult = await MS_query(
+        `SELECT COUNT(*) AS count FROM public.registrations WHERE activity_id = ? AND identifier = ?`,
         [activityId,identifier]
       );
       const currentParticipants = parseInt(countResult.rows[0].count, 10);
@@ -424,18 +421,18 @@ app.post('/insert-event', async (req, res) => {
 
       if (currentParticipants > 0) {
         // Step 5a: Update the existing record
-        await client.query(
+        await MS_query(
           `UPDATE public.registrations
-            SET status_add = $1
-            WHERE activity_id = $2 AND identifier = $3`,
+            SET status_add = ?
+            WHERE activity_id = ? AND identifier = ?`,
           [status_add, activityId, identifier]
         );
         console.log('Updated registration');
       } else {
         // Step 5b: Insert a new record
-        await client.query(
+        await MS_query(
           `INSERT INTO public.registrations (activity_id, identifier, status_add)
-            VALUES ($1, $2, $3)`,
+            VALUES (?, ?, ?)`,
           [activityId, identifier, status_add]
         );
         console.log('Inserted new registration');
@@ -491,8 +488,8 @@ app.post('/delete-event', async (req, res) => {
 
       // --------------------------------------------------------------
       // Step 2: Count registrations with status_add = 1 for the given activity
-      const countResult = await client.query(
-        `SELECT COUNT(*) AS count FROM public.registrations WHERE activity_id = $1 AND identifier = $2`,
+      const countResult = await MS_query(
+        `SELECT COUNT(*) AS count FROM public.registrations WHERE activity_id = ? AND identifier = ?`,
         [activityId,identifier]
       );
       const currentParticipants = parseInt(countResult.rows[0].count, 10);
@@ -501,18 +498,18 @@ app.post('/delete-event', async (req, res) => {
 
       if (currentParticipants > 0) {
         // Step 5a: Update the existing record
-        await client.query(
+        await MS_query(
           `UPDATE public.registrations
-            SET status_add = $1
-            WHERE activity_id = $2 AND identifier = $3`,
+            SET status_add = ?
+            WHERE activity_id = ? AND identifier = ?`,
           [status_add, activityId, identifier]
         );
         console.log('Updated registration');
       } else {
         // Step 5b: Insert a new record
-        await client.query(
+        await MS_query(
           `INSERT INTO public.registrations (activity_id, identifier, status_add)
-            VALUES ($1, $2, $3)`,
+            VALUES (?, ?, ?)`,
           [activityId, identifier, status_add]
         );
         console.log('Inserted new registration');
