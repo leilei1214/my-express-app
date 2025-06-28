@@ -83,10 +83,10 @@ app.listen(port, () => {
     console.log(`Server running at http://localhost:${port}`);
 });
 // 路由處理
-app.get('/index.html.var', (req, res) => {
-  res.redirect('./');
-});
-app.get('/', (req, res) => {
+// app.get('/index.html.var', (req, res) => {
+//   res.redirect('./');
+// });
+app.get('/home', (req, res) => {
   res.render('index', { pageTitle: 'Home Page' });
 });
 app.get('/event', (req, res) => {
