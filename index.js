@@ -195,7 +195,7 @@ app.get('/login_data', async (req, res) => {
               const level = user.level; 
               req.session.user = { displayName, identifier,birthday,position1,position2,level };
 
-              res.redirect('./event');
+              res.redirect('./home');
             } else {
               const identifier = await generateUniqueIdentifier(MS_query); // 生成唯一的 identifier
               const userSession = req.session.user;
@@ -205,7 +205,7 @@ app.get('/login_data', async (req, res) => {
                 'INSERT INTO users (username, userid, identifier,birthday,preferred_position1,preferred_position2) VALUES (?,?,?,?,?,?)',
                 [displayName, userId,identifier,birthday,position1,position2]
               );
-              res.redirect('./event');
+              res.redirect('./home');
             }
           // }
           // catch(error){
