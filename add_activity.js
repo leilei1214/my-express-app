@@ -59,7 +59,7 @@ const handleActivitySubmission = async (req, res) => {
         const result = await MS_query(query, values);
         console.log('Insert success:', result);
 
-        console.log('Insert success:', result[0]); // 檢查插入結果
+        // console.log('Insert success:', result[0]); // 檢查插入結果
         res.status(200).json({ status: 200, data: result[0] });
         // res.status(200).json({ status: 200 });
 
