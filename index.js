@@ -84,7 +84,7 @@ app.listen(port, () => {
 });
 // 路由處理
 app.get('/index.html.var', (req, res) => {
-  res.redirect('/');
+  res.redirect('./');
 });
 app.get('/', (req, res) => {
   res.render('index', { pageTitle: 'Home Page' });
