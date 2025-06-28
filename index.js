@@ -309,21 +309,19 @@ app.get('/api/event_content', async (req, res) => {
 
   try {
     // 獲取數據庫連接並查詢資料
-    const client = await pool.connect();
-    const query = 'SELECT * FROM activities WHERE id = $1';
-    const result = await client.query(query, [listId]);
+    const query = 'SELECT * FROM activities WHERE id = ?';
+    const result = await MS_query(query, [listId]);
     const registrationQuery = `
     SELECT * 
     FROM registrations 
     WHERE activity_id = $1 
     ORDER BY id ASC
     `;
-    const registrationResult = await client.query(registrationQuery, [listId]);
+    const registrationResult = await MS_query(registrationQuery, [listId]);
 
     // 釋放連接
-    client.release();
 
-    if (result.rows.length === 0) {
+    if (result.length === 0) {
       res.status(404).send('找不到對應的活動');
     } else {
         
@@ -331,8 +329,8 @@ app.get('/api/event_content', async (req, res) => {
 
       // 返回活動與註冊資訊
       res.json({
-        event: result.rows[0], // 單一活動內容
-        registrations: registrationResult.rows, // 該活動的註冊資訊
+        event: result[0], // 單一活動內容
+        registrations: registrationResult.result, // 該活動的註冊資訊
       });
     }
   } catch (err) {
