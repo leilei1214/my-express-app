@@ -56,10 +56,10 @@ const handleActivitySubmission = async (req, res) => {
 
     try {
         // const client = await pool.connect();
-        // const result = await client.query(query, values);
-        // console.log('Insert success:', result.rows[0]); // 檢查插入結果
-        // res.status(200).json({ status: 200, data: result.rows[0] });
-        res.status(200).json({ status: 200 });
+        const result = await MS_query(query, values);
+        console.log('Insert success:', result[0]); // 檢查插入結果
+        res.status(200).json({ status: 200, data: result.rows[0] });
+        // res.status(200).json({ status: 200 });
 
     } catch (err) {
         console.error('資料庫插入失敗:', err);
