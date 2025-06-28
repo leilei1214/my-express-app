@@ -259,7 +259,7 @@
             <div class="row row-50">
               <div class="col-lg-5 text-center text-sm-left">
                 <article class="unit unit-sm-horizontal unit-middle justify-content-center justify-content-sm-start footer-classic-info">
-                  <div class="unit-left"><a class="brand brand-md" href="./"><img class="brand-logo " src="images/logo-soccer-default-95x126.png" alt="" width="95" height="126"/></a>
+                  <div class="unit-left"><a class="brand brand-md" href="./home"><img class="brand-logo " src="./images/logo-soccer-default-95x126.png" alt="" width="95" height="126"/></a>
                   </div>
                   <div class="unit-body">
                     <p>Sportland website offers you the latest news about our team as well as updates on our matches and other events.</p>
@@ -425,7 +425,7 @@
     <script>
         var timeout = setTimeout(function() {
 
-          fetch('/user_data', {
+          fetch('./user_data', {
               method: 'POST',
               headers: {
                   'Content-Type': 'application/json;charset=utf-8'
