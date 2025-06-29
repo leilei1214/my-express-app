@@ -393,7 +393,7 @@ app.post('/insert-event', async (req, res) => {
     try {
       // Step 1: Get max_participants from activities table
       const activityResult = await MS_query(
-        `SELECT max_participants FROM public.activities WHERE id = ?`,
+        `SELECT max_participants FROM activities WHERE id = ?`,
         [activityId]
       );
   
@@ -403,14 +403,14 @@ app.post('/insert-event', async (req, res) => {
       const maxParticipants = activityResult.rows[0].max_participants;
       // ------------------------------------------------------------------
       const countStatusAdd = await MS_query(
-        `SELECT COUNT(*) AS count FROM public.registrations WHERE activity_id = ? AND status_add = '1'`,
+        `SELECT COUNT(*) AS count FROM registrations WHERE activity_id = ? AND status_add = '1'`,
         [activityId]
       );
       const currentStatusAdd = parseInt(countStatusAdd.rows[0].count, 10);
       // --------------------------------------------------------------
       // Step 2: Count registrations with status_add = 1 for the given activity
       const countResult = await MS_query(
-        `SELECT COUNT(*) AS count FROM public.registrations WHERE activity_id = ? AND identifier = ?`,
+        `SELECT COUNT(*) AS count FROM registrations WHERE activity_id = ? AND identifier = ?`,
         [activityId,identifier]
       );
       const currentParticipants = parseInt(countResult.rows[0].count, 10);
@@ -420,7 +420,7 @@ app.post('/insert-event', async (req, res) => {
       if (currentParticipants > 0) {
         // Step 5a: Update the existing record
         await MS_query(
-          `UPDATE public.registrations
+          `UPDATE registrations
             SET status_add = ?
             WHERE activity_id = ? AND identifier = ?`,
           [status_add, activityId, identifier]
@@ -429,7 +429,7 @@ app.post('/insert-event', async (req, res) => {
       } else {
         // Step 5b: Insert a new record
         await MS_query(
-          `INSERT INTO public.registrations (activity_id, identifier, status_add)
+          `INSERT INTO registrations (activity_id, identifier, status_add)
             VALUES (?, ?, ?)`,
           [activityId, identifier, status_add]
         );
@@ -487,7 +487,7 @@ app.post('/delete-event', async (req, res) => {
       // --------------------------------------------------------------
       // Step 2: Count registrations with status_add = 1 for the given activity
       const countResult = await MS_query(
-        `SELECT COUNT(*) AS count FROM public.registrations WHERE activity_id = ? AND identifier = ?`,
+        `SELECT COUNT(*) AS count FROM registrations WHERE activity_id = ? AND identifier = ?`,
         [activityId,identifier]
       );
       const currentParticipants = parseInt(countResult.rows[0].count, 10);
@@ -497,7 +497,7 @@ app.post('/delete-event', async (req, res) => {
       if (currentParticipants > 0) {
         // Step 5a: Update the existing record
         await MS_query(
-          `UPDATE public.registrations
+          `UPDATE registrations
             SET status_add = ?
             WHERE activity_id = ? AND identifier = ?`,
           [status_add, activityId, identifier]
@@ -506,7 +506,7 @@ app.post('/delete-event', async (req, res) => {
       } else {
         // Step 5b: Insert a new record
         await MS_query(
-          `INSERT INTO public.registrations (activity_id, identifier, status_add)
+          `INSERT INTO registrations (activity_id, identifier, status_add)
             VALUES (?, ?, ?)`,
           [activityId, identifier, status_add]
         );
