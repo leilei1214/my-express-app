@@ -348,7 +348,7 @@ app.post('/api/event', async (req, res) => {
 
     // 釋放連接
 
-    if (result.rows.length === 0) {
+    if (result.length === 0) {
       res.status(404).send('找不到對應的活動');
     } else {
       res.json(result.rows); // 返回 JSON 格式的查詢結果
