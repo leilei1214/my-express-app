@@ -397,23 +397,23 @@ app.post('/insert-event', async (req, res) => {
         [activityId]
       );
   
-      if (activityResult.rows.length === 0) {
+      if (activityResult.length === 0) {
         throw new Error('Activity not found');
       }
-      const maxParticipants = activityResult.rows[0].max_participants;
+      const maxParticipants = activityResult[0].max_participants;
       // ------------------------------------------------------------------
       const countStatusAdd = await MS_query(
         `SELECT COUNT(*) AS count FROM registrations WHERE activity_id = ? AND status_add = '1'`,
         [activityId]
       );
-      const currentStatusAdd = parseInt(countStatusAdd.rows[0].count, 10);
+      const currentStatusAdd = parseInt(countStatusAdd[0].count, 10);
       // --------------------------------------------------------------
       // Step 2: Count registrations with status_add = 1 for the given activity
       const countResult = await MS_query(
         `SELECT COUNT(*) AS count FROM registrations WHERE activity_id = ? AND identifier = ?`,
         [activityId,identifier]
       );
-      const currentParticipants = parseInt(countResult.rows[0].count, 10);
+      const currentParticipants = parseInt(countResult[0].count, 10);
       console.log(currentParticipants)
     // Step 3: Check if currentParticipants <= maxParticipants
 
@@ -440,10 +440,7 @@ app.post('/insert-event', async (req, res) => {
     } catch (err) {
         console.error('資料庫插入失敗:', err);
         res.status(500).json({ status: 500, message: '資料庫插入錯誤' });
-    } finally {
-      
-        if (client) client.release();
-    }
+    } 
 
 
 });
