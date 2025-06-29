@@ -351,7 +351,7 @@ app.post('/api/event', async (req, res) => {
     if (result.length === 0) {
       res.status(404).send('找不到對應的活動');
     } else {
-      res.json(result.rows); // 返回 JSON 格式的查詢結果
+      res.status(200).json(result);  // 返回 JSON 格式的查詢結果
     }
   } catch (err) {
     console.error('資料庫查詢失敗:', err);
