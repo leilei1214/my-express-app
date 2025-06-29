@@ -312,7 +312,7 @@ app.get('/api/event_content', async (req, res) => {
     const query = 'SELECT * FROM activities WHERE id = ?';
     const result = await MS_query(query, [listId]);
     const registrationQuery = `
-      SELECT registrations.*, users.* FROM registrations JOIN users ON registrations.identifier = users.identifier WHERE registrations.activity_id = ? ORDER BY registrations.id ASC;
+      SELECT registrations.*, users.preferred_position1,users.preferred_position2,users.username FROM registrations JOIN users ON registrations.identifier = users.identifier WHERE registrations.activity_id = ? ORDER BY registrations.id ASC;
     `;
     const registrationResult = await MS_query(registrationQuery, [listId]);
 
