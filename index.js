@@ -330,7 +330,7 @@ app.get('/api/event_content', async (req, res) => {
       // 返回活動與註冊資訊
       res.json({
         event: result[0], // 單一活動內容
-        registrations: registrationResult.result, // 該活動的註冊資訊
+        registrations: registrationResult, // 該活動的註冊資訊
       });
     }
   } catch (err) {
