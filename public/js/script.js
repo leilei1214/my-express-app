@@ -1929,3 +1929,7 @@
 		// {DEL}
 	});
 }());
+function event_content_href(id){
+	window.location.href = `./event_content?list_id=${id}`
+}
+

@@ -352,7 +352,7 @@
               if (!response.ok) {
                   if (response.status == 400) {
                       // 如果狀態碼是 400，跳轉到登入頁
-                      window.location.href = "/login";
+                      window.location.href = "./login";
                   }
                   throw new Error(`Network response was not ok, status: ${response.status}`);
               }
@@ -373,7 +373,7 @@
                 
                 // 在這裡可以進行其他操作，例如顯示在頁面上
             }else if(data.status === 400)(
-              window.location.href ="/login"
+              window.location.href ="./login"
             ) 
             else {
                 console.error('Error:', data.message); // 處理錯誤情況
@@ -452,7 +452,7 @@
               const formattedDate = `${eventDate.getFullYear()}-${String(eventDate.getMonth() + 1).padStart(2, '0')}-${String(eventDate.getDate()).padStart(2, '0')} ${String(eventDate.getHours()).padStart(2, '0')}:${String(eventDate.getMinutes()).padStart(2, '0')}`;
 
               activitiesHtml += `
-                  <div class="owl-item" style="width: 330px; margin-right: 30px;">
+                  <div class="owl-item mb-3" style="width: 330px; margin-right: 30px;" onclick="event_content_href(${activity.id })">
                       <article class="product">
                           <header class="product-header">
                               <div class="badge badge-red">hot</div>
