@@ -115,7 +115,7 @@
         <div class="container">
           <div class="row row-50">
             <div class="col-lg-8">
-              <ul class="list-inline mx-auto list-inline-xs "  style="margin-bottom: -4px;">
+              <ul class="list-inline mx-auto list-inline-xs Boss_edit"  style="margin-bottom: -4px;">
                 <li class="pl-0 pr-0"><a class=" button-md icon-media icon-media-round icon-media-instagram " href="#">編輯</a></li>
                 <li class="pl-0 pr-0"><a class="button-md icon-media icon-media-round icon-media-instagram " onclick="ClockOut()">簽退</a></li>
                 <li class="pl-0 pr-0"><a class="button-md icon-media icon-media-round icon-media-google " href="#">刪除</a></li>
@@ -669,11 +669,11 @@
                     document.getElementById('employee').innerHTML = displayName
                     console.log('Class changed to:', element.className); // 確認 class 已更改
                 }
-                
+                if(level !== 1){
+                    $(".Boss_edit").addClass("d-none")
+                }
                 // 在這裡可以進行其他操作，例如顯示在頁面上
-            }else if(data.status === 400)(
-              window.location.href ="/login"
-            ) 
+            }
             else {
                 console.error('Error:', data.message); // 處理錯誤情況
             }
@@ -698,7 +698,7 @@
 
           // 獲取 `list_id` 的值
           const activityId = urlParams.get('list_id');
-          fetch('/insert-event', {
+          fetch('./insert-event', {
               method: 'POST',
               headers: {
                   'Content-Type': 'application/json',
@@ -735,7 +735,7 @@
 
           // 獲取 `list_id` 的值
           const activityId = urlParams.get('list_id');
-          fetch('/delete-event', {
+          fetch('./delete-event', {
               method: 'POST',
               headers: {
                   'Content-Type': 'application/json',
@@ -771,7 +771,7 @@
         // 獲取 `list_id` 的值
         const activityId = urlParams.get('list_id');
 
-        window.location.href ="/SignIn?list_id="+activityId
+        window.location.href ="./SignIn?list_id="+activityId
 
       }
     </script>
