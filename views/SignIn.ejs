@@ -373,6 +373,12 @@
                 for (const item of levels) {
                   if( item == "新手"){
                     document.getElementById('activity_level').innerHTML += `
+                      <div class="badge badge-secondary">${item}
+                      </div>
+                    `
+                  }
+                  if( item == "復健"){
+                    document.getElementById('activity_level').innerHTML += `
                       <div class="badge badge-primary">${item}
                       </div>
                     `
@@ -440,8 +446,8 @@
                     add_registrations += `
                       <tr>
                         <th scope="row">${index + 1}</th>
-                        <td>${registration.participant_name}</td>
-                        <td>-</td>
+                        <td>${registration.username}</td>
+                        <td>${registration.preferred_position1}、${registration.preferred_position2}</td>
                         <td>${check_in}</td>
                         <td>${check_out}</td>
                         <td>${payment_status}</td>
