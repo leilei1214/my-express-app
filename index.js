@@ -483,7 +483,7 @@ app.post('/delete-event', async (req, res) => {
         `SELECT COUNT(*) AS count FROM registrations WHERE activity_id = ? AND identifier = ?`,
         [activityId,identifier]
       );
-      const currentParticipants = parseInt(countResult.count, 10);
+      const currentParticipants = parseInt(countResult[0].count, 10);
       console.log(currentParticipants)
     // Step 3: Check if currentParticipants <= maxParticipants
 
