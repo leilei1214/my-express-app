@@ -574,7 +574,7 @@
                           <td class="team-inline">
 
                             <div class="team-title">
-                              <div class="team-name">${registration.participant_name}</div>
+                              <div class="team-name">${registration.preferred_position1}、${registration.preferred_position2}</div>
                             </div>
                           </td>
                           <td>備取${Istatus_Badd}</td>
@@ -597,8 +597,8 @@
                         Nadd_registrations += `
                         <tr>
                           <td>${Istatus_Nadd}</th>
-                          <td>-</td>
-                          <td>${registration.participant_name}</td>
+                          <td>${registration.username}</td>
+                          <td>${registration.preferred_position1}、${registration.preferred_position2}</td>
                     
                         </tr>
                       `;
