@@ -363,7 +363,7 @@
                 const data = res.event
                 console.log(data)
                 // 遍歷陣列並輸出每個元素
-                const levels = raw.replace(/[{}]/g, '').split(',');
+                const levels = data.activity_level.replace(/[{}]/g, '').split(',');
                 for (const item of data.activity_level) {
                   document.getElementById('activity_level').innerHTML += `
                     <div class="badge badge-secondary">${item}
