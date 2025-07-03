@@ -533,7 +533,6 @@ app.post('/Update_SignIn', async (req, res) => {
   const results = [];
 
   // Establish a database connection
-  const client = await pool.connect();
 
   try {
     // Iterate through the provided JSON data and perform updates
