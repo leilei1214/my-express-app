@@ -547,27 +547,27 @@ app.post('/Update_SignIn', async (req, res) => {
         query = `
         UPDATE registrations
         SET 
-            check_in = $1
+            check_in = ?
         WHERE 
-            activity_id = $2 AND identifier = $3
+            activity_id = ? AND identifier = ?
         `;
         Change_checked = checked ? 1 : 0;
       } else if (className === 'SignOut') {
         query = `
         UPDATE registrations
         SET 
-            check_out = $1
+            check_out = ?
         WHERE 
-            activity_id = $2 AND identifier = $3
+            activity_id = ? AND identifier = ?
         `;
         Change_checked = checked ? 1 : 0;
       } else if (className === 'SignFree') {
         query = `
         UPDATE registrations
         SET 
-            payment_status = $1
+            payment_status = ?
         WHERE 
-            activity_id = $2 AND identifier = $3
+            activity_id = ? AND identifier = ?
         `;
         Change_checked = checked ? true : false;
       }
@@ -576,7 +576,7 @@ app.post('/Update_SignIn', async (req, res) => {
       console.log(values);
 
       try {
-        await client.query(query, values);
+        await MS_query(query, values);
         results.push({ status: 200 });
       } catch (err) {
         console.error('Database query failed:', err);
