@@ -493,12 +493,15 @@
                   data: 'level',
                   title: '等級選擇',
                   render: function (data, type, row, meta) {
+
                     return `
-                      <select class="form-select form-select-sm level-select" data-id="${row.id}" style="height: 34px; padding: 0;">
+                    <div class="col-sm-10">
+                      <select class="form-select form-select-sm address level-select" data-id="${row.id}" style="height: 34px; padding: 0;">
                         <option value="1" ${data == 3 ? 'selected' : ''}>新手</option>
                         <option value="2" ${data == 4 ? 'selected' : ''}>復健</option>
                         <option value="3" ${data == 2 ? 'selected' : ''}>自由</option>
                       </select>
+                    </div>
                     `;
                   }
                 },
