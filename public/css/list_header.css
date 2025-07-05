@@ -32,6 +32,7 @@ button.active {
         justify-content: center;
     }
     .dataTables_length {
+        display: flex;
         justify-content: center;
        
     }
