@@ -643,6 +643,12 @@ app.post('/api/list_content', async (req, res) => {
 app.get('/ListMember', (req, res) => {
   res.render('ListMember', { pageTitle: 'ListMember' });
 });
+app.get('/ListMember_level2', (req, res) => {
+  res.render('ListMember_level2', { pageTitle: 'ListMember' });
+});
+app.get('/ListMember_level4', (req, res) => {
+  res.render('ListMember_level4', { pageTitle: 'ListMember' });
+});
 //會員清單
 app.post('/api/list_member', async (req, res) => {
 
