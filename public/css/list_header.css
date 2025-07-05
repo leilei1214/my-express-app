@@ -51,6 +51,6 @@ button.active {
     background-color: #35ad79;
     color: #fff;
 }
-#example:active{
+#example option:active{
     background-color:#000 ;
 }
