@@ -18,3 +18,11 @@ button.active {
   background-color: #35ad79;
   color: #fff;
 }
+/* datatable */
+#example_filter label{
+	display: flex;
+    float: right;
+}
+#example_filter input{
+	width: auto;
+}
