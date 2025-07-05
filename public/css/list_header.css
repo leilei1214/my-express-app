@@ -26,3 +26,10 @@ button.active {
 #example_filter input{
 	width: auto;
 }
+
+#example_filter button{
+    padding: 8px;
+}
+#example_filter td{
+    vertical-align: middle;
+}
