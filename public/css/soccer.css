@@ -4,6 +4,15 @@
 * Trunk version 2.0.0
 *
 */
+/* datatable */
+#example_filter label{
+	display: flex;
+    float: right;
+}
+#example_filter input{
+	width: auto;
+}
+
 a:focus,
 button:focus {
 	outline: none !important;
