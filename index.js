@@ -672,7 +672,7 @@ app.post('/api/Updata_member', async (req, res) => {
     // 獲取數據庫連接並查詢資料
     const { Up_userId, Up_level } = req.body;
     console.log(Up_userId)
-    const query = 'UPDATE `users` SET `level`=? WHERE userid = ?';
+    const query = 'UPDATE `users` SET `level`=? WHERE identifier = ?';
     const result = await MS_query(query,[Up_level,Up_userId]);
 
     if (result.affectedRows === 0) {
