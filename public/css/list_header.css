@@ -23,13 +23,13 @@ button.active {
 	display: flex;
     float: right;
 }
-#example input{
+#example_filter input{
 	width: auto !important;
 }
 
 #example button{
     padding: 8px !important;
 }
-#example_filter td{
+#example td{
     vertical-align: middle !important;
 }
