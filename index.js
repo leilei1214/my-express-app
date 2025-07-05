@@ -197,15 +197,35 @@ app.get('/login_data', async (req, res) => {
 
               res.redirect('./home');
             } else {
-              const identifier = await generateUniqueIdentifier(MS_query); // 生成唯一的 identifier
-              const userSession = req.session.user;
-              const { birthday, position1, position2} = userSession;
-              // Insert new user into PostgreSQL database
-              await MS_query(
-                'INSERT INTO users (username, userid, identifier,birthday,preferred_position1,preferred_position2) VALUES (?,?,?,?,?,?)',
-                [displayName, userId,identifier,birthday,position1,position2]
-              );
-              res.redirect('./home');
+              try{
+                const identifier = await generateUniqueIdentifier(MS_query); // 生成唯一的 identifier
+                const userSession = req.session.user;
+                const { birthday, position1, position2} = userSession;
+                // Insert new user into PostgreSQL database
+                await MS_query(
+                  'INSERT INTO users (username, userid, identifier,birthday,preferred_position1,preferred_position2) VALUES (?,?,?,?,?,?)',
+                  [displayName, userId,identifier,birthday,position1,position2]
+                );
+                res.redirect('./home');
+              }catch(error){
+                res.status(500).send(`
+                  <html>
+                    <head>
+                      <meta charset="UTF-8">
+                      <title>請先註冊</title>
+                      <script>
+                        setTimeout(() => {
+                          window.location.href = './login?status=register'; // 或你想導向的網址
+                        }, 1000); // 1000 毫秒 = 1 秒
+                      </script>
+                    </head>
+                    <body>
+                      <h1>請先註冊</h1>
+                    </body>
+                  </html>
+                `);
+              }
+
             }
           // }
           // catch(error){
