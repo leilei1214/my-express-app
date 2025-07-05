@@ -219,7 +219,7 @@
                           <th style="text-align: center;text-align: center;">更新</th>
                         </tr>
                       </thead>
-                      <tbody>
+                      <tbody style="text-align: center;">
                         <tr>
                           <td>王小明</td>
                           <td>
@@ -502,7 +502,7 @@
                   render: function (data, type, row, meta) {
 
                     return `
-                      <select class="form-select form-select-sm address level-select" data-id="${row.id}" style="height: 34px; padding: 0;">
+                      <select class="form-select form-select-sm address level-select" data-id="${row.id}" style="height: 34px; padding: 0;margin: 0 auto;">
                         <option value="1" ${data == 3 ? 'selected' : ''}>新手</option>
                         <option value="2" ${data == 4 ? 'selected' : ''}>復健</option>
                         <option value="3" ${data == 2 ? 'selected' : ''}>自由</option>
