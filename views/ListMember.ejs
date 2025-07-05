@@ -477,6 +477,7 @@
                 });
               },
               dataSrc: function (json) {
+                console.log(json.data)
                 return json.data || []; // 假設伺服器格式為 { status: 200, data: [...] }
               }
             },
@@ -489,7 +490,7 @@
                 { data: 'displayName', title: '姓名' },        // 資料欄位
                 { data: null, title: '狀態', defaultContent: '新手' },  // 固定顯示文字 "新手"
                 { data: 'preferred_position1', title: '部門' }, // 資料欄位
-                { data: null, title: '入職日期', defaultContent: '-' }, // 測試用佔位符
+                { data: 'time', title: '入職日期', defaultContent: '-' }, // 測試用佔位符
                 { data: null, title: '備註', defaultContent: '' }       // 空值
             ]
           });
