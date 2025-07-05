@@ -474,6 +474,7 @@
             language: {
               url: '//cdn.datatables.net/plug-ins/1.13.6/i18n/zh-HANT.json'
             },
+            
             ajax: {
               url: './api/list_member',
               type: 'POST',
@@ -534,7 +535,7 @@
                 { 
                   data: 'identifier', 
                   title: '更新',
-                  render: function (data,row) {
+                  render: function (data, type, row, meta) {
                     return`
                       <button class=" button button-primary" type="submit" aria-label="Send"  onclick="UpData(${data},${row.id})">
                         <span style="font-weight: 600;"> 確認送出</span>
