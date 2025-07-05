@@ -217,6 +217,8 @@
                           <th style="min-width: 65px;text-align: center;">位置1</th>
                           <th style="min-width: 65px;text-align: center;">位置2</th>
                           <th style="min-width: 200px;text-align: center;">申請日期</th>
+                          <th style="min-width: 200px;text-align: center;">參加次數</th>
+                          <th style="min-width: 200px;text-align: center;">未到次數</th>
                           <th style="text-align: center;text-align: center;">更新</th>
                         </tr>
                       </thead>
@@ -529,7 +531,14 @@
                     return `${yyyy}-${mm}-${dd} ${hh}:${mi}`;
                   }, // 測試用佔位符
                 },
-                // <button class=" button button-primary" type="submit" aria-label="Send" onclick="addEvent()">
+                { data: 'activitySum', title: '參加次數' }, // 資料欄位
+                {
+                  title: '未到次數',
+                  render: function (data, type, row) {
+                    return (row.activitySum || 0) - (row.SignOutSum || 0);
+                  }
+                },               
+                   // <button class=" button button-primary" type="submit" aria-label="Send" onclick="addEvent()">
                 //   <span style="font-weight: 600;"> 確認送出</span>
                 // </button>
                 { 
