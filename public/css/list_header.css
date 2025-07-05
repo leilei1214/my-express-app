@@ -21,12 +21,21 @@ button.active {
 /* datatable */
 #example_filter label{
 	display: flex;
-    float: right;
+    justify-content: right;
 }
 #example_filter input{
 	width: auto !important;
 }
-
+@media (min-width: 400px){
+    #example_filter label{
+        display: flex;
+        justify-content: center;
+    }
+    .dataTables_length {
+        justify-content: center;
+       
+    }
+} 
 #example button{
     padding: 8px !important;
 }
