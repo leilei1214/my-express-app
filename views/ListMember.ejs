@@ -534,9 +534,9 @@
                 { 
                   data: 'identifier', 
                   title: '更新',
-                  render: function (data) {
+                  render: function (data,row) {
                     return`
-                      <button class=" button button-primary" type="submit" aria-label="Send" onclick="UpData(${data})">
+                      <button class=" button button-primary" type="submit" aria-label="Send"  onclick="UpData(${data},${row.id})">
                         <span style="font-weight: 600;"> 確認送出</span>
                       </button>
                     `
@@ -545,6 +545,13 @@
             ]
           });
         });
+        function UpData(data,row){
+            const userId =row;
+            const level = $(`select[data-id="${userId}"]`).val();
+
+            console.log(`送出 user ${userId}，新等級為 ${level}`);
+        }
+        
     </script>
 
 
