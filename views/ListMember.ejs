@@ -562,18 +562,18 @@
                   Up_level:level
                 }),
             })
-            .then(response => response.json())
+            .then(response => {
+              if (response.status === 200) {
+                return response.json(); // 解析 JSON
+              } else {
+                throw new Error(`伺服器回傳錯誤：${response.status}`);
+              }
+            })
             .then(data => {
-                if (data.status == 200) {
-                    alert("更新成功！");
-                    location.reload();
-
-                } else {
-                    alert("更新失败：" + data.message);
-                }
+               alert('會員等級已成功更新');
             })
             .catch(error => {
-                console.error("请求失败:", error);
+                console.error("更新失敗，請稍後再試:", error);
             });
         }
         
