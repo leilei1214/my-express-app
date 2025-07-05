@@ -1,3 +1,8 @@
 button {
     border: 0;
 }
+button:active {
+  background-color: #0056b3;
+  transform: scale(0.98);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2) inset;
+}
