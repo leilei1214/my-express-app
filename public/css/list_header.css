@@ -10,7 +10,7 @@ button:hover {
   transform: scale(0.98);
 }
 
-button .active {
+button.active {
   border-bottom:3px solid #35ad79;
   background-color: #35ad79;
   color: #fff;
