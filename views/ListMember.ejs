@@ -207,9 +207,10 @@
                         <tr>
                           <th>姓名</th>
                           <th>級別</th>
-                          <th>位置</th>
-                          <th>入會日期</th>
-                          <th>更新級別</th>
+                          <th>位置1</th>
+                          <th>位置2</th>
+                          <th>申請日期</th>
+                          <th>更新</th>
                         </tr>
                       </thead>
                       <tbody>
@@ -488,63 +489,55 @@
             // <th>更新級別</th>
             columns: [
                 { data: 'displayName', title: '姓名' },        // 資料欄位
-                { data: null, title: '狀態', defaultContent: '新手' },  // 固定顯示文字 "新手"
-                { data: 'preferred_position1', title: '部門' }, // 資料欄位
-                { data: 'time', title: '入職日期', defaultContent: '-' }, // 測試用佔位符
-                { data: null, title: '備註', defaultContent: '' }       // 空值
+                {
+                  data: 'level',
+                  title: '等級選擇',
+                  render: function (data, type, row, meta) {
+                    return `
+                      <select class="form-select form-select-sm level-select" data-id="${row.id}" style="height: 34px; padding: 0;">
+                        <option value="1" ${data == 3 ? 'selected' : ''}>新手</option>
+                        <option value="2" ${data == 4 ? 'selected' : ''}>復健</option>
+                        <option value="3" ${data == 2 ? 'selected' : ''}>自由</option>
+                      </select>
+                    `;
+                  }
+                },
+                { data: 'preferred_position1', title: '位置1' }, // 資料欄位
+                { data: 'preferred_position2', title: '位置2' }, // 資料欄位
+                {
+                  data: 'time',
+                  title: '建立時間',
+                  render: function (data) {
+                    if (!data) return '-';
+                    const date = new Date(data);
+                    const yyyy = date.getFullYear();
+                    const mm = String(date.getMonth() + 1).padStart(2, '0');
+                    const dd = String(date.getDate()).padStart(2, '0');
+                    const hh = String(date.getHours()).padStart(2, '0');
+                    const mi = String(date.getMinutes()).padStart(2, '0');
+                    return `${yyyy}-${mm}-${dd} ${hh}:${mi}`;
+                  }, // 測試用佔位符
+                },
+                // <button class=" button button-primary" type="submit" aria-label="Send" onclick="addEvent()">
+                //   <span style="font-weight: 600;"> 確認送出</span>
+                // </button>
+                { 
+                  data: 'identifier', 
+                  title: '更新',
+                  render: function (data) {
+                    return`
+                      <button class=" button button-primary" type="submit" aria-label="Send" onclick="UpData(${data})">
+                        <span style="font-weight: 600;"> 確認送出</span>
+                      </button>
+                    `
+                  }
+                }       // 空值
             ]
           });
         });
     </script>
 
-    <script>
-        var timeout = setTimeout(function() {
 
-          fetch('./user_data', {
-              method: 'POST',
-              headers: {
-                  'Content-Type': 'application/json;charset=utf-8'
-              },
-              body: JSON.stringify({ identifier: "none" }),
-          })
-          .then(response => {
-              if (!response.ok) {
-                  if (response.status == 400) {
-                      // 如果狀態碼是 400，跳轉到登入頁
-                      window.location.href = "/login";
-                  }
-                  throw new Error(`Network response was not ok, status: ${response.status}`);
-              }
-              return response.json(); // 解析 JSON 響應
-          })
-          .then(data => {
-            console.log('Response data:', data); // 查看完整響應
-            if (data.status === 200) {
-                
-                const { displayName, identifier, birthday, position1, position2, level } = data.user;
-                console.log('User data:', displayName, identifier, birthday, position1, position2, level); // 獲取並輸出用戶資料
-                const element = document.querySelector('.fl-bigmug-line-login12');
-                if (element) {
-                    element.className = 'icon fa-user-o'; // 將 class 改為 'new-class'
-                    document.getElementById('employee').innerHTML = displayName
-                    console.log('Class changed to:', element.className); // 確認 class 已更改
-                }
-                
-                // 在這裡可以進行其他操作，例如顯示在頁面上
-            }else if(data.status === 400)(
-              window.location.href ="/login"
-            ) 
-            else {
-                console.error('Error:', data.message); // 處理錯誤情況
-            }
-   
-          })
-          .catch((error) => {
-
-              console.error('Error:', error);
-          });
-        }, 1000);
-    </script>
     <!-- <script>
         fetch('./api/list_member', {
             method: 'POST',
