@@ -664,5 +664,25 @@ app.post('/api/list_member', async (req, res) => {
     res.status(500).send('資料庫查詢錯誤');
   }
 });
+
 //會員編輯
+app.post('/api/Updata_member', async (req, res) => {
+
+  try {
+    // 獲取數據庫連接並查詢資料
+    const { Up_userId, Up_level } = req.body;
+    const query = 'UPDATE `users` SET `level`=? WHERE userid = ?';
+    const result = await MS_query(query,[Up_level,Up_userId]);
+
+    if (result.affectedRows === 0) {
+      res.status(404).send('找不到對應的會員');
+    } else {
+      res.status(200).json({data:result});  // 返回 JSON 格式的查詢結果
+    }
+  } catch (err) {
+    console.error('資料庫查詢失敗:', err);
+    res.status(500).send('資料庫查詢錯誤');
+  }
+});
+
 

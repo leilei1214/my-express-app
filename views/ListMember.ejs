@@ -505,9 +505,9 @@
 
                     return `
                       <select class="form-select form-select-sm address level-select" data-id="${row.id}" style="height: 34px; padding: 0;margin: 0 auto;">
-                        <option value="1" ${data == 3 ? 'selected' : ''}>新手</option>
-                        <option value="2" ${data == 4 ? 'selected' : ''}>復健</option>
-                        <option value="3" ${data == 2 ? 'selected' : ''}>自由</option>
+                        <option value="3" ${data == 3 ? 'selected' : ''}>新手</option>
+                        <option value="4" ${data == 4 ? 'selected' : ''}>復健</option>
+                        <option value="2" ${data == 2 ? 'selected' : ''}>自由</option>
                       </select>
                     
                     `;
@@ -551,6 +551,30 @@
             const level = $(`select[data-id="${userId}"]`).val();
 
             console.log(`送出 user ${userId}，新等級為 ${level}`);
+            fetch('./api/Updata_member', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                  status_add: 0,
+                  Up_userId:userId,
+                  Up_level:level
+                }),
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.status == 200) {
+                    alert("更新成功！");
+                    location.reload();
+
+                } else {
+                    alert("更新失败：" + data.message);
+                }
+            })
+            .catch(error => {
+                console.error("请求失败:", error);
+            });
         }
         
     </script>
