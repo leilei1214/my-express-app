@@ -2,7 +2,7 @@ button {
     border: 0;
     font-weight: bold;
     /* border-left:3px solid #000; */
-    background-color: #9b9b9b;
+    background-color: #dddd;
 }
 button:active {
   border-bottom:3px solid #35ad79;
