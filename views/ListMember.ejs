@@ -461,13 +461,39 @@
   <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
   <script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js"></script>
     <script>
-      $(document).ready(function () {
-        $('#example').DataTable({
-          language: {
-            url: '//cdn.datatables.net/plug-ins/1.13.6/i18n/zh-HANT.json' // 繁體中文語系
-          }
+        $(document).ready(function () {
+          $('#example').DataTable({
+            language: {
+              url: '//cdn.datatables.net/plug-ins/1.13.6/i18n/zh-HANT.json'
+            },
+            ajax: {
+              url: './api/list_member',
+              type: 'POST',
+              contentType: 'application/json',
+              data: function (d) {
+                return JSON.stringify({
+                  identifier: 'none',
+                  Search_level: '3'
+                });
+              },
+              dataSrc: function (json) {
+                return json.data || []; // 假設伺服器格式為 { status: 200, data: [...] }
+              }
+            },
+            // <th>姓名</th>
+            // <th>級別</th>
+            // <th>位置</th>
+            // <th>入會日期</th>
+            // <th>更新級別</th>
+            columns: [
+                { data: 'displayName', title: '姓名' },        // 資料欄位
+                { data: null, title: '狀態', defaultContent: '新手' },  // 固定顯示文字 "新手"
+                { data: 'preferred_position1', title: '部門' }, // 資料欄位
+                { data: null, title: '入職日期', defaultContent: '-' }, // 測試用佔位符
+                { data: null, title: '備註', defaultContent: '' }       // 空值
+            ]
+          });
         });
-      });
     </script>
 
     <script>
@@ -518,7 +544,7 @@
           });
         }, 1000);
     </script>
-    <script>
+    <!-- <script>
         fetch('./api/list_member', {
             method: 'POST',
             headers: {
@@ -550,7 +576,7 @@
 
             console.error('Error:', error);
         });
-    </script>
+    </script> -->
     <!-- <script>
       function updateCarouselItems() {
         var carousel = document.getElementById("myCarousel");
