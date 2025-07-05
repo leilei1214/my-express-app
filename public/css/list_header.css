@@ -52,5 +52,5 @@ button.active {
     color: #fff;
 }
 #example option:hover,option:focus {
-  background: #707279;
+  background: #707279 !important;
 }
