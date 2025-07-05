@@ -1,5 +1,8 @@
 button {
     border: 0;
+    font-weight: bold;
+    border-left:3px solid #000;
+    background-color: none;
 }
 button:active {
   border-bottom:3px solid #35ad79;
