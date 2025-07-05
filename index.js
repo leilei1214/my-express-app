@@ -648,9 +648,9 @@ app.post('/api/list_member', async (req, res) => {
 
   try {
     // 獲取數據庫連接並查詢資料
-    const Search_level = req.query.Search_level
+    const { identifier, Search_level } = req.body;
     const query = 'SELECT * FROM `users` WHERE level = ?';
-    const result = await MS_query(query,Search_level);
+    const result = await MS_query(query,[Search_level]);
 
     // 釋放連接
 
