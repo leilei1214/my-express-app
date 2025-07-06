@@ -1,0 +1,938 @@
+<!DOCTYPE html>
+<html class="wide wow-animation" lang="en">
+  <head>
+    <!-- Site Title-->
+    <title>Home</title>
+    <meta name="format-detection" content="telephone=no">
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, user-scalable=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="utf-8">
+    <link rel="icon" href="images/favicon.ico" type="image/x-icon">
+    <!-- Stylesheets-->
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Kanit:300,400,500,500i,600,900%7CRoboto:400,900">
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/fonts.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/list_header.css">
+ 
+    <style>.ie-panel{display: none;background: #212121;padding: 10px 0;box-shadow: 3px 3px 5px 0 rgba(0,0,0,.3);clear: both;text-align:center;position: relative;z-index: 1;} html.ie-10 .ie-panel, html.lt-ie-10 .ie-panel {display: block;}</style>
+    <style>
+      .form-group .col-sm-2 {
+        color: #35ad79;
+        font-weight: 600;
+      }
+      .radio .radio-custom, .radio .radio-custom-dummy, .radio-inline .radio-custom, .radio-inline .radio-custom-dummy, .checkbox .checkbox-custom, .checkbox .checkbox-custom-dummy, .checkbox-inline .checkbox-custom, .checkbox-inline .checkbox-custom-dummy{
+          border: 1px solid #707279;
+          box-shadow: 0 0 1px 1px #707279;
+      }
+      .select2-chosen{
+        font-family: "Kanit", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+        font-weight: 600;
+        
+      }
+      
+      .form-control{
+        border: 3px solid #707279;
+        font-family: "Kanit", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+        font-weight: 600;
+      }
+      .stepper{
+        max-width: 300px;
+        width: auto;
+      } 
+      .select2-container{
+        display: block;
+      }
+      .table-roster tbody td:nth-child(1) {
+         
+          font-weight: 900;
+      }
+      .select2-container .select2-choice{
+        display: block;
+        width: 87px;
+        height: calc(1.5em + 0.75rem + 2px);
+        padding: 0.375rem 0.75rem;
+        font-size: 13px;
+        font-weight: 400;
+        line-height: 1.5;
+        color: #495057;
+        background-color: #fff;
+        background-clip: padding-box;
+        border: 3px solid #707279;
+        border-radius: 0.25rem;
+        
+      }
+
+      .list_class_table button{
+        height: calc(1.5em + 0.75rem + 2px);
+        padding: 0.375rem 0.75rem;
+        line-height: 1.5;
+        font-size: 13px;
+      }
+      .list_class_table tr td div{
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+      }
+      .table-roster tbody td:nth-child(1) {
+          width: 30%;
+          padding-left: 13px !important;
+      }
+        .product-header {
+
+            background: #d5deeb;
+        }
+        .object-container {
+            width: 100%;
+            max-width: 1212px; /* 限制最大寬度 */
+            height: 200px; /* 固定高度 */
+            overflow: hidden; /* 隱藏滾動條 */
+            border: 2px solid #007BFF;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            background-color: #ffffff;
+            margin-bottom: 20px;
+        }
+        object {
+            width: 100%; /* 設定為 100% 寬度 */
+            height: 100%; /* 設定為 100% 高度 */
+            border: none; /* 去掉邊框 */
+            overflow: hidden !important; /* 強制隱藏滾動條 */
+        }
+
+        .object-container::webkit-scrollbar {
+            display: none; /* 隱藏滾動條 */
+        }
+        .select2-drop{
+          width: 87px !important;
+        }
+        
+
+        .row + .row {
+            width: 100%;
+            margin: 12px auto;
+        }
+        @media (max-width: 991.98px){
+            .table-roster tbody td:nth-child(1) {
+                min-width: 90px;
+                font-weight: 900;
+            }
+            .table-roster tbody td:nth-child(2) {
+                min-width: 102px;
+            }
+        } 
+
+    </style>
+  </head>
+  <body>
+    <div class="ie-panel"><a href="http://windows.microsoft.com/en-US/internet-explorer/"><img src="images/ie8-panel/warning_bar_0000_us.jpg" height="42" width="820" alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today."></a></div>
+    <div class="preloader">
+      <div class="preloader-body">
+        <div class="preloader-item"></div>
+      </div>
+    </div>
+    <!-- Page-->
+    <div class="page">
+      <!-- Page Header-->
+      <!-- <my-component></my-component> -->
+      <%- include('header') %>
+      <!-- <div class="object-container">
+        <object id="cart-object" data="header.html" type="text/html"></object>
+      </div> -->
+      <!-- Swiper-->
+      <section class="section swiper-container swiper-slider swiper-classic bg-gray-2" data-loop="true" data-autoplay="4000" data-simulate-touch="false" data-slide-effect="fade">
+        <div class="swiper-wrapper">
+          <div class="swiper-slide text-center" data-slide-bg="images/slider-1-slide-1-1920x671.jpg">
+            <div class="container">
+              <div class="row justify-content-center">
+                <div class="col-xl-6">
+                  <div class="swiper-slide-caption">
+                    <h1 data-caption-animate="fadeInUp" data-caption-delay="100">We play Soccer</h1>
+                    <h4 data-caption-animate="fadeInUp" data-caption-delay="200">like no one else in the united states</h4><a class="button button-primary" data-caption-animate="fadeInUp" data-caption-delay="300" href="about-us.html">Read More</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="swiper-slide" data-slide-bg="images/slider-1-slide-2-1920x671.jpg">
+            <div class="container">
+              <div class="row justify-content-end">
+                <div class="col-xl-5">
+                  <div class="swiper-slide-caption">
+                    <h1 data-caption-animate="fadeInUp" data-caption-delay="100">We Are Pros</h1>
+                    <h4 data-caption-animate="fadeInUp" data-caption-delay="200">in Everything Concerning Soccer</h4><a class="button button-primary" data-caption-animate="fadeInUp" data-caption-delay="300" href="about-us.html">Read More</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="swiper-slide" data-slide-bg="images/slider-1-slide-3-1920x671.jpg">
+            <div class="container">
+              <div class="row">
+                <div class="col-xl-5">
+                  <div class="swiper-slide-caption">
+                    <h1 data-caption-animate="fadeInUp" data-caption-delay="100">Best Website</h1>
+                    <h4 data-caption-animate="fadeInUp" data-caption-delay="200">for soccer news, updates, <br class="d-none d-xl-block"> and game results</h4><a class="button button-primary" data-caption-animate="fadeInUp" data-caption-delay="300" href="about-us.html">Read More</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="swiper-button swiper-button-prev"></div>
+        <div class="swiper-button swiper-button-next"></div>
+        <div class="swiper-pagination"></div>
+      </section>
+      <section class="section section-md bg-gray-100">
+        <div class="container">
+          <div class="row row-50">
+            <div class="col-md-12">
+              <div class="main-component">
+
+                <div class="owl-carousel-outer-navigation">
+                  <!-- Heading Component-->
+                  <article class="heading-component">
+                    <div class="heading-component-inner">
+                      <h5 class="heading-component-title">參加級別
+                      </h5>
+                      <!-- <div class="owl-carousel-arrows-outline">
+                        <div class="owl-nav">
+                          <button class="owl-arrow owl-arrow-prev"></button>
+                          <button class="owl-arrow owl-arrow-next"></button>
+                        </div>
+                      </div> -->
+                    </div>
+                  </article>
+                  <div class="d-flex justify-content-center mb-4 border-b border-gray-300 dark:border-gray-700">
+                    <button class="py-2 px-4 text-sm font-medium active" data-subtab="north">新手團</button>
+                    <button class="py-2 px-4 text-sm font-medium " onclick="window.location.href='./ListMember_level4'" data-subtab="central">復健團</button>
+                    <button class="py-2 px-4 text-sm font-medium " onclick="window.location.href='./ListMember_level2'" data-subtab="south">自由團</button>
+                </div>
+                  <!-- Owl Carousel-->
+                  <div class="col-12" style="padding-left: 0;padding-right: 0;">
+                    <div class="row row-30">
+                        <div class="col-md-6 col-lg-4">
+                        <article class="product product-sm">
+                            <header class="product-header">
+                            <!-- Badge-->
+                            <div class="badge badge-red">hot<span class="icon material-icons-whatshot"></span>
+                            </div>
+                            <div class="product-figure"><img src="images/shop/product-small-1.png" alt=""></div>
+                            <div class="product-buttons">
+                                <div class="product-button product-button-share fl-bigmug-line-share27" style="font-size: 22px">
+                                <ul class="product-share">
+                                    <li class="product-share-item"><span>Share</span></li>
+                                    <li class="product-share-item"><a class="icon fa fa-facebook" href="#"></a></li>
+                                    <li class="product-share-item"><a class="icon fa fa-instagram" href="#"></a></li>
+                                    <li class="product-share-item"><a class="icon fa fa-twitter" href="#"></a></li>
+                                    <li class="product-share-item"><a class="icon fa fa-google-plus" href="#"></a></li>
+                                </ul>
+                                </div><a class="product-button fl-bigmug-line-shopping202" href="shopping-cart.html" style="font-size: 26px"></a><a class="product-button fl-bigmug-line-zoom60" href="images/shop/product-1-original.jpg" data-lightgallery="item" style="font-size: 25px"></a>
+                            </div>
+                            </header>
+                            <footer class="product-content">
+                            <h6 class="product-title"><a href="product-page.html">Nike hoops elite backpack</a></h6>
+                            <div class="product-price"><span class="product-price-old">$400</span><span class="heading-6 product-price-new">$290</span>
+                            </div>
+                            <ul class="product-rating">
+                                <li><span class="material-icons-star"></span></li>
+                                <li><span class="material-icons-star"></span></li>
+                                <li><span class="material-icons-star"></span></li>
+                                <li><span class="material-icons-star"></span></li>
+                                <li><span class="material-icons-star_half"></span></li>
+                            </ul>
+                            </footer>
+                        </article>
+                        </div>
+                        <div class="col-md-6 col-lg-4">
+                        <article class="product product-sm">
+                            <header class="product-header">
+                            <!-- Badge-->
+                            <div class="badge badge-shop">new
+                            </div>
+                            <div class="product-figure"><img src="images/shop/product-small-2.png" alt=""></div>
+                            <div class="product-buttons">
+                                <div class="product-button product-button-share fl-bigmug-line-share27" style="font-size: 22px">
+                                <ul class="product-share">
+                                    <li class="product-share-item"><span>Share</span></li>
+                                    <li class="product-share-item"><a class="icon fa fa-facebook" href="#"></a></li>
+                                    <li class="product-share-item"><a class="icon fa fa-instagram" href="#"></a></li>
+                                    <li class="product-share-item"><a class="icon fa fa-twitter" href="#"></a></li>
+                                    <li class="product-share-item"><a class="icon fa fa-google-plus" href="#"></a></li>
+                                </ul>
+                                </div><a class="product-button fl-bigmug-line-shopping202" href="shopping-cart.html" style="font-size: 26px"></a><a class="product-button fl-bigmug-line-zoom60" href="images/shop/product-2-original.jpg" data-lightgallery="item" style="font-size: 25px"></a>
+                            </div>
+                            </header>
+                            <footer class="product-content">
+                            <h6 class="product-title"><a href="product-page.html">Nike Air Zoom Pegasus</a></h6>
+                            <div class="product-price"><span class="heading-6 product-price-new">$290</span>
+                            </div>
+                            <ul class="product-rating">
+                                <li><span class="material-icons-star"></span></li>
+                                <li><span class="material-icons-star"></span></li>
+                                <li><span class="material-icons-star"></span></li>
+                                <li><span class="material-icons-star"></span></li>
+                                <li><span class="material-icons-star_half"></span></li>
+                            </ul>
+                            </footer>
+                        </article>
+                        </div>
+                        <div class="col-md-6 col-lg-4">
+                        <article class="product product-sm">
+                            <header class="product-header">
+                            <div class="product-figure"><img src="images/shop/product-small-3.png" alt=""></div>
+                            <div class="product-buttons">
+                                <div class="product-button product-button-share fl-bigmug-line-share27" style="font-size: 22px">
+                                <ul class="product-share">
+                                    <li class="product-share-item"><span>Share</span></li>
+                                    <li class="product-share-item"><a class="icon fa fa-facebook" href="#"></a></li>
+                                    <li class="product-share-item"><a class="icon fa fa-instagram" href="#"></a></li>
+                                    <li class="product-share-item"><a class="icon fa fa-twitter" href="#"></a></li>
+                                    <li class="product-share-item"><a class="icon fa fa-google-plus" href="#"></a></li>
+                                </ul>
+                                </div><a class="product-button fl-bigmug-line-shopping202" href="shopping-cart.html" style="font-size: 26px"></a><a class="product-button fl-bigmug-line-zoom60" href="images/shop/product-3-original.jpg" data-lightgallery="item" style="font-size: 25px"></a>
+                            </div>
+                            </header>
+                            <footer class="product-content">
+                            <h6 class="product-title"><a href="product-page.html">Nike distressed baseball hat</a></h6>
+                            <div class="product-price"><span class="heading-6 product-price-new">$290</span>
+                            </div>
+                            <ul class="product-rating">
+                                <li><span class="material-icons-star"></span></li>
+                                <li><span class="material-icons-star"></span></li>
+                                <li><span class="material-icons-star"></span></li>
+                                <li><span class="material-icons-star"></span></li>
+                                <li><span class="material-icons-star_half"></span></li>
+                            </ul>
+                            </footer>
+                        </article>
+                        </div>
+                        <div class="col-md-6 col-lg-4">
+                        <article class="product product-sm">
+                            <header class="product-header">
+                            <div class="product-figure"><img src="images/shop/product-small-4.png" alt=""></div>
+                            <div class="product-buttons">
+                                <div class="product-button product-button-share fl-bigmug-line-share27" style="font-size: 22px">
+                                <ul class="product-share">
+                                    <li class="product-share-item"><span>Share</span></li>
+                                    <li class="product-share-item"><a class="icon fa fa-facebook" href="#"></a></li>
+                                    <li class="product-share-item"><a class="icon fa fa-instagram" href="#"></a></li>
+                                    <li class="product-share-item"><a class="icon fa fa-twitter" href="#"></a></li>
+                                    <li class="product-share-item"><a class="icon fa fa-google-plus" href="#"></a></li>
+                                </ul>
+                                </div><a class="product-button fl-bigmug-line-shopping202" href="shopping-cart.html" style="font-size: 26px"></a><a class="product-button fl-bigmug-line-zoom60" href="images/shop/product-4-original.jpg" data-lightgallery="item" style="font-size: 25px"></a>
+                            </div>
+                            </header>
+                            <footer class="product-content">
+                            <h6 class="product-title"><a href="product-page.html">Apple watch nike+</a></h6>
+                            <div class="product-price"><span class="heading-6 product-price-new">$290</span>
+                            </div>
+                            <ul class="product-rating">
+                                <li><span class="material-icons-star"></span></li>
+                                <li><span class="material-icons-star"></span></li>
+                                <li><span class="material-icons-star"></span></li>
+                                <li><span class="material-icons-star"></span></li>
+                                <li><span class="material-icons-star_half"></span></li>
+                            </ul>
+                            </footer>
+                        </article>
+                        </div>
+                        <div class="col-md-6 col-lg-4">
+                        <article class="product product-sm">
+                            <header class="product-header">
+                            <!-- Badge-->
+                            <div class="badge badge-shop">new
+                            </div>
+                            <div class="product-figure"><img src="images/shop/product-small-5.png" alt=""></div>
+                            <div class="product-buttons">
+                                <div class="product-button product-button-share fl-bigmug-line-share27" style="font-size: 22px">
+                                <ul class="product-share">
+                                    <li class="product-share-item"><span>Share</span></li>
+                                    <li class="product-share-item"><a class="icon fa fa-facebook" href="#"></a></li>
+                                    <li class="product-share-item"><a class="icon fa fa-instagram" href="#"></a></li>
+                                    <li class="product-share-item"><a class="icon fa fa-twitter" href="#"></a></li>
+                                    <li class="product-share-item"><a class="icon fa fa-google-plus" href="#"></a></li>
+                                </ul>
+                                </div><a class="product-button fl-bigmug-line-shopping202" href="shopping-cart.html" style="font-size: 26px"></a><a class="product-button fl-bigmug-line-zoom60" href="images/shop/product-5-original.jpg" data-lightgallery="item" style="font-size: 25px"></a>
+                            </div>
+                            </header>
+                            <footer class="product-content">
+                            <h6 class="product-title"><a href="product-page.html">nike free rn</a></h6>
+                            <div class="product-price"><span class="heading-6 product-price-new">$290</span>
+                            </div>
+                            <ul class="product-rating">
+                                <li><span class="material-icons-star"></span></li>
+                                <li><span class="material-icons-star"></span></li>
+                                <li><span class="material-icons-star"></span></li>
+                                <li><span class="material-icons-star"></span></li>
+                                <li><span class="material-icons-star_half"></span></li>
+                            </ul>
+                            </footer>
+                        </article>
+                        </div>
+                        <div class="col-md-6 col-lg-4">
+                        <article class="product product-sm">
+                            <header class="product-header">
+                            <div class="product-figure"><img src="images/shop/product-small-6.png" alt=""></div>
+                            <div class="product-buttons">
+                                <div class="product-button product-button-share fl-bigmug-line-share27" style="font-size: 22px">
+                                <ul class="product-share">
+                                    <li class="product-share-item"><span>Share</span></li>
+                                    <li class="product-share-item"><a class="icon fa fa-facebook" href="#"></a></li>
+                                    <li class="product-share-item"><a class="icon fa fa-instagram" href="#"></a></li>
+                                    <li class="product-share-item"><a class="icon fa fa-twitter" href="#"></a></li>
+                                    <li class="product-share-item"><a class="icon fa fa-google-plus" href="#"></a></li>
+                                </ul>
+                                </div><a class="product-button fl-bigmug-line-shopping202" href="shopping-cart.html" style="font-size: 26px"></a><a class="product-button fl-bigmug-line-zoom60" href="images/shop/product-6-original.jpg" data-lightgallery="item" style="font-size: 25px"></a>
+                            </div>
+                            </header>
+                            <footer class="product-content">
+                            <h6 class="product-title"><a href="product-page.html">atletico black t-shirt</a></h6>
+                            <div class="product-price"><span class="heading-6 product-price-new">$290</span>
+                            </div>
+                            <ul class="product-rating">
+                                <li><span class="material-icons-star"></span></li>
+                                <li><span class="material-icons-star"></span></li>
+                                <li><span class="material-icons-star"></span></li>
+                                <li><span class="material-icons-star"></span></li>
+                                <li><span class="material-icons-star_half"></span></li>
+                            </ul>
+                            </footer>
+                        </article>
+                        </div>
+                        <div class="col-md-6 col-lg-4">
+                        <article class="product product-sm">
+                            <header class="product-header">
+                            <!-- Badge-->
+                            <div class="badge badge-red">hot<span class="icon material-icons-whatshot"></span>
+                            </div>
+                            <div class="product-figure"><img src="images/shop/product-small-7.png" alt=""></div>
+                            <div class="product-buttons">
+                                <div class="product-button product-button-share fl-bigmug-line-share27" style="font-size: 22px">
+                                <ul class="product-share">
+                                    <li class="product-share-item"><span>Share</span></li>
+                                    <li class="product-share-item"><a class="icon fa fa-facebook" href="#"></a></li>
+                                    <li class="product-share-item"><a class="icon fa fa-instagram" href="#"></a></li>
+                                    <li class="product-share-item"><a class="icon fa fa-twitter" href="#"></a></li>
+                                    <li class="product-share-item"><a class="icon fa fa-google-plus" href="#"></a></li>
+                                </ul>
+                                </div><a class="product-button fl-bigmug-line-shopping202" href="shopping-cart.html" style="font-size: 26px"></a><a class="product-button fl-bigmug-line-zoom60" href="images/shop/product-7-original.jpg" data-lightgallery="item" style="font-size: 25px"></a>
+                            </div>
+                            </header>
+                            <footer class="product-content">
+                            <h6 class="product-title"><a href="product-page.html">garmin vivofit</a></h6>
+                            <div class="product-price"><span class="heading-6 product-price-new">$290</span>
+                            </div>
+                            <ul class="product-rating">
+                                <li><span class="material-icons-star"></span></li>
+                                <li><span class="material-icons-star"></span></li>
+                                <li><span class="material-icons-star"></span></li>
+                                <li><span class="material-icons-star"></span></li>
+                                <li><span class="material-icons-star_half"></span></li>
+                            </ul>
+                            </footer>
+                        </article>
+                        </div>
+                        <div class="col-md-6 col-lg-4">
+                        <article class="product product-sm">
+                            <header class="product-header">
+                            <!-- Badge-->
+                            <div class="badge badge-shop">new
+                            </div>
+                            <div class="product-figure"><img src="images/shop/product-small-8.png" alt=""></div>
+                            <div class="product-buttons">
+                                <div class="product-button product-button-share fl-bigmug-line-share27" style="font-size: 22px">
+                                <ul class="product-share">
+                                    <li class="product-share-item"><span>Share</span></li>
+                                    <li class="product-share-item"><a class="icon fa fa-facebook" href="#"></a></li>
+                                    <li class="product-share-item"><a class="icon fa fa-instagram" href="#"></a></li>
+                                    <li class="product-share-item"><a class="icon fa fa-twitter" href="#"></a></li>
+                                    <li class="product-share-item"><a class="icon fa fa-google-plus" href="#"></a></li>
+                                </ul>
+                                </div><a class="product-button fl-bigmug-line-shopping202" href="shopping-cart.html" style="font-size: 26px"></a><a class="product-button fl-bigmug-line-zoom60" href="images/shop/product-8-original.jpg" data-lightgallery="item" style="font-size: 25px"></a>
+                            </div>
+                            </header>
+                            <footer class="product-content">
+                            <h6 class="product-title"><a href="product-page.html">k-swiss bigshot II</a></h6>
+                            <div class="product-price"><span class="heading-6 product-price-new">$290</span>
+                            </div>
+                            <ul class="product-rating">
+                                <li><span class="material-icons-star"></span></li>
+                                <li><span class="material-icons-star"></span></li>
+                                <li><span class="material-icons-star"></span></li>
+                                <li><span class="material-icons-star"></span></li>
+                                <li><span class="material-icons-star_half"></span></li>
+                            </ul>
+                            </footer>
+                        </article>
+                        </div>
+                        <div class="col-md-6 col-lg-4">
+                        <article class="product product-sm">
+                            <header class="product-header">
+                            <div class="product-figure"><img src="images/shop/product-small-9.png" alt=""></div>
+                            <div class="product-buttons">
+                                <div class="product-button product-button-share fl-bigmug-line-share27" style="font-size: 22px">
+                                <ul class="product-share">
+                                    <li class="product-share-item"><span>Share</span></li>
+                                    <li class="product-share-item"><a class="icon fa fa-facebook" href="#"></a></li>
+                                    <li class="product-share-item"><a class="icon fa fa-instagram" href="#"></a></li>
+                                    <li class="product-share-item"><a class="icon fa fa-twitter" href="#"></a></li>
+                                    <li class="product-share-item"><a class="icon fa fa-google-plus" href="#"></a></li>
+                                </ul>
+                                </div><a class="product-button fl-bigmug-line-shopping202" href="shopping-cart.html" style="font-size: 26px"></a><a class="product-button fl-bigmug-line-zoom60" href="images/shop/product-9-original.jpg" data-lightgallery="item" style="font-size: 25px"></a>
+                            </div>
+                            </header>
+                            <footer class="product-content">
+                            <h6 class="product-title"><a href="product-page.html">Nike dark grey snapback</a></h6>
+                            <div class="product-price"><span class="heading-6 product-price-new">$290</span>
+                            </div>
+                            <ul class="product-rating">
+                                <li><span class="material-icons-star"></span></li>
+                                <li><span class="material-icons-star"></span></li>
+                                <li><span class="material-icons-star"></span></li>
+                                <li><span class="material-icons-star"></span></li>
+                                <li><span class="material-icons-star_half"></span></li>
+                            </ul>
+                            </footer>
+                        </article>
+                        </div>
+                    </div>
+                    <!-- <table id="example" class="table table-striped" style="overflow-x: auto;display: block;width:100%;margin: 0 auto;">
+                      <thead>
+                        <tr>
+                          <th style="min-width: 144px;text-align: center;">姓名</th>
+                          <th style="text-align: center;">級別</th>
+                          <th style="min-width: 70px;text-align: center;">位置1</th>
+                          <th style="min-width: 70px;text-align: center;">位置2</th>
+                          <th style="min-width: 200px;text-align: center;">申請日期</th>
+                          <th style="min-width: 90px;text-align: center;">參加次數</th>
+                          <th style="min-width: 90px;text-align: center;">未到次數</th>
+                          <th style="text-align: center;text-align: center;">更新</th>
+                        </tr>
+                      </thead>
+                      <tbody style="text-align: center;">
+                        <tr>
+                          <td>王小明</td>
+                          <td>
+                              <div class="col-sm-10">
+                                <select class="form-select form-select-sm address"  aria-label="Default select example" style="height: 34px;padding: 0;">
+                                  <option value="1">新手</option>
+                                  <option value="2">復健</option>
+                                  <option value="3">自由</option>
+                                </select>
+                              </div>
+                          </td>
+                          <td>研發部</td>
+                          <td>2020-06-15</td>
+                          <td>
+                              <button class=" button button-primary" type="submit" aria-label="Send" onclick="addEvent()">
+                                <span style="font-weight: 600;"> 確認送出</span>
+                              </button>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>林美華</td>
+                          <td>產品設計師</td>
+                          <td>設計部</td>
+                          <td>32</td>
+                          <td>2019-03-22</td>
+                        </tr>
+                        <tr>
+                          <td>張大偉</td>
+                          <td>後端工程師</td>
+                          <td>研發部</td>
+                          <td>35</td>
+                          <td>2018-11-10</td>
+                        </tr>
+                      </tbody>
+                    </table> -->
+                    <!-- <div class="form-button pt-5 d-flex justify-content-center form-button">
+                      <button class=" button button-primary" type="submit" aria-label="Send" onclick="addEvent()">
+                        <span style="font-weight: 600;"> 確認送出</span>
+                      </button>
+                    </div> -->
+                  </div>
+                  <div class="owl-carousel owl-spacing-1 owl-loaded" data-items="3" data-dots="false" data-nav="true" data-autoplay="true" data-autoplay-speed="4000" data-stage-padding="0" data-loop="false" data-margin="30" id="myCarousel"  data-mouse-drag="false" data-nav-custom=".owl-carousel-outer-navigation">
+                    
+                    
+                  <div id="select_event">
+
+                  </div>
+
+
+              </div>
+
+            </div>
+            <!-- Aside Block-->
+
+          </div>
+        </div>
+      </section>
+
+      <!-- Page Footer--><a class="d-block" href="https://www.templatemonster.com/website-templates/allstar-multi-sports-website-template-63853.html" target="blank"><img class="d-block w-100" src="images/banner-free-02.jpg" alt=""></a>
+      <footer class="section footer-classic footer-classic-dark context-dark">
+        <div class="footer-classic-main">
+          <div class="container">
+            <p class="heading-7">Subscribe to our Newsletter</p>
+            <!-- RD Mailform-->
+            <form class="rd-mailform rd-form rd-inline-form-creative" data-form-output="form-output-global" data-form-type="subscribe" method="post" action="bat/rd-mailform.php">
+              <div class="form-wrap">
+                <div class="form-input-wrap">
+                  <input class="form-input" id="footer-form-email" type="email" name="email" data-constraints="@Required">
+                  <label class="form-label" for="footer-form-email">Enter your E-mail</label>
+                </div>
+              </div>
+              <div class="form-button">
+                <button class="button button-primary-outline" type="submit" aria-label="Send"><span class="icon fl-budicons-launch-right164"></span></button>
+              </div>
+            </form>
+            <div class="row row-50">
+              <div class="col-lg-5 text-center text-sm-left">
+                <article class="unit unit-sm-horizontal unit-middle justify-content-center justify-content-sm-start footer-classic-info">
+                  <div class="unit-left"><a class="brand brand-md" href="./"><img class="brand-logo " src="images/logo-soccer-default-95x126.png" alt="" width="95" height="126"/></a>
+                  </div>
+                  <div class="unit-body">
+                    <p>Sportland website offers you the latest news about our team as well as updates on our matches and other events.</p>
+                  </div>
+                </article>
+                <ul class="list-inline list-inline-bordered list-inline-bordered-lg">
+                  <li>
+                    <div class="unit unit-horizontal unit-middle">
+                      <div class="unit-left">
+                        <svg class="svg-color-primary svg-sizing-35" x="0px" y="0px" width="27px" height="27px" viewbox="0 0 27 27" preserveAspectRatio="none">
+                          <path d="M2,26c0,0.553,0.447,1,1,1h5c0.553,0,1-0.447,1-1v-8.185c-0.373-0.132-0.711-0.335-1-0.595V19 H6v-1v-1v-1H5v1v2H3v-9H2v1H1V9V8c0-0.552,0.449-1,1-1h1h1h3h0.184c0.078-0.218,0.173-0.426,0.297-0.617C8.397,5.751,9,4.696,9,3.5 C9,1.567,7.434,0,5.5,0S2,1.567,2,3.5C2,4.48,2.406,5.364,3.056,6H3H2C0.895,6,0,6.895,0,8v7c0,1.104,0.895,2,2,2V26z M8,26H6v-6h2 V26z M5,26H3v-6h2V26z M3,3.5C3,2.121,4.121,1,5.5,1S8,2.121,8,3.5S6.879,6,5.5,6S3,4.879,3,3.5 M1,15v-3h1v4 C1.449,16,1,15.552,1,15"></path>
+                          <path d="M11.056,6H11h-1C8.895,6,8,6.895,8,8v7c0,1.104,0.895,2,2,2v9c0,0.553,0.447,1,1,1h5 c0.553,0,1-0.447,1-1v-9c1.104,0,2-0.896,2-2V8c0-1.105-0.896-2-2-2h-1h-0.056C16.594,5.364,17,4.48,17,3.5 C17,1.567,15.434,0,13.5,0S10,1.567,10,3.5C10,4.48,10.406,5.364,11.056,6 M10,15v1c-0.551,0-1-0.448-1-1v-3h1V15z M11,20h2v6h-2 V20z M16,26h-2v-6h2V26z M17,16v-1v-3h1v3C18,15.552,17.551,16,17,16 M17,7c0.551,0,1,0.448,1,1v1v1v1h-1v-1h-1v5v4h-2v-1v-1v-1h-1 v1v1v1h-2v-4v-5h-1v1H9v-1V9V8c0-0.552,0.449-1,1-1h1h1h3h1H17z M13.5,1C14.879,1,16,2.121,16,3.5C16,4.879,14.879,6,13.5,6 S11,4.879,11,3.5C11,2.121,12.121,1,13.5,1"></path>
+                          <polygon points="15,13 14,13 14,9 13,9 12,9 12,10 13,10 13,13 12,13 12,14 13,14 14,14 15,14 	"></polygon>
+                          <polygon points="7,14 7,13 5,13 5,12 6,12 7,12 7,10 7,9 6,9 4,9 4,10 6,10 6,11 5,11 4,11 4,12 4,13 4,14 5,14"></polygon>
+                          <polygon points="20,10 22,10 22,11 21,11 21,12 22,12 22,13 20,13 20,14 22,14 23,14 23,13 23,12 23,11 23,10 23,9 22,9 20,9 	"></polygon>
+                          <path d="M19.519,6.383C19.643,6.574,19.738,6.782,19.816,7H20h3h1h1c0.551,0,1,0.448,1,1v3h-1v-1h-1v9 h-2v-2v-1h-1v1v2h-2v-1.78c-0.289,0.26-0.627,0.463-1,0.595V26c0,0.553,0.447,1,1,1h5c0.553,0,1-0.447,1-1v-9c1.104,0,2-0.896,2-2 V8c0-1.105-0.896-2-2-2h-1h-0.056C24.594,5.364,25,4.48,25,3.5C25,1.567,23.434,0,21.5,0S18,1.567,18,3.5 c0,0.736,0.229,1.418,0.617,1.981C18.861,5.834,19.166,6.14,19.519,6.383 M19,20h2v6h-2V20z M24,26h-2v-6h2V26z M26,15 c0,0.552-0.449,1-1,1v-4h1V15z M21.5,1C22.879,1,24,2.121,24,3.5C24,4.879,22.879,6,21.5,6C20.121,6,19,4.879,19,3.5 C19,2.121,20.121,1,21.5,1"></path>
+                        </svg>
+                      </div>
+                      <div class="unit-body">
+                        <h6>Join Our Team</h6><a class="link" href="mailto:#">info@demolink.org</a>
+                      </div>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="unit unit-horizontal unit-middle">
+                      <div class="unit-left">
+                        <svg class="svg-color-primary svg-sizing-35" x="0px" y="0px" width="72px" height="72px" viewbox="0 0 72 72">
+                          <path d="M36.002,0c-0.41,0-0.701,0.184-0.931,0.332c-0.23,0.149-0.4,0.303-0.4,0.303l-9.251,8.18H11.58 c-1.236,0-1.99,0.702-2.318,1.358c-0.329,0.658-0.326,1.3-0.326,1.3v11.928l-8.962,7.936V66c0,0.015-0.038,1.479,0.694,2.972 C1.402,70.471,3.006,72,5.973,72h30.03h30.022c2.967,0,4.571-1.53,5.306-3.028c0.736-1.499,0.702-2.985,0.702-2.985V31.338 l-8.964-7.936V11.475c0,0,0.004-0.643-0.324-1.3c-0.329-0.658-1.092-1.358-2.328-1.358H46.575l-9.251-8.18 c0,0-0.161-0.154-0.391-0.303C36.703,0.184,36.412,0,36.002,0z M36.002,3.325c0.49,0,0.665,0.184,0.665,0.184l6,5.306h-6.665 h-6.665l6-5.306C35.337,3.51,35.512,3.325,36.002,3.325z M12.081,11.977h23.92H59.92v9.754v2.121v14.816L48.511,48.762 l-10.078-8.911c0,0-0.307-0.279-0.747-0.548s-1.022-0.562-1.684-0.562c-0.662,0-1.245,0.292-1.686,0.562 c-0.439,0.268-0.747,0.548-0.747,0.548l-10.078,8.911L12.082,38.668V23.852v-2.121v-9.754H12.081z M8.934,26.867v9.015 l-5.091-4.507L8.934,26.867z M63.068,26.867l5.091,4.509l-5.091,4.507V26.867z M69.031,34.44v31.559 c0,0.328-0.103,0.52-0.162,0.771L50.685,50.684L69.031,34.44z M2.971,34.448l18.348,16.235L3.133,66.77 c-0.059-0.251-0.162-0.439-0.162-0.769C2.971,66.001,2.971,34.448,2.971,34.448z M36.002,41.956c0.264,0,0.437,0.057,0.546,0.104 c0.108,0.047,0.119,0.059,0.119,0.059l30.147,26.675c-0.3,0.054-0.79,0.207-0.79,0.207H36.002H5.98H5.972 c-0.003,0-0.488-0.154-0.784-0.207l30.149-26.675c0,0,0.002-0.011,0.109-0.059C35.555,42.013,35.738,41.956,36.002,41.956z"></path>
+                        </svg>
+                      </div>
+                      <div class="unit-body">
+                        <h6>Contact Us</h6><a class="link" href="mailto:#">info@demolink.org</a>
+                      </div>
+                    </div>
+                  </li>
+                </ul>
+                <div class="group-md group-middle">
+                  <div class="group-item">
+                    <ul class="list-inline list-inline-xs">
+                      <li><a class="icon icon-corporate fa fa-facebook" href="#"></a></li>
+                      <li><a class="icon icon-corporate fa fa-twitter" href="#"></a></li>
+                      <li><a class="icon icon-corporate fa fa-google-plus" href="#"></a></li>
+                      <li><a class="icon icon-corporate fa fa-instagram" href="#"></a></li>
+                    </ul>
+                  </div><a class="button button-sm button-gray-outline" href="contact-us.html">Get in Touch</a>
+                </div>
+              </div>
+              <div class="col-lg-7">
+                <h5>Popular News</h5>
+                <div class="divider-small divider-secondary"></div>
+                <div class="row row-20">
+                  <div class="col-sm-6">
+                          <!-- Post Classic-->
+                          <article class="post-classic">
+                            <div class="post-classic-aside"><a class="post-classic-figure" href="#"><img src="images/footer-soccer-post-1-93x87.jpg" alt="" width="93" height="87"/></a></div>
+                            <div class="post-classic-main">
+                              <!-- Badge-->
+                              <div class="badge badge-secondary">The Team
+                              </div>
+                              <p class="post-classic-title"><a href="#">Bundy stymies Blue Jays and Orioles hit 2 HRs</a></p>
+                              <div class="post-classic-time"><span class="icon mdi mdi-clock"></span>
+                                <time datetime="2020">April 15, 2020</time>
+                              </div>
+                            </div>
+                          </article>
+                  </div>
+                  <div class="col-sm-6">
+                          <!-- Post Classic-->
+                          <article class="post-classic">
+                            <div class="post-classic-aside"><a class="post-classic-figure" href="#"><img src="images/footer-soccer-post-2-93x87.jpg" alt="" width="93" height="87"/></a></div>
+                            <div class="post-classic-main">
+                              <!-- Badge-->
+                              <div class="badge badge-red">Hot<span class="icon material-icons-whatshot"></span>
+                              </div>
+                              <p class="post-classic-title"><a href="#">Good vibes back at struggling Schalke</a></p>
+                              <div class="post-classic-time"><span class="icon mdi mdi-clock"></span>
+                                <time datetime="2020">April 15, 2020</time>
+                              </div>
+                            </div>
+                          </article>
+                  </div>
+                  <div class="col-sm-6">
+                          <!-- Post Classic-->
+                          <article class="post-classic">
+                            <div class="post-classic-aside"><a class="post-classic-figure" href="#"><img src="images/footer-soccer-post-3-93x87.jpg" alt="" width="93" height="87"/></a></div>
+                            <div class="post-classic-main">
+                              <!-- Badge-->
+                              <div class="badge badge-primary">The League
+                              </div>
+                              <p class="post-classic-title"><a href="#">Prem in 90 seconds: Chelsea's crisis is over!</a></p>
+                              <div class="post-classic-time"><span class="icon mdi mdi-clock"></span>
+                                <time datetime="2020">April 15, 2020</time>
+                              </div>
+                            </div>
+                          </article>
+                  </div>
+                  <div class="col-sm-6">
+                          <!-- Post Classic-->
+                          <article class="post-classic">
+                            <div class="post-classic-aside"><a class="post-classic-figure" href="#"><img src="images/footer-soccer-post-4-93x87.jpg" alt="" width="93" height="87"/></a></div>
+                            <div class="post-classic-main">
+                              <!-- Badge-->
+                              <div class="badge badge-primary">The League
+                              </div>
+                              <p class="post-classic-title"><a href="#">Liverpool in desperate need of backup players</a></p>
+                              <div class="post-classic-time"><span class="icon mdi mdi-clock"></span>
+                                <time datetime="2020">April 15, 2020</time>
+                              </div>
+                            </div>
+                          </article>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="footer-classic-aside footer-classic-darken">
+          <div class="container">
+            <div class="layout-justify">
+              <!-- Rights-->
+              <p class="rights"><span>Sportland</span><span>&nbsp;&copy;&nbsp;</span><span class="copyright-year"></span><span>.&nbsp;</span><span>Designed by <a href="https://www.templatemonster.com/products/author/zemez/">Zemez.</a></span></p>
+              <nav class="nav-minimal">
+                <ul class="nav-minimal-list">
+                  <li class="active"><a href="index.html">Home</a></li>
+                  <li><a href="#">Features</a></li>
+                  <li><a href="#">Statistics</a></li>
+                  <li><a href="#">Team</a></li>
+                  <li><a href="#">News</a></li>
+                  <li><a href="#">Shop</a></li>
+                </ul>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </footer>
+      <!-- Modal Video-->
+      <div class="modal modal-video fade" id="modal1" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            </div>
+            <div class="modal-body">
+              <div class="embed-responsive embed-responsive-16by9">
+                <iframe class="embed-responsive-item" width="560" height="315" data-src="https://www.youtube.com/embed/uSzNA2_y46c"></iframe>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Global Mailform Output-->
+    <div class="snackbars" id="form-output-global"></div>
+    <!-- Javascript-->
+    <script src="js/core.min.js"></script>
+    <script src="public/js/script.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.8/js/select2.min.js" defer></script>
+    <script src="my-component.js" defer></script>
+
+    <script src="js/add_event.js"></script>
+    <!-- <script src="https://livedemo00.template-help.com/wt_63853_v4/soccer/js/script.js"></script> -->
+    
+  <!-- jQuery (必要) -->
+  <!-- <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script> -->
+
+  <!-- DataTables JS -->
+  <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+  <script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js"></script>
+    <script>
+        $(document).ready(function () {
+          $('#example').DataTable({
+            language: {
+              url: '//cdn.datatables.net/plug-ins/1.13.6/i18n/zh-HANT.json'
+            },
+            
+            ajax: {
+              url: './api/list_member',
+              type: 'POST',
+              contentType: 'application/json',
+              scrollX: true,
+              data: function (d) {
+                return JSON.stringify({
+                  identifier: 'none',
+                  Search_level: '3'
+                });
+              },
+              dataSrc: function (json) {
+                console.log(json.data)
+                return json.data || []; // 假設伺服器格式為 { status: 200, data: [...] }
+              }
+            },
+            // <th>姓名</th>
+            // <th>級別</th>
+            // <th>位置</th>
+            // <th>入會日期</th>
+            // <th>更新級別</th>
+            columns: [
+                { data: 'displayName', title: '姓名' },        // 資料欄位
+                {
+                  data: 'level',
+                  title: '等級選擇',
+                  render: function (data, type, row, meta) {
+
+                    return `
+                      <select class="form-select form-select-sm address level-select" data-id="${row.id}" style="height: 34px; padding: 0;margin: 0 auto;">
+                        <option value="3" ${data == 3 ? 'selected' : ''}>新手</option>
+                        <option value="4" ${data == 4 ? 'selected' : ''}>復健</option>
+                        <option value="2" ${data == 2 ? 'selected' : ''}>自由</option>
+                      </select>
+                    
+                    `;
+                  }
+                },
+                { data: 'preferred_position1', title: '位置1' }, // 資料欄位
+                { data: 'preferred_position2', title: '位置2' }, // 資料欄位
+                {
+                  data: 'time',
+                  title: '建立時間',
+                  render: function (data) {
+                    if (!data) return '-';
+                    const date = new Date(data);
+                    const yyyy = date.getFullYear();
+                    const mm = String(date.getMonth() + 1).padStart(2, '0');
+                    const dd = String(date.getDate()).padStart(2, '0');
+                    const hh = String(date.getHours()).padStart(2, '0');
+                    const mi = String(date.getMinutes()).padStart(2, '0');
+                    return `${yyyy}-${mm}-${dd} ${hh}:${mi}`;
+                  }, // 測試用佔位符
+                },
+                { data: 'activitySum', title: '參加次數' }, // 資料欄位
+                {
+                  title: '未到次數',
+                  render: function (data, type, row) {
+                    return (row.activitySum || 0) - (row.SignOutSum || 0);
+                  }
+                },               
+                   // <button class=" button button-primary" type="submit" aria-label="Send" onclick="addEvent()">
+                //   <span style="font-weight: 600;"> 確認送出</span>
+                // </button>
+                { 
+                  data: 'identifier', 
+                  title: '更新',
+                  render: function (data, type, row, meta) {
+                    return`
+                      <button class=" button button-primary" type="submit" aria-label="Send"  onclick="UpData(${data},${row.id})">
+                        <span style="font-weight: 600;"> 確認送出</span>
+                      </button>
+                    `
+                  }
+                }       // 空值
+            ]
+          });
+        });
+        function UpData(data,row){
+            const userId =row;
+            const level = $(`select[data-id="${userId}"]`).val();
+
+            console.log(`送出 user ${userId}，新等級為 ${level}`);
+            fetch('./api/Updata_member', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                  status_add: 0,
+                  Up_userId:data,
+                  Up_level:level
+                }),
+            })
+            .then(response => {
+              if (response.status === 200) {
+                return response.json(); // 解析 JSON
+              } else {
+                throw new Error(`伺服器回傳錯誤：${response.status}`);
+              }
+            })
+            .then(data => {
+               alert('會員等級已成功更新');
+               location.reload();
+            })
+            .catch(error => {
+                console.error("更新失敗，請稍後再試:", error);
+            });
+        }
+        
+    </script>
+
+
+    <!-- <script>
+        fetch('./api/list_member', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json;charset=utf-8'
+            },
+            body: JSON.stringify({ identifier: "none",Search_level:"3" }),
+        })
+        .then(response => {
+            if (!response.ok) {
+                if (response.status == 400) {
+                    // 如果狀態碼是 400，跳轉到登入頁
+                    // window.location.href = "/login";
+                    alert(`Network response was not ok, status: ${response.status}`)
+
+                }
+                throw new Error(`Network response was not ok, status: ${response.status}`);
+            }
+            return response.json(); // 解析 JSON 響應
+        })
+        .then(data => {
+          if (data.status === 200) {
+            console.log('Response data:', data); // 查看完整響應
+              
+              // 在這裡可以進行其他操作，例如顯示在頁面上
+          }
+  
+        })
+        .catch((error) => {
+
+            console.error('Error:', error);
+        });
+    </script> -->
+    <!-- <script>
+      function updateCarouselItems() {
+        var carousel = document.getElementById("myCarousel");
+    
+        if (window.innerWidth >= 1200) {
+          carousel.setAttribute('data-items', '3');
+        } else if (window.innerWidth >= 768) {
+          carousel.setAttribute('data-items', '2');
+        } else {
+          carousel.setAttribute('data-items', '1');
+        }
+    
+        // 若你需要重新初始化 Owl Carousel，你可以在這裡調用重啟方法
+        // $('.owl-carousel').trigger('refresh.owl.carousel');
+      }
+    
+      // 初始加載時呼叫
+      updateCarouselItems();
+    
+      // 當視窗調整大小時呼叫
+      window.addEventListener('resize', function() {
+        updateCarouselItems();
+      });
+    </script> -->
+  </body>
+</html>

@@ -162,7 +162,7 @@
                                         </li>
                                         <li class="rd-nav-item"><a class="rd-nav-link" href="./event">活動</a>
                                         </li>
-                                        <li class="rd-nav-item"><a class="rd-nav-link" href="#">球員名單</a>
+                                        <li class="rd-nav-item"><a class="rd-nav-link" href="./USER_Member_3">球員名單</a>
                                         </li>
                                         <li class="rd-nav-item rd-navbar--has-dropdown rd-navbar-submenu Boss">
                                             <a class="rd-nav-link" href="#">管理中心</a>
@@ -214,6 +214,8 @@
               if (!response.ok) {
                   if (response.status == 400) {
                       // 如果狀態碼是 400，跳轉到登入頁
+                      const path = window.location.pathname;
+                      console.log(path);
                       window.location.href = "./login";
                   }
                   throw new Error(`Network response was not ok, status: ${response.status}`);
