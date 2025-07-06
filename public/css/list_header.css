@@ -32,6 +32,7 @@ button.active {
 }
 .dataTables_paginate .page-link{
     font-size: 14px;
+    border-radius: 3px;
 }
 @media (min-width: 400px){
     #example_filter label{
