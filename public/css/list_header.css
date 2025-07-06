@@ -20,7 +20,7 @@ button.active {
 }
 /* datatable */
 #example_wrapper .table th{
-    width: 30%;
+    width: 30% !important;
 }
 #example_filter label{
 	display: flex;
