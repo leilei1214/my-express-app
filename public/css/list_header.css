@@ -27,8 +27,8 @@ button.active {
 	width: auto !important;
 }
 .dataTables_paginate{
-    position: relative;
-    right: 0;
+    display: flex;
+    justify-content: end;
 }
 @media (min-width: 400px){
     #example_filter label{
