@@ -26,6 +26,10 @@ button.active {
 #example_filter input{
 	width: auto !important;
 }
+#dataTables_paginate{
+    position: relative;
+    right: 0;
+}
 @media (min-width: 400px){
     #example_filter label{
         display: flex;
