@@ -26,7 +26,7 @@ button.active {
 #example_filter input{
 	width: auto !important;
 }
-#dataTables_paginate{
+.dataTables_paginate{
     position: relative;
     right: 0;
 }
