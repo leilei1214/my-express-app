@@ -37,6 +37,13 @@ button.active {
     font-size: 14px;
     border-radius: 3px;
 }
+.dataTables_length{
+    padding-left: 15px;
+}
+#example_wrapper .row{
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+}
 @media (max-width: 400px){
     
     .dataTables_paginate{
