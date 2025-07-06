@@ -19,7 +19,7 @@ button.active {
   color: #fff;
 }
 /* datatable */
-#example .table th{
+#example_wrapper .table th{
     width: 30%;
 }
 #example_filter label{
