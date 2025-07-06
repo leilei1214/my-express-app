@@ -19,6 +19,9 @@ button.active {
   color: #fff;
 }
 /* datatable */
+#example .table th{
+    width: 30%;
+}
 #example_filter label{
 	display: flex;
     justify-content: right;
@@ -35,6 +38,7 @@ button.active {
     border-radius: 3px;
 }
 @media (max-width: 400px){
+    
     .dataTables_paginate{
         justify-content: center;
     }
