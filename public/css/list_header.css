@@ -30,6 +30,9 @@ button.active {
     display: flex;
     justify-content: end;
 }
+.dataTables_paginate .page-link{
+    font-size: 14px;
+}
 @media (min-width: 400px){
     #example_filter label{
         display: flex;
