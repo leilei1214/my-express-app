@@ -589,7 +589,7 @@
             return response.json(); // 解析 JSON 響應
         })
         .then(data => {
-          if (data.status === 200) {
+          
             console.log('Response data:', data); // 查看完整響應
             data.forEach(function(item, index) {
             $(".list_member").append(
@@ -664,7 +664,7 @@
               // 在這裡可以進行其他操作，例如顯示在頁面上
           }
   
-        })
+        )
         .catch((error) => {
 
             console.error('Error:', error);
