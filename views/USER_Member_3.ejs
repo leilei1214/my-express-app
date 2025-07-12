@@ -591,7 +591,7 @@
         .then(data => {
           
             console.log('Response data:', data); // 查看完整響應
-            data.forEach(function(item, index) {
+            data.data.forEach(function(item, index) {
             $(".list_member").append(
               `
                 <div class="col-md-6 col-lg-4">
