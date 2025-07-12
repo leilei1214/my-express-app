@@ -216,7 +216,8 @@ button.active {
 }
 
 .fut-player-card .player-card-bottom .player-info .player-features .player-features-col span .player-feature-title {
-	font-weight: 300;
+	margin-right: 0.3rem;
+	font-weight: 700;
 }
 
 .fut-player-card .player-card-bottom .player-info .player-features .player-features-col:last-child {
