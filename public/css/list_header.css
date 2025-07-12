@@ -55,17 +55,18 @@ button.active {
 .fut-player-card {
 	position: relative;
 	width: 281px;
-	height: 403px;
+	height: 363px;
 	background-image: url(https://selimdoyranli.com/cdn/fut-player-card/img/card_bg.png);
 	background-position: center center;
 	background-size: 100% 100%;
 	background-repeat: no-repeat;
-	padding: 1.8rem 0;
+	padding: 1.5rem 0;
 	z-index: 2;
 	-webkit-transition: 200ms ease-in;
 	-o-transition: 200ms ease-in;
 	transition: 200ms ease-in;
 }
+
 
 .fut-player-card .player-card-top {
 	position: relative;
@@ -158,6 +159,7 @@ button.active {
 
 .fut-player-card .player-card-bottom {
 	position: relative;
+    margin-top: -32px;
 }
 
 .fut-player-card .player-card-bottom .player-info {
