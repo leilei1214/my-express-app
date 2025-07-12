@@ -670,6 +670,27 @@ app.post('/api/list_member', async (req, res) => {
     res.status(500).send('資料庫查詢錯誤');
   }
 });
+//會員清單
+app.post('/api/User_list_member', async (req, res) => {
+
+  try {
+    // 獲取數據庫連接並查詢資料
+    const { identifier, Search_level } = req.body;
+    const query = 'SELECT * FROM `users` WHERE level = ?  ORDER BY time ASC';
+    const result = await MS_query(query,[Search_level]);
+
+    // 釋放連接
+
+    if (result.length === 0) {
+      res.status(404).send('找不到對應的會員');
+    } else {
+      res.status(200).json({data:result});  // 返回 JSON 格式的查詢結果
+    }
+  } catch (err) {
+    console.error('資料庫查詢失敗:', err);
+    res.status(500).send('資料庫查詢錯誤');
+  }
+});
 
 //會員編輯
 app.post('/api/Updata_member', async (req, res) => {
