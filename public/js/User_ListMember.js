@@ -42,19 +42,19 @@ fetch('./api/User_list_member', {
 
     const level = "";
     const error_num = data.activitySum - data.SignOutSum;
-    if(data.level == '3'){
+    if(data.level == 3){
         level = "基礎";
     }
-    else if(data.level == '4'){
+    else if(data.level == 4){
         level = "樂踢";
     }
-    else if(data.level == '2'){
+    else if(data.level == 2){
         level = "實戰";
     }
-    else if(data.level == '1'){
+    else if(data.level == 1){
         level = "教練";
     }
-    else if(data.level == '0'){
+    else if(data.level == 0){
         level = "管理員";
     }
     
