@@ -1,20 +1,20 @@
 
 const path = window.location.pathname;
-const Search_level = '0';
+let Search_level = "0";
 if(path == '/my-express-app/USER_Member_3'){
-    Search_level = '3';
+    Search_level = "3";
 }
 else if(path == '/my-express-app/USER_Member_4'){
-    Search_level = '4';
+    Search_level = "4";
 }
 else if(path == '/my-express-app/USER_Member_2'){
-    Search_level = '2';
+    Search_level = "2";
 }
 else if(path == '/my-express-app/USER_Member_1'){
-    Search_level = '1';
+    Search_level = "1";
 }
 else if(path == '/my-express-app/USER_Member_0'){
-    Search_level = '0';
+    Search_level = "0";
 }
 fetch('./api/User_list_member', {
     method: 'POST',
