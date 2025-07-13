@@ -42,13 +42,13 @@ fetch('./api/User_list_member', {
 
     const error_num = data.activitySum - data.SignOutSum;
     const levelMap = {
-    1: "管理員",
-    0: "教練",
-    2: "實戰",
-    3: "基礎",
-    4: "樂踢"
+        "1": "管理員",
+        "0": "教練",
+        "2": "實戰",
+        "3": "基礎",
+        "4": "樂踢"
     };
-
+    console.log(data.level)
     const level = levelMap[data.level] || "未知等級";
         
     $(".list_member").append(
