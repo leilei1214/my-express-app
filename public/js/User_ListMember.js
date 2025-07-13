@@ -40,7 +40,7 @@ fetch('./api/User_list_member', {
     console.log('Response data:', data); // 查看完整響應
     data.data.forEach(function(item, index) {
 
-    const error_num = data.activitySum - data.SignOutSum;
+    const error_num = item.activitySum - item.SignOutSum;
     const levelMap = {
         1: "管理員",
         0: "教練",
