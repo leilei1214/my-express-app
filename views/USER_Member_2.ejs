@@ -209,9 +209,9 @@
                     </div>
                   </article>
                   <div class="d-flex justify-content-center mb-4 border-b border-gray-300 dark:border-gray-700">
-                    <button class="py-2 px-4 text-sm font-medium active" data-subtab="north">新手團</button>
+                    <button class="py-2 px-4 text-sm font-medium " onclick="window.location.href='./USER_Member_3'" data-subtab="north">新手團</button>
                     <button class="py-2 px-4 text-sm font-medium " onclick="window.location.href='./USER_Member_4'" data-subtab="central">復健團</button>
-                    <button class="py-2 px-4 text-sm font-medium " onclick="window.location.href='./USER_Member_2'" data-subtab="south">自由團</button>
+                    <button class="py-2 px-4 text-sm font-medium active" data-subtab="south">自由團</button>
                 </div>
                   <!-- Owl Carousel-->
                   <div class="col-12" style="padding-left: 0;padding-right: 0;">
@@ -491,7 +491,7 @@
             headers: {
                 'Content-Type': 'application/json;charset=utf-8'
             },
-            body: JSON.stringify({ identifier: "none",Search_level:"3" }),
+            body: JSON.stringify({ identifier: "none",Search_level:"2" }),
         })
         .then(response => {
             if (!response.ok) {

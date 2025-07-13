@@ -712,7 +712,16 @@ app.post('/api/Updata_member', async (req, res) => {
     res.status(500).send('資料庫查詢錯誤');
   }
 });
+app.get('/USER_Member_2', (req, res) => {
+  res.render('USER_Member_3', { pageTitle: 'ListMember' });
+});
+
 app.get('/USER_Member_3', (req, res) => {
   res.render('USER_Member_3', { pageTitle: 'ListMember' });
 });
+
+app.get('/USER_Member_4', (req, res) => {
+  res.render('USER_Member_4', { pageTitle: 'ListMember' });
+});
+
 
