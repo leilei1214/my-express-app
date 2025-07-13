@@ -713,7 +713,7 @@ app.post('/api/Updata_member', async (req, res) => {
   }
 });
 app.get('/USER_Member_2', (req, res) => {
-  res.render('USER_Member_3', { pageTitle: 'ListMember' });
+  res.render('USER_Member_2', { pageTitle: 'ListMember' });
 });
 
 app.get('/USER_Member_3', (req, res) => {
