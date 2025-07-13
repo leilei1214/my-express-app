@@ -506,9 +506,32 @@
             return response.json(); // 解析 JSON 響應
         })
         .then(data => {
-          
+          // <div class="player-features-col"> 
+          //   <span>
+          //     <div class="player-feature-value ">進球</div>
+          //     <div class="player-feature-value">${item.goal}</div>
+
+          //   </span>
+          //   <span>
+          //     <div class="player-feature-value">助攻</div>
+          //     <div class="player-feature-value">${item.Assist}</div>
+          //   </span>
+
+          // </div>
+          // <div class="player-features-col">
+          //   <span>
+          //     <div class="player-feature-value">抄截</div>
+          //     <div class="player-feature-value">${item.	Interception}</div>
+          //   </span>
+          //   <span>
+          //     <div class="player-feature-value">對抗</div>
+          //     <div class="player-feature-value">${item.onevone}</div>
+          //   </span>
+
+          // </div> 
             console.log('Response data:', data); // 查看完整響應
             data.data.forEach(function(item, index) {
+              var error_num = item.activitySum - item.SignOutSum
             $(".list_member").append(
               `
                 <div class="col-md-6 col-lg-4">
@@ -546,27 +569,17 @@
                           
                           <div class="player-features-col"> 
                             <span>
-                              <div class="player-feature-value ">進球</div>
-                              <div class="player-feature-value">${item.goal}</div>
+                              <div class="player-feature-value ">參加</div>
+                              <div class="player-feature-value">${item.activitySum}</div>
 
                             </span>
                             <span>
-                              <div class="player-feature-value">助攻</div>
-                              <div class="player-feature-value">${item.Assist}</div>
+                              <div class="player-feature-value">缺課</div>
+                              <div class="player-feature-value">${error_num}</div>
                             </span>
 
                           </div>
-                          <div class="player-features-col">
-                            <span>
-                              <div class="player-feature-value">抄截</div>
-                              <div class="player-feature-value">${item.	Interception}</div>
-                            </span>
-                            <span>
-                              <div class="player-feature-value">對抗</div>
-                              <div class="player-feature-value">${item.onevone}</div>
-                            </span>
 
-                          </div> 
                         </div>
                       </div>
                     </div>
