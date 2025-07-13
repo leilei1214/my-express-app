@@ -40,24 +40,17 @@ fetch('./api/User_list_member', {
     console.log('Response data:', data); // 查看完整響應
     data.data.forEach(function(item, index) {
 
-    const level = "";
     const error_num = data.activitySum - data.SignOutSum;
-    if(data.level == 3){
-        level = "基礎";
-    }
-    else if(data.level == 4){
-        level = "樂踢";
-    }
-    else if(data.level == 2){
-        level = "實戰";
-    }
-    else if(data.level == 1){
-        level = "教練";
-    }
-    else if(data.level == 0){
-        level = "管理員";
-    }
-    
+    const levelMap = {
+    1: "管理員",
+    0: "教練",
+    2: "實戰",
+    3: "基礎",
+    4: "樂踢"
+    };
+
+    const level = levelMap[data.level] || "未知等級";
+        
     $(".list_member").append(
         `
         <div class="col-md-6 col-lg-4">
