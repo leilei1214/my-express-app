@@ -41,6 +41,7 @@ fetch('./api/User_list_member', {
     data.data.forEach(function(item, index) {
 
     const level = "";
+    const error_num = data.activitySum - data.SignOutSum;
     if(data.level == '3'){
         level = "基礎";
     }
