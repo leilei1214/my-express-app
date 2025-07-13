@@ -209,9 +209,9 @@
                     </div>
                   </article>
                   <div class="d-flex justify-content-center mb-4 border-b border-gray-300 dark:border-gray-700">
-                    <button class="py-2 px-4 text-sm font-medium active" data-subtab="north">新手團</button>
-                    <button class="py-2 px-4 text-sm font-medium " onclick="window.location.href='./USER_Member_4'" data-subtab="central">復健團</button>
-                    <button class="py-2 px-4 text-sm font-medium " onclick="window.location.href='./USER_Member_2'" data-subtab="south">自由團</button>
+                    <button class="py-2 px-4 text-sm font-medium active" data-subtab="north">基礎</button>
+                    <button class="py-2 px-4 text-sm font-medium " onclick="window.location.href='./USER_Member_4'" data-subtab="central">樂踢</button>
+                    <button class="py-2 px-4 text-sm font-medium " onclick="window.location.href='./USER_Member_2'" data-subtab="south">實戰</button>
                 </div>
                   <!-- Owl Carousel-->
                   <div class="col-12" style="padding-left: 0;padding-right: 0;">
@@ -480,107 +480,11 @@
   <!-- DataTables JS -->
   <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
   <script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js"></script>
-    <script>
- 
-    </script>
+  <script src="../public/js/User_ListMember.js"></script>
 
 
-    <script>
-        fetch('./api/User_list_member', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json;charset=utf-8'
-            },
-            body: JSON.stringify({ identifier: "none",Search_level:"3" }),
-        })
-        .then(response => {
-            if (!response.ok) {
-                if (response.status == 400) {
-                    // 如果狀態碼是 400，跳轉到登入頁
-                    // window.location.href = "/login";
-                    alert(`Network response was not ok, status: ${response.status}`)
-
-                }
-                throw new Error(`Network response was not ok, status: ${response.status}`);
-            }
-            return response.json(); // 解析 JSON 響應
-        })
-        .then(data => {
-          
-            console.log('Response data:', data); // 查看完整響應
-            data.data.forEach(function(item, index) {
-            $(".list_member").append(
-              `
-                <div class="col-md-6 col-lg-4">
-                  <!-- ## fut-player-card ## -->
-                  <div class="fut-player-card">
-                    <div class="player-card-top">
-                      <div class="player-master-info">
-
-                        <div class="player-position">
-                          <span>${item.preferred_position1}</span>
-                        </div>
-                        <div class="player-nation">
-                          <div class="badge badge-primary">新手
-                              </div>
-                        </div>
-                        <div class="player-club">
-                          <img src="./images/tooster.png" alt="Barcelona" draggable="false"/>
-                        </div>
-                      </div>
-                      <div class="player-picture">
-                        <img src="${item.user_img}" alt="Messi" draggable="false"/>
-                       
-                      </div>
-                    </div>
-                    <div class="player-card-bottom">
-                      <div class="player-info">
-                        <!-- Player Name-->
-                        <div class="player-name">
-                          <span>${item.username}</span>
-                        </div>
-                        <!-- Player Features-->
-                        <div class="player-features">
-                          
-                          
-                          
-                          <div class="player-features-col"> 
-                            <span>
-                              <div class="player-feature-value ">參加</div>
-                              <div class="player-feature-value">${item.activitySum}</div>
-
-                            </span>
-
-                          </div>
-                          <div class="player-features-col"> 
-
-                            <span>
-                              <div class="player-feature-value">缺課</div>
-                              <div class="player-feature-value">${error_num}</div>
-                            </span>
-
-                          </div>
-
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-              </div>
-              `
-            )
-            });
 
 
-              // 在這裡可以進行其他操作，例如顯示在頁面上
-          }
-  
-        )
-        .catch((error) => {
-
-            console.error('Error:', error);
-        });
-    </script>
     <!-- <script>
       function updateCarouselItems() {
         var carousel = document.getElementById("myCarousel");
