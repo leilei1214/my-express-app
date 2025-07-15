@@ -203,9 +203,9 @@
                     </div>
                   </article>
                   <div class="d-flex justify-content-center mb-4 border-b border-gray-300 dark:border-gray-700">
-                    <button class="py-2 px-4 text-sm font-medium active" data-subtab="north">新手團</button>
-                    <button class="py-2 px-4 text-sm font-medium " onclick="window.location.href='./ListMember_level4'" data-subtab="central">復健團</button>
-                    <button class="py-2 px-4 text-sm font-medium " onclick="window.location.href='./ListMember_level2'" data-subtab="south">自由團</button>
+                    <button class="py-2 px-4 text-sm font-medium active" data-subtab="north">基礎</button>
+                    <button class="py-2 px-4 text-sm font-medium " onclick="window.location.href='./ListMember_level4'" data-subtab="central">樂踢</button>
+                    <button class="py-2 px-4 text-sm font-medium " onclick="window.location.href='./ListMember_level2'" data-subtab="south">實戰</button>
                 </div>
                   <!-- Owl Carousel-->
                   <div class="col-12" style="padding-left: 0;padding-right: 0;">
@@ -507,9 +507,9 @@
 
                     return `
                       <select class="form-select form-select-sm address level-select" data-id="${row.id}" style="height: 34px; padding: 0;margin: 0 auto;">
-                        <option value="3" ${data == 3 ? 'selected' : ''}>新手</option>
-                        <option value="4" ${data == 4 ? 'selected' : ''}>復健</option>
-                        <option value="2" ${data == 2 ? 'selected' : ''}>自由</option>
+                        <option value="3" ${data == 3 ? 'selected' : ''}>基礎</option>
+                        <option value="4" ${data == 4 ? 'selected' : ''}>樂踢</option>
+                        <option value="2" ${data == 2 ? 'selected' : ''}>實戰</option>
                       </select>
                     
                     `;

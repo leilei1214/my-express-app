@@ -124,9 +124,9 @@ const upload = multer();
 app.post('/submit_event', upload.none(), handleActivitySubmission);
 // 處理前端發來的 POST 請求，將用戶資料存儲到 session
 app.post('/save-to-session', (req, res) => {
-  const { birthday, position1,position2 } = req.body;
+  const { birthday, position1,position2,club,level } = req.body;
   // 保存用戶資料到 session 中
-  req.session.user = { birthday, position1,position2 };
+  req.session.user = { birthday, position1,position2,club,level };
   res.json({ message: 200 });
   // res.redirect('/line_login');
 });
@@ -203,8 +203,8 @@ app.get('/login_data', async (req, res) => {
                 const { birthday, position1, position2} = userSession;
                 // Insert new user into PostgreSQL database
                 await MS_query(
-                  'INSERT INTO users (username, userid, identifier,birthday,preferred_position1,preferred_position2) VALUES (?,?,?,?,?,?)',
-                  [displayName, userId,identifier,birthday,position1,position2]
+                  'INSERT INTO users (username, userid, identifier,birthday,preferred_position1,preferred_position2,Guild,level) VALUES (?,?,?,?,?,?,?,?)',
+                  [displayName, userId,identifier,birthday,position1,position2,club,level]
                 );
                 res.redirect('./home');
               }catch(error){

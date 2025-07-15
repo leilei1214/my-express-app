@@ -508,6 +508,13 @@
           // window.location.href = LineLoginUrl;
       }
       function line_register(){
+        
+        // 使用 URLSearchParams 提取查詢參數
+        const urlParams = new URLSearchParams(window.location.search);
+
+          // 獲取 `list_id` 的值
+        const club = urlParams.get('club');
+        const level = urlParams.get('level');
           // 抓取表單值
         event.preventDefault(); 
         const birthday =document.getElementsByName('birthday')[0].value;
@@ -525,7 +532,7 @@
               headers: {
                   'Content-Type': 'application/json;charset=utf-8'
               },
-              body: JSON.stringify({ birthday: birthday, position1: position1, position2: position2 }),
+              body: JSON.stringify({ birthday: birthday, position1: position1, position2: position2,club:club,level:level }),
           })
           .then(response => response.json())
           .then(data => {
