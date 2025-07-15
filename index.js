@@ -200,7 +200,7 @@ app.get('/login_data', async (req, res) => {
               try{
                 const identifier = await generateUniqueIdentifier(MS_query); // 生成唯一的 identifier
                 const userSession = req.session.user;
-                const { birthday, position1, position2} = userSession;
+                const { birthday, position1, position2,club,level} = userSession;
                 // Insert new user into PostgreSQL database
                 await MS_query(
                   'INSERT INTO users (username, userid, identifier,birthday,preferred_position1,preferred_position2,Guild,level) VALUES (?,?,?,?,?,?,?,?)',
