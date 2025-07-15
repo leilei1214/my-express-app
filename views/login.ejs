@@ -513,8 +513,8 @@
         const urlParams = new URLSearchParams(window.location.search);
 
           // 獲取 `list_id` 的值
-        const club = urlParams.get('club');
-        const level = urlParams.get('level');
+        let club = urlParams.get('club');
+        let level = urlParams.get('level');
         if(!level){
           level = 4
         }
