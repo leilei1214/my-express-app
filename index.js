@@ -202,10 +202,13 @@ app.get('/login_data', async (req, res) => {
                 const userSession = req.session.user;
                 const { birthday, position1, position2,club,level} = userSession;
                 // Insert new user into PostgreSQL database
-                await MS_query(
-                  'INSERT INTO users (username, userid, identifier,birthday,preferred_position1,preferred_position2,Guild,level) VALUES (?,?,?,?,?,?,?,?)',
-                  [displayName, userId,identifier,birthday,position1,position2,club,level]
-                );
+                const sql = 'INSERT INTO users (username, userid, identifier, birthday, preferred_position1, preferred_position2, Guild, level) VALUES (?,?,?,?,?,?,?,?)';
+                const values = [displayName, userId, identifier, birthday, position1, position2, club, level];
+
+                console.log('📘 SQL:', sql);
+                console.log('📘 值:', values);
+
+                await MS_query(sql, values);
                 res.redirect('./home');
               }catch(error){
                 res.status(500).send(`
