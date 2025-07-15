@@ -515,6 +515,12 @@
           // 獲取 `list_id` 的值
         const club = urlParams.get('club');
         const level = urlParams.get('level');
+        if(!level){
+          level = 4
+        }
+        if(!club){
+          club = "圖斯特宇宙"
+        }
           // 抓取表單值
         event.preventDefault(); 
         const birthday =document.getElementsByName('birthday')[0].value;
@@ -552,7 +558,7 @@
       // }
       // const NewGuid = function () {
       //     return (g() + g() + "-" + g() + "-" + g() + "-" + g() + "-" + g() + g() + g());
-      // }
+      // 
     </script>
     <script>
         // // URLパラメータからLINEの認証コードを取得
