@@ -10,7 +10,8 @@ const cors = require('cors');
 const mysql = require('mysql2');
 const app = express();
 const util = require('util');
-
+const path = require('path');
+const QRCode = require('qrcode');
 
 app.use(cors());
 app.use(express.json());
@@ -199,11 +200,44 @@ app.get('/login_data', async (req, res) => {
             } else {
               try{
                 const identifier = await generateUniqueIdentifier(MS_query); // 生成唯一的 identifier
+                
+                // 設定輸出路徑（請確認資料夾已存在）
+                
+                // 輸出 QR 圖片路徑
+                const outputDir = path.join(__dirname, 'public', 'images', club,'qrcodes');
+                const outputPath = path.join(outputDir, `${identifier}.png`);
+                let relativePathForWeb = "";
+                // ✅ 確保資料夾存在（遞迴建立）
+                fs.mkdirSync(outputDir, { recursive: true })
+                QRCode.toFile(outputPath , identifier, {
+                  width: 300,
+                  color: {
+                    dark: '#000000',
+                    light: '#ffffff'
+                  }
+                }, function (err) {
+                    if (err) {
+                      console.error('❌ 儲存失敗:', err);
+                      return;
+                    }
+
+                    // ✅ 成功儲存
+                    console.log('✅ QR Code 已儲存於：', outputPath);
+
+                    // ✅ 如果你要傳給前端網頁顯示
+                    relativePathForWeb = `/public/images/${club}/qrcodes/${identifier}.png`;
+                    console.log('🌐 可供網頁使用的圖片路徑：', relativePathForWeb);
+
+                    // 可在 Express 中回傳：
+                    // res.json({ imagePath: relativePathForWeb });
+                  });
+                                
+                                
                 const userSession = req.session.user;
                 const { birthday, position1, position2,club,level} = userSession;
                 // Insert new user into PostgreSQL database
-                const sql = 'INSERT INTO users (username, userid, identifier, birthday, preferred_position1, preferred_position2, Guild, level) VALUES (?,?,?,?,?,?,?,?)';
-                const values = [displayName, userId, identifier, birthday, position1, position2, club, level];
+                const sql = 'INSERT INTO users (username, userid, identifier, birthday, preferred_position1, preferred_position2, Guild, level,	user_img) VALUES (?,?,?,?,?,?,?,?,?)';
+                const values = [displayName, userId, identifier, birthday, position1, position2, club, level,relativePathForWeb];
 
                 console.log('📘 SQL:', sql);
                 console.log('📘 值:', values);
@@ -722,9 +756,11 @@ app.get('/USER_Member_2', (req, res) => {
 app.get('/USER_Member_3', (req, res) => {
   res.render('USER_Member_3', { pageTitle: 'ListMember' });
 });
-
+       
 app.get('/USER_Member_4', (req, res) => {
   res.render('USER_Member_4', { pageTitle: 'ListMember' });
 });
-
+app.get('/Profile', (req, res) => {
+  res.render('Profile', { pageTitle: 'ListMember' });
+});
 

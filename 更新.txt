@@ -1,6 +1,15 @@
 20250716
 1.級別名稱更改
 2.註冊葉面新增階級註冊
+基礎
+https://dzl.9a1.mytemp.website/my-express-app/login?status=register&club=圖斯特宇宙&level=3
+樂踢
+https://dzl.9a1.mytemp.website/my-express-app/login?status=register&club=圖斯特宇宙&level=4
+實戰
+https://dzl.9a1.mytemp.website/my-express-app/login?status=register&club=圖斯特宇宙&level=2
+管理員
+https://dzl.9a1.mytemp.website/my-express-app/login?status=register&club=圖斯特宇宙&level=1
+
 3.qrcode製作
 
 
