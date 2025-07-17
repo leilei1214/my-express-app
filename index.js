@@ -216,7 +216,7 @@ app.get('/login_data', async (req, res) => {
                     dark: '#000000',
                     light: '#ffffff'
                   }
-                }, function (err) {
+                }, async function (err) {
                     if (err) {
                       console.error('❌ 儲存失敗:', err);
                       return;
@@ -241,9 +241,14 @@ app.get('/login_data', async (req, res) => {
 
                 console.log('📘 SQL:', sql);
                 console.log('📘 值:', values);
-
-                await MS_query(sql, values);
-                res.redirect('./home');
+                try {
+                  await MS_query(sql, values);
+                  return res.redirect('./home');
+                } catch (dbErr) {
+                  console.error('❌ 寫入資料庫失敗:', dbErr);
+                  return res.status(500).send('資料庫錯誤');
+                }
+               
               }catch(error){
                 res.status(500).send(`
                   <html>
