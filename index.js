@@ -207,7 +207,7 @@ app.get('/login_data', async (req, res) => {
                 // 輸出 QR 圖片路徑
                 const outputDir = path.join(__dirname, 'public', 'images', club,'qrcodes');
                 const outputPath = path.join(outputDir, `${identifier}.png`);
-                let relativePathForWeb = "";
+
                 // ✅ 確保資料夾存在（遞迴建立）
                 fs.mkdirSync(outputDir, { recursive: true })
              
@@ -220,7 +220,8 @@ app.get('/login_data', async (req, res) => {
                   }
                 });
                                               
-                                
+                const relativePathForWeb = `/public/images/${club}/qrcodes/${identifier}.png`;
+                 
                 
                 // Insert new user into PostgreSQL database
                 const sql = 'INSERT INTO users (username, userid, identifier, birthday, preferred_position1, preferred_position2, Guild, level,	user_img) VALUES (?,?,?,?,?,?,?,?,?)';
