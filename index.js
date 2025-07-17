@@ -220,7 +220,7 @@ app.get('/login_data', async (req, res) => {
                   }
                 });
                                               
-                const relativePathForWeb = `/public/images/${club}/qrcodes/${identifier}.png`;
+                const relativePathForWeb = `./public/images/${club}/qrcodes/${identifier}.png`;
                  
                 
                 // Insert new user into PostgreSQL database
