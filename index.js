@@ -210,29 +210,16 @@ app.get('/login_data', async (req, res) => {
                 let relativePathForWeb = "";
                 // ✅ 確保資料夾存在（遞迴建立）
                 fs.mkdirSync(outputDir, { recursive: true })
-                QRCode.toFile(outputPath , identifier, {
+             
+                // ✅ 使用 async/await 儲存 QR Code
+                await QRCode.toFile(outputPath, identifier, {
                   width: 300,
                   color: {
                     dark: '#000000',
                     light: '#ffffff'
                   }
-                }, async function (err) {
-                    if (err) {
-                      console.error('❌ 儲存失敗:', err);
-                      return;
-                    }
-
-                    // ✅ 成功儲存
-                    console.log('✅ QR Code 已儲存於：', outputPath);
-
-                    // ✅ 如果你要傳給前端網頁顯示
-                    relativePathForWeb = `/public/images/${club}/qrcodes/${identifier}.png`;
-                    console.log('🌐 可供網頁使用的圖片路徑：', relativePathForWeb);
-
-                    // 可在 Express 中回傳：
-                    // res.json({ imagePath: relativePathForWeb });
-                  });
-                                
+                });
+                                              
                                 
                 
                 // Insert new user into PostgreSQL database
@@ -241,14 +228,9 @@ app.get('/login_data', async (req, res) => {
 
                 console.log('📘 SQL:', sql);
                 console.log('📘 值:', values);
-                try {
-                  await MS_query(sql, values);
-                  return res.redirect('./home');
-                } catch (dbErr) {
-                  console.error('❌ 寫入資料庫失敗:', dbErr);
-                  return res.status(500).send('資料庫錯誤');
-                }
-               
+
+                await MS_query(sql, values);
+                res.redirect('./home');
               }catch(error){
                 res.status(500).send(`
                   <html>
