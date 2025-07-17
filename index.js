@@ -252,7 +252,7 @@ app.get('/login_data', async (req, res) => {
                       <script>
                         setTimeout(() => {
                           window.location.href = './login?status=register'; // 或你想導向的網址
-                        }, 10000); // 1000 毫秒 = 1 秒
+                        }, 1000); // 1000 毫秒 = 1 秒
                       </script>
                     </head>
                     <body>
