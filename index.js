@@ -199,7 +199,8 @@ app.get('/login_data', async (req, res) => {
             } else {
               try{
                 const identifier = await generateUniqueIdentifier(MS_query); // 生成唯一的 identifier
-                
+                const userSession = req.session.user;
+                const { birthday, position1, position2,club,level} = userSession;
                 // 設定輸出路徑（請確認資料夾已存在）
                 
                 // 輸出 QR 圖片路徑
@@ -232,8 +233,7 @@ app.get('/login_data', async (req, res) => {
                   });
                                 
                                 
-                const userSession = req.session.user;
-                const { birthday, position1, position2,club,level} = userSession;
+                
                 // Insert new user into PostgreSQL database
                 const sql = 'INSERT INTO users (username, userid, identifier, birthday, preferred_position1, preferred_position2, Guild, level,	user_img) VALUES (?,?,?,?,?,?,?,?,?)';
                 const values = [displayName, userId, identifier, birthday, position1, position2, club, level,relativePathForWeb];
