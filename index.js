@@ -3,6 +3,7 @@ const express = require('express');
 const axios = require('axios');
 const querystring = require('querystring');
 const path = require('path');
+const fs = require('fs');
 const { Pool } = require('pg');
 const port = process.env.PORT || 3000;  // 使用 Heroku 提供的 PORT 环境变量
 const session = require('express-session');
