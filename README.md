@@ -10,3 +10,5 @@ git push heroku main
 
 heroku open 
 npm install express axios
+
+npm install qrcode
