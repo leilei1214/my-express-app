@@ -10,7 +10,6 @@ const cors = require('cors');
 const mysql = require('mysql2');
 const app = express();
 const util = require('util');
-const path = require('path');
 const QRCode = require('qrcode');
 
 app.use(cors());
