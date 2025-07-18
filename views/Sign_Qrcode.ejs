@@ -272,6 +272,7 @@
     <!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> -->
 
     <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
+    <script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
     <script>
 
             const liffUrl = "https://liff.line.me/1661291645-p5ObO70M"; // ← 替換成你的 LIFF 網址
@@ -284,7 +285,48 @@
                 colorLight: "#ffffff",
                 correctLevel: QRCode.CorrectLevel.H
             });
+            // LIFF 簽到邏輯
+            async function runLiffSignIn() {
+                try {
+                    await liff.init({ liffId });
 
+                    if (!liff.isLoggedIn()) {
+                        liff.login();
+                        return;
+                    }
+
+                    const profile = await liff.getProfile();
+                    const userId = profile.userId;
+                    const name = profile.displayName;
+
+                    document.getElementById("result").innerHTML = `
+                    ✅ <b>簽到成功！</b><br>
+                    👤 使用者名稱：${name}<br>
+                    🆔 User ID：<code>${userId}</code><br>
+                    🕒 時間：${new Date().toLocaleString()}
+                    `;
+
+                    // 👉 若你要送資料到後端或 Google Sheet，可放這裡
+                    /*
+                    fetch("https://your-backend.com/checkin", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({
+                        userId,
+                        name,
+                        timestamp: new Date().toISOString()
+                    })
+                    });
+                    */
+                } catch (err) {
+                    document.getElementById("result").innerText = "⚠️ LIFF 初始化失敗：" + err;
+                }
+            }
+
+            // 如果支援 LIFF，執行簽到
+            if (window.liff) {
+            runLiffSignIn();
+            }
 
     </script>
 
