@@ -275,6 +275,8 @@
     <script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
     <script>
             // LIFF 簽到邏輯
+            const liffUrl = "https://liff.line.me/1661291645-p5ObO70M"; // ← 替換成你的 LIFF 網址
+            const liffId = "1661291645-p5ObO70M"
             async function runLiffSignIn() {
                 try {
                     await liff.init({ liffId });
