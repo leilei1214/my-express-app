@@ -736,4 +736,7 @@ app.get('/Profile', (req, res) => {
 app.get('/Sign_Qrcode', (req, res) => {
   res.render('Sign_Qrcode', { pageTitle: 'Sign_Qrcode' });
 });
+app.get('/liff_signin', (req, res) => {
+  res.render('liff_signin', { pageTitle: 'Sign_Qrcode' });
+});
 
