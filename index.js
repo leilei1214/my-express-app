@@ -751,4 +751,7 @@ app.get('/USER_Member_4', (req, res) => {
 app.get('/Profile', (req, res) => {
   res.render('Profile', { pageTitle: 'ListMember' });
 });
+app.get('/Sign_Qrcode', (req, res) => {
+  res.render('Sign_Qrcode', { pageTitle: 'Sign_Qrcode' });
+});
 
