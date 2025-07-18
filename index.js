@@ -203,29 +203,11 @@ app.get('/login_data', async (req, res) => {
                 const userSession = req.session.user;
                 const { birthday, position1, position2,club,level} = userSession;
                 // 設定輸出路徑（請確認資料夾已存在）
-                
-                // 輸出 QR 圖片路徑
-                const outputDir = path.join(__dirname, 'public', 'images', club,'qrcodes');
-                const outputPath = path.join(outputDir, `${identifier}.png`);
-
-                // ✅ 確保資料夾存在（遞迴建立）
-                fs.mkdirSync(outputDir, { recursive: true })
-             
-                // ✅ 使用 async/await 儲存 QR Code
-                await QRCode.toFile(outputPath, identifier, {
-                  width: 300,
-                  color: {
-                    dark: '#000000',
-                    light: '#ffffff'
-                  }
-                });
-                                              
-                const relativePathForWeb = `./public/images/${club}/qrcodes/${identifier}.png`;
-                 
+                                 
                 
                 // Insert new user into PostgreSQL database
-                const sql = 'INSERT INTO users (username, userid, identifier, birthday, preferred_position1, preferred_position2, Guild, level,	user_img) VALUES (?,?,?,?,?,?,?,?,?)';
-                const values = [displayName, userId, identifier, birthday, position1, position2, club, level,relativePathForWeb];
+                const sql = 'INSERT INTO users (username, userid, identifier, birthday, preferred_position1, preferred_position2, Guild, level) VALUES (?,?,?,?,?,?,?,?)';
+                const values = [displayName, userId, identifier, birthday, position1, position2, club, level];
 
                 console.log('📘 SQL:', sql);
                 console.log('📘 值:', values);
