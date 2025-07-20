@@ -368,7 +368,7 @@ app.post('/api/event', async (req, res) => {
 
   try {
     // 獲取數據庫連接並查詢資料
-    const query = 'SELECT * FROM activities ORDER BY time ASC;';
+    const query = 'SELECT * FROM activities ORDER BY time DESC;';
     const result = await MS_query(query);
 
     // 釋放連接
