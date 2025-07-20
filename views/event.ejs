@@ -438,8 +438,9 @@
           }
           let activitylevel = '';
           // 生成每個活動的 HTML
-          let activitiesHtml = '';
+         
           for (let activity of activities) {
+             let activitiesHtml = '';
               console.log('Activity:', activity);
 
               // 檢查時間是否有效
@@ -450,8 +451,8 @@
               }
 
               const formattedDate = `${eventDate.getFullYear()}-${String(eventDate.getMonth() + 1).padStart(2, '0')}-${String(eventDate.getDate()).padStart(2, '0')} ${String(eventDate.getHours()).padStart(2, '0')}:${String(eventDate.getMinutes()).padStart(2, '0')}`;
-              
-              for (const item of activity.activity_level) {
+              const levels = activity.activity_level.replace(/^{|}$/g, '').split(',');
+              for (const item of levels) {
                   if( item == "新手"){
                     activitylevel += `
                       <div class="badge badge-primary">${item}
