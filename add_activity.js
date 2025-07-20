@@ -25,14 +25,14 @@ const formatArrayForPostgres = (arr) => `{${arr.join(',')}}`;
 const handleActivitySubmission = async (req, res) => {
 
     const eventData = req.body;
-    req.session.user = {
+    const {
         birthday,
         position1,
         position2,
         Guild,
         level,
         identifier
-    };
+    } = req.session.user || {};
 
     let client;
     const query = `
