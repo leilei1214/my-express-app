@@ -516,14 +516,23 @@
           // activitiesHtml +=`</div>`
           // 確保插入的元素存在
           console.log($('#select_event'));  // 確保選擇器正確
-          const carousel = $('#select_event');
-          carousel.trigger('destroy.owl.carousel');
+          const carousel = $('#myCarousel');
+
+          // 先銷毀先前的 carousel (如果有初始化過)
+          if (carousel.hasClass('owl-loaded')) {
+            carousel.trigger('destroy.owl.carousel');
+            carousel.html('');  // 清空原本的內容
+          }
+
+          // 放入新內容
+          carousel.html(activitiesHtml);
           // carousel.html(activitiesHtml);  // 插入活動卡片;
           // $('#select_event').html(activitiesHtml);  // 插入 HTML
           
 
           // 延遲初始化 Owl Carousel，確保 HTML 插入後執行
-          // setTimeout(() => {$('#select_event').html(activitiesHtml).promise().done(()
+          setTimeout(() => {
+          // $('#select_event').html(activitiesHtml).promise().done(()
             $('#select_event').html(activitiesHtml).promise().done(() => {
                 $('#select_event').owlCarousel({
                     items: 3,
@@ -541,7 +550,7 @@
                 });
             })
 
-          // }, 100);  // 延遲初始化，確保內容已插入
+          }, 1000);  // 延遲初始化，確保內容已插入
 
       })
       .catch((error) => {
