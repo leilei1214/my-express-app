@@ -23,11 +23,16 @@ const MS_query = util.promisify(pool.query).bind(pool);
 const formatArrayForPostgres = (arr) => `{${arr.join(',')}}`;  
 
 const handleActivitySubmission = async (req, res) => {
-    const eventData = req.body;
-    const { birthday, position1, position2, Guild, level,identifier } = req.body;
-    console.log('Event Data:', eventData);
 
-  
+    const eventData = req.body;
+    req.session.user = {
+        birthday,
+        position1,
+        position2,
+        Guild,
+        level,
+        identifier
+    };
 
     let client;
     const query = `
