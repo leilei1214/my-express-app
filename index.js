@@ -193,6 +193,7 @@ app.get('/login_data', async (req, res) => {
               const birthday = user.birthday; // 读取 email 列
               const position1 = user.preferred_position1; // 读取 email 列
               const position2 = user.preferred_position2; // 读取 email 列
+              const Guild = user.Guild; // 读取 email 列
               const level = user.level; 
               req.session.user = { displayName, identifier,birthday,position1,position2,level,Guild};
 
