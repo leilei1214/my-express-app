@@ -311,12 +311,12 @@ app.post('/user_data', (req, res) => {
   const displayName = userSession.displayName;
   const identifier = userSession.identifier;
   const level = userSession.level;
-
+  const Guild = userSession.Guild;
   req.session.user = { displayName, identifier, birthday: userSession.birthday, position1: userSession.position1, position2: userSession.position2, level };
 
 
   // 更新 session 中的用戶資料
-  req.session.user = { displayName, identifier, birthday, position1, position2, level };
+  req.session.user = { displayName, identifier, birthday, position1, position2, level,Guild };
 
   // 返回成功響應
   res.json({
