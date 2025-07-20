@@ -16,6 +16,11 @@
 
     <style>.ie-panel{display: none;background: #212121;padding: 10px 0;box-shadow: 3px 3px 5px 0 rgba(0,0,0,.3);clear: both;text-align:center;position: relative;z-index: 1;} html.ie-10 .ie-panel, html.lt-ie-10 .ie-panel {display: block;}</style>
     <style>
+      .product-header .badge {
+            position: relative;
+            top: 33px;
+            left: 21px;
+        }
         .badge {
             font-size: 18px !important;
             font-weight: 600;
@@ -503,7 +508,7 @@
                   </div>
               `;
           }
-          activitiesHtml +=`</div>`
+          // activitiesHtml +=`</div>`
           // 確保插入的元素存在
           console.log($('#select_event'));  // 確保選擇器正確
           const carouselContainer = $('#select_event');
