@@ -436,7 +436,7 @@
           if (activities.length === 0) {
               console.log("No activities to display");
           }
-          let activity_level = ""
+          let activitylevel = '';
           // 生成每個活動的 HTML
           let activitiesHtml = '';
           for (let activity of activities) {
@@ -453,19 +453,19 @@
               
               for (const item of activity.activity_level) {
                   if( item == "新手"){
-                    activity_level += `
+                    activitylevel += `
                       <div class="badge badge-primary">${item}
                       </div>
                     `
                   }
                   else if( item == "自由"){
-                    activity_level += `
+                    activitylevel += `
                       <div class="badge badge-red">${item}
                       </div>
                     `
                   }
                   else{
-                    activity_level += `
+                    activitylevel += `
                       <div class="badge badge-primary">${item}
                       </div>
                     `
@@ -476,7 +476,7 @@
                   <div class="owl-item mb-3" style="width: 330px; margin-right: 30px;" onclick="event_content_href(${activity.id })">
                       <article class="product">
                           <header class="product-header">
-                              ${activity_level}
+                              ${activitylevel}
                               <div class="product-figure">
                                   <img src="images/戰術對抗訓練.jpg" alt="活動圖片">
                               </div>
