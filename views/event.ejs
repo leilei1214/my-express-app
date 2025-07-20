@@ -438,10 +438,11 @@
           }
           
           // 生成每個活動的 HTML
-         
+          let activitylevel = '';
+          let activitiesHtml = '';
           for (let activity of activities) {
-              let activitylevel = '';
-              let activitiesHtml = '';
+              activitylevel = '';
+              activitiesHtml = '';
               console.log('Activity:', activity);
 
               // 檢查時間是否有效
