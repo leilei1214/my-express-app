@@ -24,6 +24,7 @@ const formatArrayForPostgres = (arr) => `{${arr.join(',')}}`;
 
 const handleActivitySubmission = async (req, res) => {
     const eventData = req.body;
+    const { birthday, position1, position2, Guild, level,identifier } = req.body;
     console.log('Event Data:', eventData);
 
   
@@ -38,8 +39,10 @@ const handleActivitySubmission = async (req, res) => {
         max_participants, 
         phone, 
         amount, 
-        location
-    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+        location,
+        club,
+        edit_person
+    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
     ;
     `;
 
@@ -51,7 +54,9 @@ const handleActivitySubmission = async (req, res) => {
         eventData.max_participants || null,
         eventData.phone || null,
         eventData.amount || null,
-        eventData.address || null
+        eventData.address || null,
+        Guild,identifier
+
     ];
 
     try {

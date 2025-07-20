@@ -125,9 +125,9 @@ const upload = multer();
 app.post('/submit_event', upload.none(), handleActivitySubmission);
 // 處理前端發來的 POST 請求，將用戶資料存儲到 session
 app.post('/save-to-session', (req, res) => {
-  const { birthday, position1,position2,club,level } = req.body;
+  const { birthday, position1,position2,Guild,level } = req.body;
   // 保存用戶資料到 session 中
-  req.session.user = { birthday, position1,position2,club,level };
+  req.session.user = { birthday, position1,position2,Guild,level };
   res.json({ message: 200 });
   // res.redirect('/line_login');
 });
@@ -194,20 +194,20 @@ app.get('/login_data', async (req, res) => {
               const position1 = user.preferred_position1; // 读取 email 列
               const position2 = user.preferred_position2; // 读取 email 列
               const level = user.level; 
-              req.session.user = { displayName, identifier,birthday,position1,position2,level };
+              req.session.user = { displayName, identifier,birthday,position1,position2,level,Guild};
 
               res.redirect('./home');
             } else {
               try{
                 const identifier = await generateUniqueIdentifier(MS_query); // 生成唯一的 identifier
                 const userSession = req.session.user;
-                const { birthday, position1, position2,club,level} = userSession;
+                const { birthday, position1, position2,Guild,level} = userSession;
                 // 設定輸出路徑（請確認資料夾已存在）
                                  
                 
                 // Insert new user into PostgreSQL database
                 const sql = 'INSERT INTO users (username, userid, identifier, birthday, preferred_position1, preferred_position2, Guild, level) VALUES (?,?,?,?,?,?,?,?)';
-                const values = [displayName, userId, identifier, birthday, position1, position2, club, level];
+                const values = [displayName, userId, identifier, birthday, position1, position2, Guild, level];
 
                 console.log('📘 SQL:', sql);
                 console.log('📘 值:', values);

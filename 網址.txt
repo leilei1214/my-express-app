@@ -1,3 +1,5 @@
 [~/public_html/my-express-app]$ pm2 start index.js --name my-express-app
  pm2 restart my-express-app
  pm2 stop all
+
+ 
