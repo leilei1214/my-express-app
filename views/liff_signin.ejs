@@ -285,12 +285,14 @@
                         liff.login();
                         return;
                     }
-
+                    const listId = getURLParameter('list_id');
+                    console.log(listId);
                     const profile = await liff.getProfile();
                     const userId = profile.userId;
                     const name = profile.displayName;
 
                     document.getElementById("result").innerHTML = `
+                    🆔 活動編號 : ${listId}
                     ✅ <b>簽到成功！</b><br>
                     👤 使用者名稱：${name}<br>
                     🆔 User ID：<code>${userId}</code><br>
