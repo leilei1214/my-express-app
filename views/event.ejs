@@ -144,7 +144,7 @@
                   <div class="owl-carousel owl-spacing-1 owl-loaded" data-items="3" data-dots="false" data-nav="true" data-autoplay="true" data-autoplay-speed="4000" data-stage-padding="0" data-loop="false" data-margin="30" id="myCarousel"  data-mouse-drag="false" data-nav-custom=".owl-carousel-outer-navigation">
                     
                     
-                  <div id="select_event" class="owl-carousel">
+                  <div id="select_event"  class="owl-carousel owl-theme">
 
                   </div>
 
@@ -511,16 +511,15 @@
           // activitiesHtml +=`</div>`
           // 確保插入的元素存在
           console.log($('#select_event'));  // 確保選擇器正確
-          const carouselContainer = $('#select_event');
-          carouselContainer.trigger('destroy.owl.carousel'); 
-          carouselContainer.find('.owl-stage-outer').children().unwrap();
-          carouselContainer.removeClass("owl-center owl-loaded owl-text-select-on");
-          $('#select_event').html(activitiesHtml);  // 插入 HTML
+          const carousel = $('#select_event');
+          carousel.trigger('destroy.owl.carousel');
+          carousel.html(activitiesHtml);  // 插入活動卡片;
+          // $('#select_event').html(activitiesHtml);  // 插入 HTML
           
 
           // 延遲初始化 Owl Carousel，確保 HTML 插入後執行
           setTimeout(() => {
-              $('#select_event').owlCarousel({
+              carousel.owlCarousel({
                 items: 2, // 显示两个项目
                 margin: 30,
                 nav: true,
