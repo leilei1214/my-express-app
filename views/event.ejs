@@ -14,12 +14,12 @@
     <link rel="stylesheet" href="css/fonts.css">
     <link rel="stylesheet" href="css/style.css">
 
-<!-- Owl Carousel CSS -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css"/>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css"/>
+    <!-- Owl Carousel CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css"/>
 
-<!-- Owl Carousel JS -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+    <!-- Owl Carousel JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
     <style>.ie-panel{display: none;background: #212121;padding: 10px 0;box-shadow: 3px 3px 5px 0 rgba(0,0,0,.3);clear: both;text-align:center;position: relative;z-index: 1;} html.ie-10 .ie-panel, html.lt-ie-10 .ie-panel {display: block;}</style>
     <style>
       .product-header .badge {
@@ -524,26 +524,25 @@
           
 
           // 延遲初始化 Owl Carousel，確保 HTML 插入後執行
-          setTimeout(() => {
-              carousel.owlCarousel({
-                items: 2, // 显示两个项目
-                margin: 30,
-                nav: true,
-                dots: false,
-                loop: true,
-                autoplay: true,
-                autoplayTimeout: 4000,
-                stagePadding: 0,
-                mouseDrag: false,
-                responsive: {
-                    0: { items: 1 },   // 小屏幕显示 1 个项目
-                    600: { items: 2 }, // 中屏幕显示 2 个项目
-                    1000: { items: 3 } // 大屏幕显示 3 个项目
-                }
-                
-              });
+          // setTimeout(() => {$('#select_event').html(activitiesHtml).promise().done(()
+            $('#select_event').html(activitiesHtml).promise().done(() => {
+                $('#select_event').owlCarousel({
+                    items: 3,
+                    margin: 30,
+                    nav: true,
+                    dots: false,
+                    loop: true,
+                    autoplay: true,
+                    autoplayTimeout: 4000,
+                    responsive: {
+                        0: { items: 1 },
+                        600: { items: 2 },
+                        1000: { items: 3 }
+                    }
+                });
+            })
 
-          }, 100);  // 延遲初始化，確保內容已插入
+          // }, 100);  // 延遲初始化，確保內容已插入
 
       })
       .catch((error) => {
