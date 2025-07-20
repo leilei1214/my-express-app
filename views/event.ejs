@@ -460,13 +460,13 @@
               const formattedDate = `${eventDate.getFullYear()}-${String(eventDate.getMonth() + 1).padStart(2, '0')}-${String(eventDate.getDate()).padStart(2, '0')} ${String(eventDate.getHours()).padStart(2, '0')}:${String(eventDate.getMinutes()).padStart(2, '0')}`;
               const levels = activity.activity_level.replace(/^{|}$/g, '').split(',');
               for (const item of levels) {
-                  if( item == "新手"){
+                  if( item == "基礎"){
                     activitylevel += `
                       <div class="badge badge-primary">${item}
                       </div>
                     `
                   }
-                  else if( item == "自由"){
+                  else if( item == "實踐"){
                     activitylevel += `
                       <div class="badge badge-red">${item}
                       </div>
@@ -474,7 +474,7 @@
                   }
                   else{
                     activitylevel += `
-                      <div class="badge badge-primary">${item}
+                      <div class="badge badge-secondary">${item}
                       </div>
                     `
                   }

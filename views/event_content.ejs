@@ -482,16 +482,24 @@
                 //     </div>
                 //   `
                 // }
-                for (const item of data.activity_level) {
-                  if( item == "新手"){
+                const levels = activity.activity_level.replace(/^{|}$/g, '').split(',');
+
+                for (const item of levels) {
+                  if( item == "基礎"){
                     document.getElementById('activity_level').innerHTML += `
                       <div class="badge badge-primary">${item}
                       </div>
                     `
                   }
-                  if( item == "自由"){
+                  else if( item == "實踐"){
                     document.getElementById('activity_level').innerHTML += `
                       <div class="badge badge-red">${item}
+                      </div>
+                    `
+                  }
+                  else{
+                    document.getElementById('activity_level').innerHTML += `
+                      <div class="badge badge-secondary">${item}
                       </div>
                     `
                   }
