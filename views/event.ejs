@@ -148,7 +148,7 @@
                   <div class="owl-carousel owl-spacing-1 owl-loaded" data-items="3" data-dots="false" data-nav="true" data-autoplay="true" data-autoplay-speed="4000" data-stage-padding="0" data-loop="false" data-margin="30" id="myCarousel"  data-mouse-drag="false" data-nav-custom=".owl-carousel-outer-navigation">
                     
                     
-                  <div id="select_event" >
+                  <div class="owl-carousel owl-spacing-1" id="myCarousel"></div>
 
                   </div>
 
@@ -533,8 +533,8 @@
           // 延遲初始化 Owl Carousel，確保 HTML 插入後執行
           setTimeout(() => {
           // $('#select_event').html(activitiesHtml).promise().done(()
-            $('#select_event').html(activitiesHtml).promise().done(() => {
-                $('#select_event').owlCarousel({
+            // $('#select_event').html(activitiesHtml).promise().done(() => {
+                carousel.owlCarousel({
                     items: 3,
                     margin: 30,
                     nav: true,
@@ -548,7 +548,7 @@
                         1000: { items: 3 }
                     }
                 });
-            })
+            // })
 
           }, 1000);  // 延遲初始化，確保內容已插入
 
