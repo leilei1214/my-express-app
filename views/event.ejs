@@ -436,7 +436,7 @@
           if (activities.length === 0) {
               console.log("No activities to display");
           }
-
+          let activity_level = ""
           // 生成每個活動的 HTML
           let activitiesHtml = '';
           for (let activity of activities) {
@@ -450,7 +450,7 @@
               }
 
               const formattedDate = `${eventDate.getFullYear()}-${String(eventDate.getMonth() + 1).padStart(2, '0')}-${String(eventDate.getDate()).padStart(2, '0')} ${String(eventDate.getHours()).padStart(2, '0')}:${String(eventDate.getMinutes()).padStart(2, '0')}`;
-              let activity_level = ""
+              
               for (const item of activity.activity_level) {
                   if( item == "新手"){
                     activity_level += `
