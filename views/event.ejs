@@ -491,7 +491,7 @@
 
               }
               activitiesHtml += `
-                  <div class="owl-item mb-3" style="width: 330px; margin-right: 30px;" onclick="event_content_href(${activity.id })">
+                  <div class="item mb-3" style="width: 330px; margin-right: 30px;" onclick="event_content_href(${activity.id })">
                       <article class="product">
                           <header class="product-header">
                               ${activitylevel}
@@ -518,7 +518,7 @@
           console.log($('#select_event'));  // 確保選擇器正確
           const carousel = $('#select_event');
           carousel.trigger('destroy.owl.carousel');
-          carousel.html(activitiesHtml);  // 插入活動卡片;
+          // carousel.html(activitiesHtml);  // 插入活動卡片;
           // $('#select_event').html(activitiesHtml);  // 插入 HTML
           
 
