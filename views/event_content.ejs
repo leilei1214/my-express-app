@@ -121,7 +121,7 @@
               </ul>
               <ul class="list-inline mx-auto list-inline-xs Boss_edit float-right d-inline-block"  style="margin-bottom: -4px;">
                 <li class="pl-0 pr-0"><a class="button-md icon-media icon-media-round icon-media-instagram " onclick="ClockOut()">簽到表</a></li>
-                <li class="pl-0 pr-0"><a class="button-md icon-media icon-media-round icon-media-instagram " onclick="ClockOut()">Qrcode簽到</a></li>
+                <li class="pl-0 pr-0"><a class="button-md icon-media icon-media-round icon-media-instagram " onclick="QrcodeSign()">Qrcode簽到</a></li>
               </ul>
 
 
@@ -676,7 +676,7 @@
                     localStorage.setItem('displayName',displayName);
                     localStorage.setItem('identifier',identifier);
                     localStorage.setItem('level',level);
-
+                    localStorage.setItem('Guild',Guild);
                     document.getElementById('employee').innerHTML = displayName
                     console.log('Class changed to:', element.className); // 確認 class 已更改
                 }
@@ -783,6 +783,18 @@
         const activityId = urlParams.get('list_id');
 
         window.location.href ="./SignIn?list_id="+activityId
+
+      }
+      function QrcodeSign(){
+        const currentUrl = window.location.href;
+
+        // 使用 URLSearchParams 提取查詢參數
+        const urlParams = new URLSearchParams(window.location.search);
+
+        // 獲取 `list_id` 的值
+        const activityId = urlParams.get('slist_id');s
+        Guild = localStorage.getItem('Guild',Guild);
+        window.location.href ="./Sign_Qrcode?list_id="+activityId+"&Guild="+Guild
 
       }
     </script>

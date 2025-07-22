@@ -67,15 +67,35 @@
           <div class="row row-50">
             <div class="col-lg-8">
               <ul class="list-inline mx-auto list-inline-xs "  style="margin-bottom: -4px;">
-                <li class="pl-0 pr-0"><a class=" button-md icon-media icon-media-round icon-media-instagram " href="#">活動頁</a></li>
-                <li class="pl-0 pr-0"><a class="button-md icon-media icon-media-round icon-media-google " href="#">Qrcode簽到</a></li>
-                <li class="pl-0 pr-0"><a class="button-md icon-media icon-media-round icon-media-google " href="#">Qrcode簽退</a></li>
-
+                <li class="pl-0 pr-0"><a class=" button-md icon-media icon-media-round icon-media-instagram " href="#">活動</a></li>
               </ul>
 
               <div class="blog-post">
                 <!-- Badge-->
-                  <div id="qrcode"></div>
+                <article class="product">
+                  <header class="product-header">
+                    <!-- Badge-->
+
+                    <div class="product-figure" ><img src="images/shop/product-1.png" alt="" id="qrcode_in" ></div>
+               
+                  </header>
+                  <footer class="product-content">
+                    <h6 class="product-title" >簽到</h6>
+                  </footer>
+                </article>
+                <article class="product">
+                  <header class="product-header">
+                    <!-- Badge-->
+
+                    <div class="product-figure"><img src="images/shop/product-1.png" alt="" id="qrcode_out"></div>
+               
+                  </header>
+                  <footer class="product-content">
+                    <h6 class="product-title" ></h6>
+                  </footer>
+                </article>
+
+                
 
 
               </div>
@@ -271,11 +291,14 @@
     <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
     <script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
     <script>
+            // window.location.href ="./Sign_Qrcode?list_id="+activityId+"&Guild="+Guild
             const listId = getURLParameter('list_id');
+            const Guild = getURLParameter('Guild');
             console.log(listId);
-            const liffUrl = `https://liff.line.me/1661291645-p5ObO70M?list_id=${listId}`; // ← 替換成你的 LIFF 網址
+            const liffUrl_IN = `https://liff.line.me/1661291645-p5ObO70M?list_id=${listId}&Guild=${Guild}&Sign=IN`; // ← 替換成你的 LIFF 網址
+            const liffUrl_OUT = `https://liff.line.me/1661291645-p5ObO70M?list_id=${listId}&Guild=${Guild}&Sign=OUT`; // ← 替換成你的 LIFF 網址
             const liffId = "1661291645-p5ObO70M"
-            new QRCode(document.getElementById("qrcode"), {
+            new QRCode(document.getElementById("qrcode_in"), {
                 text: liffUrl,
                 width: 256,
                 height: 256,
@@ -283,7 +306,14 @@
                 colorLight: "#ffffff",
                 correctLevel: QRCode.CorrectLevel.H
             });
-
+            new QRCode(document.getElementById("qrcode_out"), {
+                text: liffUrl,
+                width: 256,
+                height: 256,
+                colorDark: "#000000",
+                colorLight: "#ffffff",
+                correctLevel: QRCode.CorrectLevel.H
+            });
 
     </script>
 
