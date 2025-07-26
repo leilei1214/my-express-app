@@ -526,6 +526,7 @@
                 $(".organizer").html(data.organizer)
                 $(".active_date").html(formattedDate)
                 $(".activity_intro").html(data.activity_intro)
+                localStorage.getItem('Guild',club);
 
                 // #---------------------------------------------------------------------------------------
                 const registrations = res.registrations
@@ -644,7 +645,6 @@
         
     </script>
     <script>
-        
         var timeout = setTimeout(function() {
 
           fetch('./user_data', {
@@ -792,8 +792,9 @@
         const urlParams = new URLSearchParams(window.location.search);
 
         // 獲取 `list_id` 的值
-        const activityId = urlParams.get('slist_id');
-        Guild = localStorage.getItem('Guild');
+        const activityId = urlParams.get('list_id');
+        const Guild = urlParams.get('Guild');
+
         window.location.href ="./Sign_Qrcode?list_id="+activityId+"&Guild="+Guild
 
       }
