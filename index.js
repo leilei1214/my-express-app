@@ -622,6 +622,82 @@ app.post('/Update_SignIn', async (req, res) => {
   }
 });
 
+// Update_SignIn_Qrcode
+app.post('/Update_SignIn_Qrcode', async (req, res) => {
+  const userSession = req.session.user;
+
+  // Check if the user session exists
+  if (!userSession) {
+    return res.status(400).json({
+      message: 'User session not found',
+      status: 400,
+    });
+  }
+  //  time: new Date(),
+  //   Up_userId:userId,
+  //   listId:listId,
+  //   Guild:Guild,
+  //   class:Sign
+  // Extract data from the request body
+  const { time, Up_userId, listId,Guild,Sign} = req.body;
+  const results = [];
+
+  // Establish a database connection
+
+  try {
+    // Iterate through the provided JSON data and perform updates
+      const [userRow] = await db.query('SELECT identifier FROM users WHERE userid = ?', [Up_userId]);
+
+      if (!userRow || userRow.length === 0) {
+        throw new Error('User not found');
+      }
+
+      const identifier = userRow[0].identifier;
+
+      if (Sign === 'IN') {
+        query = `
+        UPDATE registrations
+        SET 
+            check_in = 1,time = ?
+        WHERE 
+            activity_id = ? AND identifier = ? AND club = ?
+        `;
+        
+      } else if (Sign === 'OUT') {
+        query = `
+        UPDATE registrations
+        SET 
+            check_out = 1,time = ?
+        WHERE 
+            activity_id = ? AND identifier = ? AND club = ?
+        `;
+        
+      } 
+
+      const values = [time,listId,identifier, identifier,Guild];
+      console.log(values);
+
+      try {
+        await MS_query(query, values);
+        results.push({ status: 200 });
+      } catch (err) {
+        console.error('Database query failed:', err);
+        results.push({ status: 500, error: 'Database query failed' });
+      }
+    
+
+    // Once all updates are done, send a single response
+    res.status(200).json({ status: 200, results });
+  } catch (err) {
+    console.error('Unexpected error:', err);
+    res.status(500).json({ status: 500, message: 'Unexpected server error' });
+  } finally {
+    // Ensure the client is always released back to the pool
+    client.release();
+  }
+});
+
+
 // 定義 API 路由來查詢活動內容
 app.post('/api/list_content', async (req, res) => {
   console.log(111)

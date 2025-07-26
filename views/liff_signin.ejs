@@ -285,7 +285,11 @@
                         liff.login();
                         return;
                     }
+                    // list_id=${listId}&Guild=${Guild}&Sign=IN
                     const listId = getURLParameter('list_id');
+                    const Guild = getURLParameter('Guild');
+                    const Sign = getURLParameter('Sign');
+
                     console.log(listId);
                     const profile = await liff.getProfile();
                     const userId = profile.userId;
@@ -298,7 +302,34 @@
                     🆔 User ID：<code>${userId}</code><br>
                     🕒 時間：${new Date().toLocaleString()}
                     `;
+                    fetch('./api/Update_SignIn_Qrcode', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({
+                          time: new Date(),
+                          Up_userId:userId,
+                          listId:listId,
+                          Guild:Guild,
+                          Sign:Sign
 
+                        }),
+                    })
+                    .then(response => {
+                      if (response.status === 200) {
+                        return response.json(); // 解析 JSON
+                      } else {
+                        throw new Error(`伺服器回傳錯誤：${response.status}`);
+                      }
+                    })
+                    .then(data => {
+                      alert('會員等級已成功更新');
+                      location.reload();
+                    })
+                    .catch(error => {
+                        console.error("更新失敗，請稍後再試:", error);
+                    });
                     // 👉 若你要送資料到後端或 Google Sheet，可放這裡
                     /*
                     fetch("https://your-backend.com/checkin", {
