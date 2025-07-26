@@ -526,7 +526,7 @@
                 $(".organizer").html(data.organizer)
                 $(".active_date").html(formattedDate)
                 $(".activity_intro").html(data.activity_intro)
-                localStorage.getItem('Guild',data.club);
+                localStorage.setItem('Guild',data.club);
 
                 // #---------------------------------------------------------------------------------------
                 const registrations = res.registrations
