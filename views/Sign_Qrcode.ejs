@@ -298,6 +298,10 @@
     <script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
     <script>
             // window.location.href ="./Sign_Qrcode?list_id="+activityId+"&Guild="+Guild
+            function getURLParameter(name) {
+                return decodeURIComponent((new RegExp('[?|&]' + name + '=' + '([^&;]+?)(&|#|;|$)')
+                    .exec(location.search) || [null, ''])[1].replace(/\+/g, '%20')) || null;
+            }
             const listId = getURLParameter('list_id');
             const Guild = getURLParameter('Guild');
             console.log(listId);
