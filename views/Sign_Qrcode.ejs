@@ -304,9 +304,9 @@
             }
             const listId = getURLParameter('list_id');
             const Guild = getURLParameter('Guild');
-            console.log(listId);
             const liffUrl_IN = `https://liff.line.me/1661291645-p5ObO70M?list_id=${listId}&Guild=${Guild}&Sign=IN`; // ← 替換成你的 LIFF 網址
             const liffUrl_OUT = `https://liff.line.me/1661291645-p5ObO70M?list_id=${listId}&Guild=${Guild}&Sign=OUT`; // ← 替換成你的 LIFF 網址
+            console.log(liffUrl_IN);
             const liffId = "1661291645-p5ObO70M"
             new QRCode(document.getElementById("qrcode_in"), {
                 text: liffUrl_IN,
