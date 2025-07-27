@@ -793,7 +793,7 @@
 
         // 獲取 `list_id` 的值
         const activityId = urlParams.get('list_id');
-        const Guild = urlParams.get('Guild');
+        const Guild = localStorage.getItem('Guild');
 
         window.location.href ="./Sign_Qrcode?list_id="+activityId+"&Guild="+Guild
 
