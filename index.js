@@ -658,7 +658,7 @@ app.post('/Update_SignIn_Qrcode', async (req, res) => {
         query = `
         UPDATE registrations
         SET 
-            check_in = 1,time = ?
+            check_in = 1,check_in_time = ?
         WHERE 
             activity_id = ? AND identifier = ? AND club = ?
         `;
@@ -667,14 +667,14 @@ app.post('/Update_SignIn_Qrcode', async (req, res) => {
         query = `
         UPDATE registrations
         SET 
-            check_out = 1,time = ?
+            check_out = 1,check_out_time = ?
         WHERE 
             activity_id = ? AND identifier = ? AND club = ?
         `;
         
       } 
 
-      const values = [time,listId,identifier, identifier,Guild];
+      const values = [time,listId,identifier,Guild];
       console.log(values);
 
       try {
