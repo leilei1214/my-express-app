@@ -660,7 +660,7 @@ app.post('/Update_SignIn_Qrcode', async (req, res) => {
         SET 
             check_in = 1,check_in_time = ?
         WHERE 
-            activity_id = ? AND identifier = ? AND club = ?
+            activity_id = ? AND identifier = ? 
         `;
         
       } else if (Sign === 'OUT') {
@@ -669,7 +669,7 @@ app.post('/Update_SignIn_Qrcode', async (req, res) => {
         SET 
             check_out = 1,check_out_time = ?
         WHERE 
-            activity_id = ? AND identifier = ? AND club = ?
+            activity_id = ? AND identifier = ? 
         `;
         
       } 
