@@ -623,7 +623,8 @@ app.post('/Update_SignIn', async (req, res) => {
 });
 
 // Update_SignIn_Qrcode
-app.post('/Update_SignIn_Qrcode', async (req, res) => {
+
+app.post('/api/Update_SignIn_Qrcode', async (req, res) => {
   const userSession = req.session.user;
 
   // Check if the user session exists
