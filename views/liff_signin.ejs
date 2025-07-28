@@ -325,7 +325,8 @@
                     })
                     .then(data => {
                       alert('會員等級已成功更新');
-                      location.reload();
+                      window.location.href ="./event_content?list_id="+listId
+
                     })
                     .catch(error => {
                         console.error("更新失敗，請稍後再試:", error);
