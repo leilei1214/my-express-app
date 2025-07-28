@@ -647,7 +647,7 @@ app.post('/api/Update_SignIn_Qrcode', async (req, res) => {
 
   try {
     // Iterate through the provided JSON data and perform updates
-      const [userRow] = await db.query('SELECT identifier FROM users WHERE userid = ?', [Up_userId]);
+      const [userRow] = await MS_query('SELECT identifier FROM users WHERE userid = ?', [Up_userId]);
 
       if (!userRow || userRow.length === 0) {
         throw new Error('User not found');
@@ -675,7 +675,7 @@ app.post('/api/Update_SignIn_Qrcode', async (req, res) => {
         
       } 
 
-      const values = [time,listId,identifier,Guild];
+      const values = [time,listId,identifier];
       console.log(values);
 
       try {
