@@ -21,7 +21,7 @@ fetch('./api/User_list_member', {
     headers: {
         'Content-Type': 'application/json;charset=utf-8'
     },
-    body: JSON.stringify({ identifier: "none",Search_level:"3" }),
+    body: JSON.stringify({ identifier: "none",Search_level:Search_level }),
 })
 .then(response => {
     if (!response.ok) {
