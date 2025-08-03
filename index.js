@@ -460,7 +460,19 @@ app.post('/insert-event', async (req, res) => {
         );
         console.log('Inserted new registration');
       }
-      
+      const countNum = await MS_query(
+        `SELECT COUNT(*) AS count FROM registrations WHERE status_add = 1 , activity_id = ?`,
+        [activityId]
+      );
+      const currentParticipantsNum = parseInt(countResult[0].count, 10);
+
+      await MS_query(
+        `UPDATE activities
+          SET current_participants = ?
+          WHERE activity_id = ?`,
+        [currentParticipantsNum, activityId,]
+      );
+
       res.status(200).json({ status: 200 });
     } catch (err) {
         console.error('資料庫插入失敗:', err);
