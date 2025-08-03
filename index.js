@@ -440,37 +440,45 @@ app.post('/insert-event', async (req, res) => {
       );
       const currentParticipants = parseInt(countResult[0].count, 10);
       console.log(currentParticipants)
-    // Step 3: Check if currentParticipants <= maxParticipants
-
-      if (currentParticipants > 0) {
-        // Step 5a: Update the existing record
-        await MS_query(
-          `UPDATE registrations
-            SET status_add = ?
-            WHERE activity_id = ? AND identifier = ?`,
-          [status_add, activityId, identifier]
-        );
-        console.log('Updated registration');
-      } else {
-        // Step 5b: Insert a new record
-        await MS_query(
-          `INSERT INTO registrations (activity_id, identifier, status_add)
-            VALUES (?, ?, ?)`,
-          [activityId, identifier, status_add]
-        );
-        console.log('Inserted new registration');
-      }
+    
+      // Step 3: Check if currentParticipants <= maxParticipants
       const countNum = await MS_query(
         `SELECT COUNT(*) AS count FROM registrations WHERE status_add = 1 and activity_id = ?`,
         [activityId]
       );
-      const currentParticipantsNum = parseInt(countResult[0].count, 10);
+      const currentParticipantsNum = parseInt(countNum[0].count, 10);
+
+      if(currentParticipantsNum <= maxParticipants){
+        if (currentParticipants > 0) {
+          // Step 5a: Update the existing record
+          await MS_query(
+            `UPDATE registrations
+              SET status_add = ?
+              WHERE activity_id = ? AND identifier = ?`,
+            [status_add, activityId, identifier]
+          );
+          console.log('Updated registration');
+        } else {
+          // Step 5b: Insert a new record
+          await MS_query(
+            `INSERT INTO registrations (activity_id, identifier, status_add)
+              VALUES (?, ?, ?)`,
+            [activityId, identifier, status_add]
+          );
+          console.log('Inserted new registration');
+        }
+      }
+      const countNum_Change = await MS_query(
+        `SELECT COUNT(*) AS count FROM registrations WHERE status_add = 1 and activity_id = ?`,
+        [activityId]
+      );
+      const currentParticipantsNum_Change = parseInt(countNum_Change[0].count, 10);
 
       await MS_query(
         `UPDATE activities
           SET current_participants = ?
           WHERE id = ?`,
-        [currentParticipantsNum, activityId,]
+        [currentParticipantsNum_Change, activityId,]
       );
 
       res.status(200).json({ status: 200 });
@@ -546,6 +554,18 @@ app.post('/delete-event', async (req, res) => {
         console.log('Inserted new registration');
       }
       
+      const countNum_Change = await MS_query(
+        `SELECT COUNT(*) AS count FROM registrations WHERE status_add = 1 and activity_id = ?`,
+        [activityId]
+      );
+      const currentParticipantsNum_Change = parseInt(countNum_Change[0].count, 10);
+
+      await MS_query(
+        `UPDATE activities
+          SET current_participants = ?
+          WHERE id = ?`,
+        [currentParticipantsNum_Change, activityId,]
+      );
       res.status(200).json({ status: 200 });
     } catch (err) {
         console.error('資料庫插入失敗:', err);
