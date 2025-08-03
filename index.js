@@ -469,7 +469,7 @@ app.post('/insert-event', async (req, res) => {
       await MS_query(
         `UPDATE activities
           SET current_participants = ?
-          WHERE activity_id = ?`,
+          WHERE id = ?`,
         [currentParticipantsNum, activityId,]
       );
 
