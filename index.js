@@ -461,7 +461,7 @@ app.post('/insert-event', async (req, res) => {
         console.log('Inserted new registration');
       }
       const countNum = await MS_query(
-        `SELECT COUNT(*) AS count FROM registrations WHERE status_add = 1 , activity_id = ?`,
+        `SELECT COUNT(*) AS count FROM registrations WHERE status_add = 1 and activity_id = ?`,
         [activityId]
       );
       const currentParticipantsNum = parseInt(countResult[0].count, 10);
