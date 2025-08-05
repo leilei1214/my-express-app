@@ -147,6 +147,8 @@
                     <div class="blog-post-comment"><span class="icon mdi mdi-map-marker"></span><span class="location"></span></div>
                     <div class="blog-post-view"><span class="icon mdi mdi-account-multiple"></span><span class="current_participants"></span>/<span class="max_participants"></span> </div>
                     <div class="blog-post-view "><span class="icon">$</span><span class="icon amount"></div>
+                    <div class="blog-post-view Boss_edit"><span class="icon">應收:</span><span class="icon sum_amount"></div>
+
 
                   </div>
                 </div>
@@ -526,6 +528,8 @@
                 $(".organizer").html(data.organizer)
                 $(".active_date").html(formattedDate)
                 $(".activity_intro").html(data.activity_intro)
+                $(".sum_amount").html(data.amount*data.current_participants)
+
                 localStorage.setItem('Guild',data.club);
 
                 // #---------------------------------------------------------------------------------------
