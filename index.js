@@ -1,3 +1,14 @@
+// 放在最開頭
+process.on('uncaughtException', function (err) {
+  console.error('Unhandled exception:', err);
+});
+
+process.on('unhandledRejection', function (reason, p) {
+  console.error('Unhandled rejection:', reason);
+});
+
+
+
 const express = require('express');
 // const admin = require('firebase-admin');
 const axios = require('axios');
@@ -553,7 +564,7 @@ app.post('/delete-event', async (req, res) => {
         );
         console.log('Inserted new registration');
       }
-      
+
       const countNum_Change = await MS_query(
         `SELECT COUNT(*) AS count FROM registrations WHERE status_add = 1 and activity_id = ?`,
         [activityId]
