@@ -541,7 +541,7 @@
           // $('#select_event').html(activitiesHtml).promise().done(()
             // $('#select_event').html(activitiesHtml).promise().done(() => {
                 carousel.owlCarousel({
-                    items: Math.min(activities.length, 3),
+                    items: 3,
                     margin: 30,
                     nav: true,
                     dots: false,
@@ -551,7 +551,7 @@
                     responsive: {
                         0: { items: 1 },
                         600: { items: 2 },
-                        1000: {items: Math.min(activities.length, 3) }
+                        1000: {items:3 }
                     }
                 });
             // })
