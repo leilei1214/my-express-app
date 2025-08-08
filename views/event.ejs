@@ -138,9 +138,9 @@
                         
                       </h5>
                       <div class="d-flex justify-content-center mb-4 border-b border-gray-300 dark:border-gray-700">
-                        <button class="py-2 px-4 text-sm font-medium " onclick="window.location.href='./USER_Member_3'" data-subtab="north">基礎</button>
-                        <button class="py-2 px-4 text-sm font-medium " onclick="window.location.href='./USER_Member_4'" data-subtab="central">樂踢</button>
-                        <button class="py-2 px-4 text-sm font-medium active" data-subtab="south">實戰</button>
+                        <button class="py-2 px-4 text-sm font-medium active" onclick="show_level('基礎')" data-subtab="north">基礎</button>
+                        <button class="py-2 px-4 text-sm font-medium " onclick="show_level('樂踢')" data-subtab="central">樂踢</button>
+                        <button class="py-2 px-4 text-sm font-medium " onclick="show_level('實戰')" data-subtab="south">實戰</button>
                     </div>
                       <div class="owl-carousel-arrows-outline">
                         <div class="owl-nav">
@@ -439,7 +439,7 @@
           headers: {
               'Content-Type': 'application/json;charset=utf-8'
           },
-          body: JSON.stringify({ identifier: "none",level:"樂踢" })
+          body: JSON.stringify({ identifier: "none",level:"基礎" })
       })
       .then(response => {
           if (!response.ok) {
