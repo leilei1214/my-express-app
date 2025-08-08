@@ -376,11 +376,11 @@ app.get('/api/event_content', async (req, res) => {
 });
 // 定義 API 路由來查詢活動內容
 app.post('/api/event', async (req, res) => {
-
+  const { identifier,level,} = req.body;
   try {
     // 獲取數據庫連接並查詢資料
-    const query = 'SELECT * FROM activities ORDER BY time DESC;';
-    const result = await MS_query(query);
+    const query = "SELECT * FROM activities WHERE FIND_IN_SET(?, REPLACE(REPLACE(activity_level, '{', ''), '}', '')) > 0";
+    const result = await MS_query(query, [level]);
 
     // 釋放連接
 
