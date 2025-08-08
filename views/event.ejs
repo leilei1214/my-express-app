@@ -518,7 +518,6 @@
                       </article>
                   </div>
               `;
-              console.log(activitiesHtml)
           }
           // activitiesHtml +=`</div>`
           // 確保插入的元素存在
@@ -542,7 +541,7 @@
           // $('#select_event').html(activitiesHtml).promise().done(()
             // $('#select_event').html(activitiesHtml).promise().done(() => {
                 carousel.owlCarousel({
-                    items: 3,
+                    items: Math.min(activities.length, 3),
                     margin: 30,
                     nav: true,
                     dots: false,
@@ -552,7 +551,7 @@
                     responsive: {
                         0: { items: 1 },
                         600: { items: 2 },
-                        1000: { items: 3 }
+                        1000: {items: Math.min(activities.length, 3) }
                     }
                 });
             // })
