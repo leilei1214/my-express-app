@@ -1,4 +1,15 @@
 function show_level(level){
+        // 1. 移除所有按鈕的 active
+    document.querySelectorAll('button[data-subtab]').forEach(btn => {
+        btn.classList.remove('active');
+    });
+
+    // 2. 找到對應 level 的按鈕，加上 active
+    document.querySelector(`button[onclick="show_level('${level}')"]`).classList.add('active');
+
+    // 3. 這裡你可以加載對應的資料
+    console.log("現在選擇的等級是：", level);
+    
     fetch('./api/event', {
           method: 'POST',
           headers: {
