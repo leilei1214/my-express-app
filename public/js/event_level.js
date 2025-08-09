@@ -11,6 +11,19 @@ function show_level(level){
               if (response.status == 400) {
                   window.location.href = "/login";  // 如果狀態碼是 400，跳轉到登入頁
               }
+              else if (response.status == 404) {
+                  activitiesHtml = "尚未建立活動";  // 如果狀態碼是 400，跳轉到登入頁
+                  const carousel = $('#myCarousel');
+
+                    // 先銷毀先前的 carousel (如果有初始化過)
+                    if (carousel.hasClass('owl-loaded')) {
+                        carousel.trigger('destroy.owl.carousel');
+                        carousel.html('');  // 清空原本的內容
+                    }
+
+                    // 放入新內容
+                    carousel.html(activitiesHtml);
+              }
               throw new Error(`Network response was not ok, status: ${response.status}`);
           }
           return response.json();  // 解析 JSON 響應
