@@ -31,7 +31,7 @@ function show_level(level){
             if (activities.length === 0) {
                 console.log("No activities to display");
                 activitiesHtml = "尚未建立活動";  // 如果狀態碼是 400，跳轉到登入頁
-                const carousel = $('#myCarousel').html;
+                const carousel = $('#myCarousel');
                 carousel.html(activitiesHtml);
             }
           
