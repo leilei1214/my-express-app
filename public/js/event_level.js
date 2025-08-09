@@ -15,11 +15,11 @@ function show_level(level){
                   activitiesHtml = "尚未建立活動";  // 如果狀態碼是 400，跳轉到登入頁
                   const carousel = $('#myCarousel');
 
-                    // 先銷毀先前的 carousel (如果有初始化過)
-                    if (carousel.hasClass('owl-loaded')) {
-                        carousel.trigger('destroy.owl.carousel');
-                        carousel.html('');  // 清空原本的內容
-                    }
+                    // // 先銷毀先前的 carousel (如果有初始化過)
+                    // if (carousel.hasClass('owl-loaded')) {
+                    //     carousel.trigger('destroy.owl.carousel');
+                    //     carousel.html('');  // 清空原本的內容
+                    // }
 
                     // 放入新內容
                     carousel.html(activitiesHtml);
