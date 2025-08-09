@@ -23,6 +23,8 @@ function show_level(level){
 
                     // 放入新內容
                     carousel.html(activitiesHtml);
+                    return; // 中斷，不跑後面流程
+
               }
               throw new Error(`Network response was not ok, status: ${response.status}`);
           }
