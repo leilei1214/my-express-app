@@ -1,5 +1,5 @@
 function show_level(level){
-         fetch('./api/event', {
+    fetch('./api/event', {
           method: 'POST',
           headers: {
               'Content-Type': 'application/json;charset=utf-8'
@@ -13,17 +13,7 @@ function show_level(level){
               }
               else if (response.status == 404) {
                   activitiesHtml = "尚未建立活動";  // 如果狀態碼是 400，跳轉到登入頁
-                  const carousel = $('#myCarousel');
-
-                    // // 先銷毀先前的 carousel (如果有初始化過)
-                    // if (carousel.hasClass('owl-loaded')) {
-                    //     carousel.trigger('destroy.owl.carousel');
-                    //     carousel.html('');  // 清空原本的內容
-                    // }
-
-                    // 放入新內容
-                    carousel.html(activitiesHtml);
-                    return; // 中斷，不跑後面流程
+                 
 
               }
               throw new Error(`Network response was not ok, status: ${response.status}`);
@@ -31,16 +21,20 @@ function show_level(level){
           return response.json();  // 解析 JSON 響應
       })
       .then(data => {
-          console.log('Response data:', data);  // 查看完整響應
+            console.log('Response data:', data);  // 查看完整響應
 
-          const activities = Array.isArray(data) ? data : [];
-          if (activities.length === 0) {
-              console.log("No activities to display");
-          }
+            const activities = Array.isArray(data) ? data : [];
+
+            // 生成每個活動的 HTML
+            let activitylevel = '';
+            let activitiesHtml = '';
+            if (activities.length === 0) {
+                console.log("No activities to display");
+                activitiesHtml = "尚未建立活動";  // 如果狀態碼是 400，跳轉到登入頁
+                const carousel = $('#myCarousel').html;
+                carousel.html(activitiesHtml);
+            }
           
-          // 生成每個活動的 HTML
-          let activitylevel = '';
-          let activitiesHtml = '';
           for (let activity of activities) {
               activitylevel = '';
               
