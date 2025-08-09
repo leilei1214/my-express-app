@@ -12,9 +12,9 @@ function show_level(level){
                   window.location.href = "/login";  // 如果狀態碼是 400，跳轉到登入頁
               }
               else if (response.status == 404) {
-                  activitiesHtml = "尚未建立活動";  // 如果狀態碼是 400，跳轉到登入頁
-                 
+                activitiesHtml = "尚未建立活動";  // 如果狀態碼是 400，跳轉到登入頁
 
+                return;
               }
               throw new Error(`Network response was not ok, status: ${response.status}`);
           }
