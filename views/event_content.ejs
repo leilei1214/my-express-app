@@ -465,10 +465,11 @@
     <!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> -->
     <script>
       fetchEventData()
-      function formatDate(dateStr) {
+      function formatDate(dateStr, offsetHours = -7) {
         // return new Date(dateStr).toLocaleString('zh-TW', { timeZone: 'Asia/Taipei', hour12: false });
 
         const taiwanDate = new Date(dateStr);
+         taiwanDate.setHours(taiwanDate.getHours() + offsetHours);
         // const taiwanDate = new Date(new Date(date.getTime() + 8 * 60 * 60 * 1000));
 
         // 年、月、日
@@ -526,9 +527,10 @@
 
                 }
                 $(".blog-post-title").html(data.activity_notice)
-                const taiwanTime = new Date(data.time).toLocaleString('zh-TW', { timeZone: 'Asia/Taipei', hour12: false });
+                // const taiwanTime = new Date(data.time).toLocaleString('zh-TW', { timeZone: 'Asia/Taipei', hour12: false });
 
                 const taiwanDate = new Date(data.time);
+                taiwanDate.setHours(taiwanDate.getHours()-7 );
                 // const taiwanDate =  new Date(new Date(date.getTime() + 8 * 60 * 60 * 1000));
                 // 提取年月日和小時分鐘
                 const year = taiwanDate.getFullYear();
