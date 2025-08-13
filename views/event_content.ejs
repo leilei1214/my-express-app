@@ -578,12 +578,14 @@
                       let check_out = "未簽退"; // Corrected this line
                       if (registration.check_out == 1) {
                           check_out = "已簽退";
-                          check_in = formatDate(registration.check_out_time)
+                          check_out = formatDate(registration.check_out_time)
                       }
 
                       let payment_status = "未繳費";
                       if (registration.payment_status) {
                         payment_status ="已繳費"; // Use the actual name
+                        payment_status = formatDate(registration.payment_time); // Use the actual name
+
                       }
 
                       console.log(`Registration ${index + 1}:`, registration);
