@@ -619,7 +619,7 @@ app.post('/Update_SignIn', async (req, res) => {
         SET 
             check_in = ?,check_in_time = ?
         WHERE 
-            activity_id = ? AND identifier = ? AND check_in = 0
+            activity_id = ? AND identifier = ? AND check_in != ?
         `;
         Change_checked = checked ? 1 : 0;
       } else if (className === 'SignOut') {
@@ -628,7 +628,7 @@ app.post('/Update_SignIn', async (req, res) => {
         SET 
             check_out = ?,check_out_time = ?
         WHERE 
-            activity_id = ? AND identifier = ? AND check_out = 0
+            activity_id = ? AND identifier = ? AND check_out != ?
         `;
         Change_checked = checked ? 1 : 0;
       } else if (className === 'SignFree') {
@@ -637,7 +637,7 @@ app.post('/Update_SignIn', async (req, res) => {
         SET 
             payment_status = ?,payment_time = ?
         WHERE 
-            activity_id = ? AND identifier = ? AND payment_status = 0
+            activity_id = ? AND identifier = ? AND payment_status != ?
         `;
         Change_checked = checked ? true : false;
       }
