@@ -659,10 +659,7 @@ app.post('/Update_SignIn', async (req, res) => {
   } catch (err) {
     console.error('Unexpected error:', err);
     res.status(500).json({ status: 500, message: 'Unexpected server error' });
-  } finally {
-    // Ensure the client is always released back to the pool
-    client.release();
-  }
+  } 
 });
 
 // Update_SignIn_Qrcode
