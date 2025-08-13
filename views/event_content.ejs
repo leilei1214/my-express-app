@@ -467,7 +467,7 @@
       fetchEventData()
       function formatDate(dateStr) {
         const date = new Date(dateStr);
-        const taiwanDate = new Date(date.getTime() + 8 * 60 * 60 * 1000);
+        const taiwanDate = new Date(new Date(date.getTime() + 8 * 60 * 60 * 1000));
 
         // 年、月、日
         const year = taiwanDate.getFullYear();
@@ -526,7 +526,7 @@
                 $(".blog-post-title").html(data.activity_notice)
 
                 const date = new Date(data.time);
-                const taiwanDate = new Date(date.getTime() + 8 * 60 * 60 * 1000);
+                const taiwanDate =  new Date(new Date(date.getTime() + 8 * 60 * 60 * 1000));
                 // 提取年月日和小時分鐘
                 const year = taiwanDate.getFullYear();
                 const month = String(taiwanDate.getMonth() + 1).padStart(2, '0'); // 月份從0開始，需要+1
