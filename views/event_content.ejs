@@ -467,16 +467,17 @@
       fetchEventData()
       function formatDate(dateStr) {
         const date = new Date(dateStr);
+        const taiwanDate = new Date(date.getTime() + 8 * 60 * 60 * 1000);
 
         // 年、月、日
-        const year = date.getFullYear();
-        const month = String(date.getMonth() + 1).padStart(2, '0'); // 月份從 0 開始
-        const day = String(date.getDate()).padStart(2, '0');
+        const year = taiwanDate.getFullYear();
+        const month = String(taiwanDate.getMonth() + 1).padStart(2, '0'); // 月份從 0 開始
+        const day = String(taiwanDate.getDate()).padStart(2, '0');
 
         // 時、分、秒
-        const hours = String(date.getHours()).padStart(2, '0');
-        const minutes = String(date.getMinutes()).padStart(2, '0');
-        const seconds = String(date.getSeconds()).padStart(2, '0');
+        const hours = String(taiwanDate.getHours()).padStart(2, '0');
+        const minutes = String(taiwanDate.getMinutes()).padStart(2, '0');
+        const seconds = String(taiwanDate.getSeconds()).padStart(2, '0');
 
         return `${year}/${month}/${day} ${hours}:${minutes}:${seconds}`;
       }
@@ -527,11 +528,11 @@
                 const date = new Date(data.time);
                 const taiwanDate = new Date(date.getTime() + 8 * 60 * 60 * 1000);
                 // 提取年月日和小時分鐘
-                const year = date.getFullYear();
-                const month = String(date.getMonth() + 1).padStart(2, '0'); // 月份從0開始，需要+1
-                const day = String(date.getDate()).padStart(2, '0');
-                const hours = String(date.getHours()).padStart(2, '0');
-                const minutes = String(date.getMinutes()).padStart(2, '0');
+                const year = taiwanDate.getFullYear();
+                const month = String(taiwanDate.getMonth() + 1).padStart(2, '0'); // 月份從0開始，需要+1
+                const day = String(taiwanDate.getDate()).padStart(2, '0');
+                const hours = String(taiwanDate.getHours()).padStart(2, '0');
+                const minutes = String(taiwanDate.getMinutes()).padStart(2, '0');
 
                 // 組合成所需格式
                 const formattedDate = `${year}-${month}-${day} ${hours}:${minutes}`;
