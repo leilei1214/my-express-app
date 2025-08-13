@@ -642,7 +642,7 @@ app.post('/Update_SignIn', async (req, res) => {
         Change_checked = checked ? true : false;
       }
 
-      const values = [Change_checked, time ,activityId, value.Change_checked];
+      const values = [Change_checked, time ,activityId, value,Change_checked];
       console.log(values);
 
       try {
