@@ -617,32 +617,32 @@ app.post('/Update_SignIn', async (req, res) => {
         query = `
         UPDATE registrations
         SET 
-            check_in = ?
+            check_in = ?,check_in_time = ?
         WHERE 
-            activity_id = ? AND identifier = ?
+            activity_id = ? AND identifier = ? AND check_in = 0
         `;
         Change_checked = checked ? 1 : 0;
       } else if (className === 'SignOut') {
         query = `
         UPDATE registrations
         SET 
-            check_out = ?
+            check_out = ?,check_out_time = ?
         WHERE 
-            activity_id = ? AND identifier = ?
+            activity_id = ? AND identifier = ? AND check_out = 0
         `;
         Change_checked = checked ? 1 : 0;
       } else if (className === 'SignFree') {
         query = `
         UPDATE registrations
         SET 
-            payment_status = ?
+            payment_status = ?,payment_time = ?
         WHERE 
-            activity_id = ? AND identifier = ?
+            activity_id = ? AND identifier = ? AND payment_status = 0
         `;
         Change_checked = checked ? true : false;
       }
 
-      const values = [Change_checked, activityId, value];
+      const values = [Change_checked, time ,activityId, value];
       console.log(values);
 
       try {

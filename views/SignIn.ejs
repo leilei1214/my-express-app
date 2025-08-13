@@ -579,7 +579,8 @@
             jsonData.push({
                 checked: isChecked,  // 是否选中
                 value: value,      // 复选框的值
-                class: "SignIn"
+                class: "SignIn",
+                time: new Date()
             });
         });
                 // 遍历所有 .SignIn 复选框
@@ -591,7 +592,8 @@
             jsonData.push({
                 checked: isChecked,  // 是否选中
                 value: value,         // 复选框的值
-                class: "SignOut"
+                class: "SignOut",
+                time: new Date()
 
             });
         });
@@ -604,7 +606,8 @@
             jsonData.push({
                 checked: isChecked,  // 是否选中
                 value: value,         // 复选框的值
-                class:"SignFree"
+                class:"SignFree",
+                time: new Date()
                 
             });
         });
