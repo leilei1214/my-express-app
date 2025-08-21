@@ -7,6 +7,9 @@ process.on('unhandledRejection', function (reason, p) {
   console.error('Unhandled rejection:', reason);
 });
 
+const express = require('express');
+
+
 
 
 const express = require('express');
@@ -26,6 +29,9 @@ const QRCode = require('qrcode');
 
 app.use(cors());
 app.use(express.json());
+
+// 靜態檔案資料夾
+app.use(express.static('public'));
 
 // 初始化 session 中間件
 app.use(session({
