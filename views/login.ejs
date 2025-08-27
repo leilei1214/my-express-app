@@ -533,6 +533,7 @@
           // 抓取表單值
         event.preventDefault(); 
         const birthday =document.getElementsByName('birthday')[0].value;
+        const Gender =document.getElementsByName('Gender')[0].value;
         const position1 = document.getElementsByName('position1')[0].value;
         const position2 = document.getElementsByName('position2')[0].value;
 
@@ -547,7 +548,7 @@
               headers: {
                   'Content-Type': 'application/json;charset=utf-8'
               },
-              body: JSON.stringify({ birthday: birthday, position1: position1, position2: position2,Guild:club,level:level }),
+              body: JSON.stringify({ birthday: birthday, position1: position1, position2: position2,Guild:club,level:level,Gender:Gender }),
           })
           .then(response => response.json())
           .then(data => {
