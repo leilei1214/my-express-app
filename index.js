@@ -217,7 +217,7 @@ app.get('/login_data', async (req, res) => {
               try{
                 const identifier = await generateUniqueIdentifier(MS_query); // 生成唯一的 identifier
                 const userSession = req.session.user;
-                const user_img ="";
+                let user_img ="";
                 const { birthday, position1, position2,Guild,level,Gender} = userSession;
                 // 設定輸出路徑（請確認資料夾已存在）
                                  
