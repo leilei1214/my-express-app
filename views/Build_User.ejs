@@ -1,5 +1,4 @@
-
-  <!DOCTYPE html>
+<!DOCTYPE html>
 <html class="wide wow-animation" lang="en">
   <head>
     <!-- Site Title-->
@@ -15,7 +14,6 @@
     <link rel="stylesheet" href="css/fonts.css">
     <link rel="stylesheet" href="css/style.css">
     <style>
-    
     .select2-container .select2-choice {
       padding: 17px 28px;
     }
@@ -33,69 +31,7 @@
         border-color: #35ad79 !important;
     }
     .ie-panel{display: none;background: #212121;padding: 10px 0;box-shadow: 3px 3px 5px 0 rgba(0,0,0,.3);clear: both;text-align:center;position: relative;z-index: 1;} html.ie-10 .ie-panel, html.lt-ie-10 .ie-panel {display: block;}
-
-/* 
-    .dropdown-container {
-      width: 300px;
-      position: relative;
-    }
-
-    .dropdown-button {
-      width: 100%;
-      padding: 10px;
-      font-size: 16px;
-      cursor: pointer;
-      border: 1px solid #ccc;
-      background-color: #fff;
-    }
-
-    .dropdown-list {
-      display: none;
-      position: absolute;
-      width: 100%;
-      max-height: 300px;
-      overflow-y: auto;
-      border: 1px solid #ccc;
-      background-color: #fff;
-      z-index: 1000;
-      margin-top: 2px;
-    }
-
-    .dropdown-list.show {
-      display: block;
-    }
-
-    .dropdown-list input[type="checkbox"] {
-      margin-right: 8px;
-    }
-
-    .dropdown-list label {
-      display: block;
-      padding: 8px;
-      cursor: pointer;
-    }
-
-    .dropdown-list label:hover {
-      background-color: #f1f1f1;
-    }
-
-    .search-box {
-      padding: 8px;
-      border-bottom: 1px solid #ccc;
-    }
-
-    .search-box input {
-      width: 100%;
-      padding: 6px;
-      font-size: 14px;
-    }
-
-    .select-all {
-      font-weight: bold;
-      padding: 8px;
-      border-bottom: 1px solid #ccc;
-    } */
-  </style>
+    </style>
   </head>
   <body>
     <div class="ie-panel"><a href="http://windows.microsoft.com/en-US/internet-explorer/"><img src="images/ie8-panel/warning_bar_0000_us.jpg" height="42" width="820" alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today."></a></div>
@@ -361,30 +297,19 @@
                         <option value="W">女生(Girl)</option>
                       </select>
                     </div>
-                    <!-- <div class="form-wrap">
-                        <div class="dropdown-container">
-                            <div class="dropdown-button" onclick="toggleDropdown()">Select States</div>
-                            <div class="dropdown-list" id="dropdownList">
-                            <div class="search-box">
-                                <input type="text" placeholder="Search States..." onkeyup="filterStates(this)">
-                            </div>
-                            <label class="select-all">
-                                <input type="checkbox" onclick="toggleAll(this)"> 開團項目
-                            </label>
-                            <label><input type="checkbox"> Alabama</label>
-                            <label><input type="checkbox"> Alaska</label>
-                            <label><input type="checkbox"> Arizona</label>
-                            <label><input type="checkbox"> Arkansas</label>
-                            <label><input type="checkbox"> California</label>
-                            <label><input type="checkbox"> Colorado</label>
-                            <label><input type="checkbox"> Connecticut</label>
-                            <label><input type="checkbox"> Louisiana</label>
-                            <label><input type="checkbox"> Maine</label>
-                            <label><input type="checkbox"> Maryland</label>
-                            </div>
-                        </div>
+                    <div class="form-wrap">
+                      <label class="form-label rd-input-label" for="form-login-name-2">position 1 (位置 1) : </label>
+                      <!-- <input class="form-input form-control-has-validation form-control-last-child" id="form-login-name-2" type="text" name="form-input" data-constraints="@Required"><span class="form-validation"></span> -->
+                      <select class="form-select form-input" aria-label="Default select example" id="form-login-name-2" name="position1"  data-constraints="@Required" style="padding-left: 131px;">
+                        <option selected></option>
+                        <option value="GK">GK(守門員)</option>
+                        <option value="DF">DF(後衛)</option>
+                        <option value="MF">MF(中場)</option>
+                        <option value="FW">FW(前鋒)</option>
+                        <option value="libero">libero(自由人)</option>
+
                       </select>
-                    </div> -->
+                    </div>
                     <div class="form-wrap">
                       <label class="form-label rd-input-label" for="form-login-name-2">position 2 (位置 2) : </label>
 
@@ -665,40 +590,75 @@
       //     return (g() + g() + "-" + g() + "-" + g() + "-" + g() + "-" + g() + g() + g());
       // 
     </script>
-    <!-- <script>
-        function toggleDropdown() {
-        document.getElementById("dropdownList").classList.toggle("show");
-        }
+    <script>
+        // // URLパラメータからLINEの認証コードを取得
+        // const urlParams = new URLSearchParams(window.location.search);
+        // const code = urlParams.get('code');
 
-        function toggleAll(source) {
-        const checkboxes = document.querySelectorAll('.dropdown-list input[type="checkbox"]');
-        checkboxes.forEach((cb, index) => {
-            if (index > 0) cb.checked = source.checked; // skip the "Select All" itself
-        });
-        }
+        // if (code) {
+        //     // 認証コードをバックエンドに送信してトークンを取得
+        //     fetch('https://api.line.me/oauth2/v2.1/token', {
+        //         method: 'POST',
+        //         headers: {
+        //             'Content-Type': 'application/x-www-form-urlencoded',
+        //         },
+        //         body: new URLSearchParams({
+        //             'grant_type': 'authorization_code',
+        //             'code': code,
+        //             'redirect_uri': "https://leilei1214.github.io/login/site/login.html",
+        //             'client_id': '1661291645',
+        //             'client_secret': '3d1df453deb161a633a2166417b944f8',
+        //         })
+        //     })
+        //     .then(response => response.json())
+        //     .then(data => {
+        //         // アクセストークンを使用してユーザー情報を取得
+        //         const accessToken = data.access_token;
+        //         fetch('https://api.line.me/v2/profile', {
+        //             headers: {
+        //                 'Authorization': `Bearer ${accessToken}`
+        //             }
+        //         })
+        //         .then(response => response.json())
+        //         .then(userInfo => {
+        //           // 這裡的 userId 和 displayName 是來自 Firebase 中的用戶信息
+        //           const userId = userInfo.userId;
+        //           const displayName = userInfo.displayName;
+        //           // 使用範例
+        //           checkIfUserExists(userId,displayName)
 
-        function filterStates(input) {
-        const filter = input.value.toLowerCase();
-        const labels = document.querySelectorAll(".dropdown-list label");
-        labels.forEach(label => {
-            if (label.textContent.toLowerCase().includes(filter) || label.classList.contains("select-all")) {
-            label.style.display = "";
-            } else {
-            label.style.display = "none";
-            }
-        });
-        }
+        //           // 更新用戶界面
+        //           // document.getElementById('userInfo').innerHTML = `
+        //           //     <h2>Logged in as: ${userId}</h2>
+        //           //     <h2>Display Name: ${displayName}</h2>
+        //           //     <img src="${userInfo.pictureUrl}" alt="Profile Picture">
+        //           // `;
 
-        // Close dropdown on outside click
-        window.onclick = function(event) {
-        if (!event.target.matches('.dropdown-button')) {
-            const dropdowns = document.getElementsByClassName("dropdown-list");
-            for (let i = 0; i < dropdowns.length; i++) {
-            dropdowns[i].classList.remove('show');
-            }
-        }
-        }
-    </script> -->
+        //           // 將用戶信息推送到 Firebase
+        //           // 確保 Firebase 已經正確初始化
+        //           // setTimeout(() => {
+        //           //   db.ref('/user/login/').push({
+        //           //       username: displayName,
+        //           //       userID: userId
+        //           //   })
+        //           //   .then(() => {
+        //           //       alert('User added successfully');
+        //           //   })
+        //           //   .catch((error) => {
+        //           //       console.error('Error adding user:', error);
+        //           //       alert('Failed to add user');
+        //           //   });
+        //           // }, 3000); // 延遲 1 秒
+                  
+        //       })
+        //       .catch(error => {
+        //           console.error('Error:', error);
+        //           alert('An error occurred');
+        //       });
+        //     })
+        //     .catch(error => console.error('Error:', error));
+        // }
+    </script>
     <script>
       document.getElementById("form-login-name-1").value = "";
       // Your web app's Firebase configuration
