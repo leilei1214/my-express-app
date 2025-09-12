@@ -118,6 +118,9 @@ app.get('/SignIn', (req, res) => {
 app.get('/login', (req, res) => {
   res.render('login', { pageTitle: 'Login Page' });
 });
+app.get('/Build_User', (req, res) => {
+  res.render('Build_User', { pageTitle: 'Build_User Page' });
+});
 app.get('/sign', (req, res) => {
   res.render('sign', { pageTitle: 'sign Page' });
 });
