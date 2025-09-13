@@ -298,6 +298,30 @@
                       </select>
                     </div>
                     <div class="form-wrap">
+                          <div class="dropdown-container">
+                            <div class="dropdown-button" onclick="toggleDropdown()">Select States</div>
+                            <div class="dropdown-list" id="dropdownList">
+                            <div class="search-box">
+                                <input type="text" placeholder="Search States..." onkeyup="filterStates(this)">
+                            </div>
+                            <label class="select-all">
+                                <input type="checkbox" onclick="toggleAll(this)"> SELECT ALL
+                            </label>
+                            <label><input type="checkbox"> Alabama</label>
+                            <label><input type="checkbox"> Alaska</label>
+                            <label><input type="checkbox"> Arizona</label>
+                            <label><input type="checkbox"> Arkansas</label>
+                            <label><input type="checkbox"> California</label>
+                            <label><input type="checkbox"> Colorado</label>
+                            <label><input type="checkbox"> Connecticut</label>
+                            <label><input type="checkbox"> Louisiana</label>
+                            <label><input type="checkbox"> Maine</label>
+                            <label><input type="checkbox"> Maryland</label>
+                            <!-- Add more states as needed -->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-wrap">
                       <label class="form-label rd-input-label" for="form-login-name-2">position 1 (位置 1) : </label>
                       <!-- <input class="form-input form-control-has-validation form-control-last-child" id="form-login-name-2" type="text" name="form-input" data-constraints="@Required"><span class="form-validation"></span> -->
                       <select class="form-select form-input" aria-label="Default select example" id="form-login-name-2" name="position1"  data-constraints="@Required" style="padding-left: 131px;">
