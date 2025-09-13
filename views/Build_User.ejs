@@ -92,6 +92,33 @@
       padding: 8px;
       border-bottom: 1px solid #ccc;
     }
+      .search-box {
+      margin-bottom: 10px;
+      width: 100%;
+      max-width: 400px;
+    }
+
+    ul.columns {
+      column-count: 3;
+      column-gap: 20px;
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    ul.columns li {
+      break-inside: avoid;
+      margin: 4px 0;
+    }
+
+    .select-all {
+      font-weight: bold;
+      color: #007BFF;
+    }
+
+    input[type="checkbox"] {
+      margin-right: 5px;
+    }
     </style>
   </head>
   <body>
@@ -365,19 +392,69 @@
                             <div class="search-box">
                                 <input type="text" placeholder="Search States..." onkeyup="filterStates(this)">
                             </div>
-                            <label class="select-all">
-                                <input type="checkbox" onclick="toggleAll(this)"> SELECT ALL
-                            </label>
-                            <label><input type="checkbox"> Alabama</label>
-                            <label><input type="checkbox"> Alaska</label>
-                            <label><input type="checkbox"> Arizona</label>
-                            <label><input type="checkbox"> Arkansas</label>
-                            <label><input type="checkbox"> California</label>
-                            <label><input type="checkbox"> Colorado</label>
-                            <label><input type="checkbox"> Connecticut</label>
-                            <label><input type="checkbox"> Louisiana</label>
-                            <label><input type="checkbox"> Maine</label>
-                            <label><input type="checkbox"> Maryland</label>
+                            <!-- 复选框列表 -->
+                            <ul class="columns" id="state-list">
+                                <!-- 全选 -->
+                                <li class="select-all">
+                                <label>
+                                    <input type="checkbox" id="select-all" onchange="toggleAll(this)">
+                                    全选
+                                </label>
+                                </li>
+
+                                <!-- 州列表开始 -->
+                                <li data-search-term="alabama"><label><input type="checkbox" value="AL">Alabama</label></li>
+                                <li data-search-term="alaska"><label><input type="checkbox" value="AK">Alaska</label></li>
+                                <li data-search-term="arizona"><label><input type="checkbox" value="AZ">Arizona</label></li>
+                                <li data-search-term="arkansas"><label><input type="checkbox" value="AR">Arkansas</label></li>
+                                <li data-search-term="california"><label><input type="checkbox" value="CA">California</label></li>
+                                <li data-search-term="colorado"><label><input type="checkbox" value="CO">Colorado</label></li>
+                                <li data-search-term="connecticut"><label><input type="checkbox" value="CT">Connecticut</label></li>
+                                <li data-search-term="delaware"><label><input type="checkbox" value="DE">Delaware</label></li>
+                                <li data-search-term="florida"><label><input type="checkbox" value="FL">Florida</label></li>
+                                <li data-search-term="georgia"><label><input type="checkbox" value="GA">Georgia</label></li>
+                                <li data-search-term="hawaii"><label><input type="checkbox" value="HI">Hawaii</label></li>
+                                <li data-search-term="idaho"><label><input type="checkbox" value="ID">Idaho</label></li>
+                                <li data-search-term="illinois"><label><input type="checkbox" value="IL">Illinois</label></li>
+                                <li data-search-term="indiana"><label><input type="checkbox" value="IN">Indiana</label></li>
+                                <li data-search-term="iowa"><label><input type="checkbox" value="IA">Iowa</label></li>
+                                <li data-search-term="kansas"><label><input type="checkbox" value="KS">Kansas</label></li>
+                                <li data-search-term="kentucky"><label><input type="checkbox" value="KY">Kentucky</label></li>
+                                <li data-search-term="louisiana"><label><input type="checkbox" value="LA">Louisiana</label></li>
+                                <li data-search-term="maine"><label><input type="checkbox" value="ME">Maine</label></li>
+                                <li data-search-term="maryland"><label><input type="checkbox" value="MD">Maryland</label></li>
+                                <li data-search-term="massachusetts"><label><input type="checkbox" value="MA">Massachusetts</label></li>
+                                <li data-search-term="michigan"><label><input type="checkbox" value="MI">Michigan</label></li>
+                                <li data-search-term="minnesota"><label><input type="checkbox" value="MN">Minnesota</label></li>
+                                <li data-search-term="mississippi"><label><input type="checkbox" value="MS">Mississippi</label></li>
+                                <li data-search-term="missouri"><label><input type="checkbox" value="MO">Missouri</label></li>
+                                <li data-search-term="montana"><label><input type="checkbox" value="MT">Montana</label></li>
+                                <li data-search-term="nebraska"><label><input type="checkbox" value="NE">Nebraska</label></li>
+                                <li data-search-term="nevada"><label><input type="checkbox" value="NV">Nevada</label></li>
+                                <li data-search-term="new hampshire"><label><input type="checkbox" value="NH">New Hampshire</label></li>
+                                <li data-search-term="new jersey"><label><input type="checkbox" value="NJ">New Jersey</label></li>
+                                <li data-search-term="new mexico"><label><input type="checkbox" value="NM">New Mexico</label></li>
+                                <li data-search-term="new york"><label><input type="checkbox" value="NY">New York</label></li>
+                                <li data-search-term="north carolina"><label><input type="checkbox" value="NC">North Carolina</label></li>
+                                <li data-search-term="north dakota"><label><input type="checkbox" value="ND">North Dakota</label></li>
+                                <li data-search-term="ohio"><label><input type="checkbox" value="OH">Ohio</label></li>
+                                <li data-search-term="oklahoma"><label><input type="checkbox" value="OK">Oklahoma</label></li>
+                                <li data-search-term="oregon"><label><input type="checkbox" value="OR">Oregon</label></li>
+                                <li data-search-term="pennsylvania"><label><input type="checkbox" value="PA">Pennsylvania</label></li>
+                                <li data-search-term="rhode island"><label><input type="checkbox" value="RI">Rhode Island</label></li>
+                                <li data-search-term="south carolina"><label><input type="checkbox" value="SC">South Carolina</label></li>
+                                <li data-search-term="south dakota"><label><input type="checkbox" value="SD">South Dakota</label></li>
+                                <li data-search-term="tennessee"><label><input type="checkbox" value="TN">Tennessee</label></li>
+                                <li data-search-term="texas"><label><input type="checkbox" value="TX">Texas</label></li>
+                                <li data-search-term="utah"><label><input type="checkbox" value="UT">Utah</label></li>
+                                <li data-search-term="vermont"><label><input type="checkbox" value="VT">Vermont</label></li>
+                                <li data-search-term="virginia"><label><input type="checkbox" value="VA">Virginia</label></li>
+                                <li data-search-term="washington"><label><input type="checkbox" value="WA">Washington</label></li>
+                                <li data-search-term="west virginia"><label><input type="checkbox" value="WV">West Virginia</label></li>
+                                <li data-search-term="wisconsin"><label><input type="checkbox" value="WI">Wisconsin</label></li>
+                                <li data-search-term="wyoming"><label><input type="checkbox" value="WY">Wyoming</label></li>
+                                <!-- 州列表结束 -->
+                            </ul>
                             <!-- Add more states as needed -->
                             </div>
                         </div>
