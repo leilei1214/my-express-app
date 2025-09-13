@@ -123,6 +123,22 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    padding: 10px 15px;
+    border: 1px solid #ccc;
+    background-color: #fff;
+    cursor: pointer;
+    width: 300px;
+    font-size: 16px;
+    border-radius: 5px;
+    }
+
+    .arrow-icon {
+    margin-left: 10px;
+    transition: transform 0.3s ease;
+    }
+
+    .dropdown-button.open .arrow-icon {
+    transform: rotate(180deg);
     }
     </style>
   </head>
@@ -394,8 +410,11 @@
                           <div class="dropdown-container">
                             <div class="dropdown-button" onclick="toggleDropdown()">
                                 <span id="selected-text">選擇球類</span>
-                                <span style="float: right;">&#9662;</span> <!-- ▼ 箭頭 -->
-                            </div>                      <div class="dropdown-list" id="dropdownList">
+                                <svg class="arrow-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
+                                <path d="M7 10l5 5 5-5" fill="none" stroke="#888" stroke-width="2"/>
+                                </svg>
+                            </div>                      
+                            <div class="dropdown-list" id="dropdownList">
                             <div class="search-box">
                                 <input type="text" placeholder="Search States..." onkeyup="filterStates(this)">
                             </div>
@@ -727,42 +746,57 @@
 
   <!-- JavaScript 功能 -->
     <script>
-       function toggleDropdown() {
-            const list = document.getElementById("dropdownList");
-            list.classList.toggle("show");
+        function toggleDropdown() {
+            const dropdown = document.querySelector('.dropdown-button');
+            const dropdownList = document.getElementById('dropdownList');
 
-            const arrow = document.getElementById("dropdown-arrow");
-            if (list.classList.contains("show")) {
-                arrow.innerHTML = "&#9650;"; // ▲
-            } else {
-                arrow.innerHTML = "&#9662;"; // ▼
-            }
-            }
+            dropdown.classList.toggle('open');
+            dropdownList.classList.toggle('show');
+        }
+
         function toggleAll(source) {
-            const checkboxes = document.querySelectorAll('#sport-list input[type="checkbox"]:not(#select-all)');
-            checkboxes.forEach(cb => cb.checked = source.checked);
+            const checkboxes = document.querySelectorAll('.dropdown-list input[type="checkbox"]');
+            checkboxes.forEach((cb, index) => {
+            if (index > 0) cb.checked = source.checked; // skip the search box
+            });
+            updateButton();
         }
 
         function filterSports(input) {
             const filter = input.value.toLowerCase();
-            const items = document.querySelectorAll('#sport-list li:not(.select-all)');
-            items.forEach(item => {
-                const term = item.getAttribute('data-search-term');
-                if (term.includes(filter)) {
-                item.style.display = "";
-                } else {
-                item.style.display = "none";
-                }
+            const labels = document.querySelectorAll(".dropdown-list label");
+            labels.forEach(label => {
+            if (label.textContent.toLowerCase().includes(filter) || label.classList.contains("select-all")) {
+                label.style.display = "";
+            } else {
+                label.style.display = "none";
+            }
             });
         }
-            // Close dropdown on outside click
+
+        function updateButton() {
+            const selected = Array.from(document.querySelectorAll('.dropdown-list input[type="checkbox"]:checked'))
+            .filter(cb => cb.parentElement.className !== "select-all")
+            .map(cb => cb.parentElement.textContent.trim());
+
+            document.querySelector(".dropdown-button").textContent = selected.length > 0
+            ? selected.join(", ")
+            : "選擇球類";
+        }
+
+        // Update when clicking checkboxes
+        document.querySelectorAll(".dropdown-list input[type='checkbox']").forEach(cb => {
+            cb.addEventListener("change", updateButton);
+        });
+
+        // Close dropdown when clicking outside
         window.onclick = function(event) {
-        if (!event.target.matches('.dropdown-button')) {
+            if (!event.target.matches('.dropdown-button')) {
             const dropdowns = document.getElementsByClassName("dropdown-list");
             for (let i = 0; i < dropdowns.length; i++) {
-            dropdowns[i].classList.remove('show');
+                dropdowns[i].classList.remove('show');
             }
-        }
+            }
         }
     </script>
 
