@@ -47,7 +47,7 @@
     }
 
     .dropdown-list {
-      display: block;
+      display: none;
       position: absolute;
       width: 100%;
       max-height: 300px;
@@ -720,22 +720,34 @@
 
   <!-- JavaScript 功能 -->
     <script>
+        function toggleDropdown() {
+            document.getElementById("dropdownList").classList.toggle("show");
+        }
         function toggleAll(source) {
         const checkboxes = document.querySelectorAll('#sport-list input[type="checkbox"]:not(#select-all)');
         checkboxes.forEach(cb => cb.checked = source.checked);
         }
 
         function filterSports(input) {
-        const filter = input.value.toLowerCase();
-        const items = document.querySelectorAll('#sport-list li:not(.select-all)');
-        items.forEach(item => {
-            const term = item.getAttribute('data-search-term');
-            if (term.includes(filter)) {
-            item.style.display = "";
-            } else {
-            item.style.display = "none";
+            const filter = input.value.toLowerCase();
+            const items = document.querySelectorAll('#sport-list li:not(.select-all)');
+            items.forEach(item => {
+                const term = item.getAttribute('data-search-term');
+                if (term.includes(filter)) {
+                item.style.display = "";
+                } else {
+                item.style.display = "none";
+                }
+            });
+        }
+            // Close dropdown on outside click
+        window.onclick = function(event) {
+        if (!event.target.matches('.dropdown-button')) {
+            const dropdowns = document.getElementsByClassName("dropdown-list");
+            for (let i = 0; i < dropdowns.length; i++) {
+            dropdowns[i].classList.remove('show');
             }
-        });
+        }
         }
     </script>
 
