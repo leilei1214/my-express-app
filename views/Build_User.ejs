@@ -87,11 +87,7 @@
       font-size: 14px;
     }
 
-    .select-all {
-      font-weight: bold;
-      padding: 8px;
-      border-bottom: 1px solid #ccc;
-    }
+
       .search-box {
       margin-bottom: 10px;
       width: 100%;
@@ -107,7 +103,6 @@
     }
 
     ul.columns li {
-      break-inside: avoid;
       margin: 4px 0;
     }
 
@@ -416,15 +411,15 @@
                     <div class="form-wrap">
                           <div class="dropdown-container">
                             <div class="dropdown-button" onclick="toggleDropdown()">
-                                <span id="selected-text">選擇球類</span>
+                                <span id="selected-text">運動</span>
+                                <span class="form-label rd-input-label" id="selectedItem">請選擇</span>
+
                                 <svg class="arrow-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
-                                <path d="M7 10l5 5 5-5" fill="none" stroke="#888" stroke-width="2"/>
+                                    <path d="M7 10l5 5 5-5" fill="none" stroke="#888" stroke-width="2"/>
                                 </svg>
                             </div>                      
                             <div class="dropdown-list" id="dropdownList">
-                            <div class="search-box">
-                                <input type="text" placeholder="Search States..." onkeyup="filterStates(this)">
-                            </div>
+                           
                             <!-- 复选框列表 -->
                             <ul class="columns" id="state-list">
                                 <!-- 全选 -->
@@ -787,7 +782,7 @@
             .filter(cb => cb.parentElement.className !== "select-all")
             .map(cb => cb.parentElement.textContent.trim());
 
-            document.querySelector(".dropdown-button").textContent = selected.length > 0
+            document.querySelector("#selectedItem").textContent = selected.length > 0
             ? selected.join(", ")
             : "選擇球類";
         }
