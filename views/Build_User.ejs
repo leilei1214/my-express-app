@@ -417,7 +417,7 @@
                                 <path d="M7 10l5 5 5-5" fill="none" stroke="#888" stroke-width="2"/>
                                 </svg>
                             </div>                      
-                            <div class="dropdown-list" id="dropdownList">
+                            <div class="dropdown-list dropdownList" id="dropdownList">
                             <div class="search-box">
                                 <input type="text" placeholder="Search States..." onkeyup="filterStates(this)">
                             </div>
@@ -751,7 +751,7 @@
     <script>
         function toggleDropdown() {
             const dropdownButton = document.querySelector('.dropdown-button');
-            const dropdownList = document.getElementById('dropdownList');
+            const dropdownList = document.querySelector('dropdownList');
 
             dropdownButton.classList.toggle('open');
             dropdownList.classList.toggle('show');
