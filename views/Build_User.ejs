@@ -32,8 +32,8 @@
     }
     .ie-panel{display: none;background: #212121;padding: 10px 0;box-shadow: 3px 3px 5px 0 rgba(0,0,0,.3);clear: both;text-align:center;position: relative;z-index: 1;} html.ie-10 .ie-panel, html.lt-ie-10 .ie-panel {display: block;}
     
-        .dropdown-container {
-      width: 300px;
+    .dropdown-container {
+      width: 100%;
       position: relative;
     }
 
@@ -47,7 +47,7 @@
     }
 
     .dropdown-list {
-      display: none;
+      display: block;
       position: absolute;
       width: 100%;
       max-height: 300px;
@@ -403,56 +403,21 @@
                                 </li>
 
                                 <!-- 州列表开始 -->
-                                <li data-search-term="alabama"><label><input type="checkbox" value="AL">Alabama</label></li>
-                                <li data-search-term="alaska"><label><input type="checkbox" value="AK">Alaska</label></li>
-                                <li data-search-term="arizona"><label><input type="checkbox" value="AZ">Arizona</label></li>
-                                <li data-search-term="arkansas"><label><input type="checkbox" value="AR">Arkansas</label></li>
-                                <li data-search-term="california"><label><input type="checkbox" value="CA">California</label></li>
-                                <li data-search-term="colorado"><label><input type="checkbox" value="CO">Colorado</label></li>
-                                <li data-search-term="connecticut"><label><input type="checkbox" value="CT">Connecticut</label></li>
-                                <li data-search-term="delaware"><label><input type="checkbox" value="DE">Delaware</label></li>
-                                <li data-search-term="florida"><label><input type="checkbox" value="FL">Florida</label></li>
-                                <li data-search-term="georgia"><label><input type="checkbox" value="GA">Georgia</label></li>
-                                <li data-search-term="hawaii"><label><input type="checkbox" value="HI">Hawaii</label></li>
-                                <li data-search-term="idaho"><label><input type="checkbox" value="ID">Idaho</label></li>
-                                <li data-search-term="illinois"><label><input type="checkbox" value="IL">Illinois</label></li>
-                                <li data-search-term="indiana"><label><input type="checkbox" value="IN">Indiana</label></li>
-                                <li data-search-term="iowa"><label><input type="checkbox" value="IA">Iowa</label></li>
-                                <li data-search-term="kansas"><label><input type="checkbox" value="KS">Kansas</label></li>
-                                <li data-search-term="kentucky"><label><input type="checkbox" value="KY">Kentucky</label></li>
-                                <li data-search-term="louisiana"><label><input type="checkbox" value="LA">Louisiana</label></li>
-                                <li data-search-term="maine"><label><input type="checkbox" value="ME">Maine</label></li>
-                                <li data-search-term="maryland"><label><input type="checkbox" value="MD">Maryland</label></li>
-                                <li data-search-term="massachusetts"><label><input type="checkbox" value="MA">Massachusetts</label></li>
-                                <li data-search-term="michigan"><label><input type="checkbox" value="MI">Michigan</label></li>
-                                <li data-search-term="minnesota"><label><input type="checkbox" value="MN">Minnesota</label></li>
-                                <li data-search-term="mississippi"><label><input type="checkbox" value="MS">Mississippi</label></li>
-                                <li data-search-term="missouri"><label><input type="checkbox" value="MO">Missouri</label></li>
-                                <li data-search-term="montana"><label><input type="checkbox" value="MT">Montana</label></li>
-                                <li data-search-term="nebraska"><label><input type="checkbox" value="NE">Nebraska</label></li>
-                                <li data-search-term="nevada"><label><input type="checkbox" value="NV">Nevada</label></li>
-                                <li data-search-term="new hampshire"><label><input type="checkbox" value="NH">New Hampshire</label></li>
-                                <li data-search-term="new jersey"><label><input type="checkbox" value="NJ">New Jersey</label></li>
-                                <li data-search-term="new mexico"><label><input type="checkbox" value="NM">New Mexico</label></li>
-                                <li data-search-term="new york"><label><input type="checkbox" value="NY">New York</label></li>
-                                <li data-search-term="north carolina"><label><input type="checkbox" value="NC">North Carolina</label></li>
-                                <li data-search-term="north dakota"><label><input type="checkbox" value="ND">North Dakota</label></li>
-                                <li data-search-term="ohio"><label><input type="checkbox" value="OH">Ohio</label></li>
-                                <li data-search-term="oklahoma"><label><input type="checkbox" value="OK">Oklahoma</label></li>
-                                <li data-search-term="oregon"><label><input type="checkbox" value="OR">Oregon</label></li>
-                                <li data-search-term="pennsylvania"><label><input type="checkbox" value="PA">Pennsylvania</label></li>
-                                <li data-search-term="rhode island"><label><input type="checkbox" value="RI">Rhode Island</label></li>
-                                <li data-search-term="south carolina"><label><input type="checkbox" value="SC">South Carolina</label></li>
-                                <li data-search-term="south dakota"><label><input type="checkbox" value="SD">South Dakota</label></li>
-                                <li data-search-term="tennessee"><label><input type="checkbox" value="TN">Tennessee</label></li>
-                                <li data-search-term="texas"><label><input type="checkbox" value="TX">Texas</label></li>
-                                <li data-search-term="utah"><label><input type="checkbox" value="UT">Utah</label></li>
-                                <li data-search-term="vermont"><label><input type="checkbox" value="VT">Vermont</label></li>
-                                <li data-search-term="virginia"><label><input type="checkbox" value="VA">Virginia</label></li>
-                                <li data-search-term="washington"><label><input type="checkbox" value="WA">Washington</label></li>
-                                <li data-search-term="west virginia"><label><input type="checkbox" value="WV">West Virginia</label></li>
-                                <li data-search-term="wisconsin"><label><input type="checkbox" value="WI">Wisconsin</label></li>
-                                <li data-search-term="wyoming"><label><input type="checkbox" value="WY">Wyoming</label></li>
+                                <!-- 球類清單 -->
+                                <!-- 球類清單 -->
+                                <li data-search-term="籃球"><label><input type="checkbox" value="basketball">籃球</label></li>
+                                <li data-search-term="足球"><label><input type="checkbox" value="football">足球</label></li>
+                                <li data-search-term="棒球"><label><input type="checkbox" value="baseball">棒球</label></li>
+                                <li data-search-term="排球"><label><input type="checkbox" value="volleyball">排球</label></li>
+                                <li data-search-term="羽毛球"><label><input type="checkbox" value="badminton">羽毛球</label></li>
+                                <li data-search-term="網球"><label><input type="checkbox" value="tennis">網球</label></li>
+                                <li data-search-term="乒乓球"><label><input type="checkbox" value="pingpong">乒乓球</label></li>
+                                <li data-search-term="橄欖球"><label><input type="checkbox" value="rugby">橄欖球</label></li>
+                                <li data-search-term="冰球"><label><input type="checkbox" value="hockey">冰球</label></li>
+                                <li data-search-term="手球"><label><input type="checkbox" value="handball">手球</label></li>
+                                <li data-search-term="桌球"><label><input type="checkbox" value="tabletennis">桌球</label></li>
+                                <li data-search-term="曲棍球"><label><input type="checkbox" value="fieldhockey">曲棍球</label></li>
+                                <li data-search-term="壘球"><label><input type="checkbox" value="softball">壘球</label></li>
                                 <!-- 州列表结束 -->
                             </ul>
                             <!-- Add more states as needed -->
@@ -752,75 +717,28 @@
       //     return (g() + g() + "-" + g() + "-" + g() + "-" + g() + "-" + g() + g() + g());
       // 
     </script>
+
+  <!-- JavaScript 功能 -->
     <script>
-        // // URLパラメータからLINEの認証コードを取得
-        // const urlParams = new URLSearchParams(window.location.search);
-        // const code = urlParams.get('code');
+        function toggleAll(source) {
+        const checkboxes = document.querySelectorAll('#sport-list input[type="checkbox"]:not(#select-all)');
+        checkboxes.forEach(cb => cb.checked = source.checked);
+        }
 
-        // if (code) {
-        //     // 認証コードをバックエンドに送信してトークンを取得
-        //     fetch('https://api.line.me/oauth2/v2.1/token', {
-        //         method: 'POST',
-        //         headers: {
-        //             'Content-Type': 'application/x-www-form-urlencoded',
-        //         },
-        //         body: new URLSearchParams({
-        //             'grant_type': 'authorization_code',
-        //             'code': code,
-        //             'redirect_uri': "https://leilei1214.github.io/login/site/login.html",
-        //             'client_id': '1661291645',
-        //             'client_secret': '3d1df453deb161a633a2166417b944f8',
-        //         })
-        //     })
-        //     .then(response => response.json())
-        //     .then(data => {
-        //         // アクセストークンを使用してユーザー情報を取得
-        //         const accessToken = data.access_token;
-        //         fetch('https://api.line.me/v2/profile', {
-        //             headers: {
-        //                 'Authorization': `Bearer ${accessToken}`
-        //             }
-        //         })
-        //         .then(response => response.json())
-        //         .then(userInfo => {
-        //           // 這裡的 userId 和 displayName 是來自 Firebase 中的用戶信息
-        //           const userId = userInfo.userId;
-        //           const displayName = userInfo.displayName;
-        //           // 使用範例
-        //           checkIfUserExists(userId,displayName)
-
-        //           // 更新用戶界面
-        //           // document.getElementById('userInfo').innerHTML = `
-        //           //     <h2>Logged in as: ${userId}</h2>
-        //           //     <h2>Display Name: ${displayName}</h2>
-        //           //     <img src="${userInfo.pictureUrl}" alt="Profile Picture">
-        //           // `;
-
-        //           // 將用戶信息推送到 Firebase
-        //           // 確保 Firebase 已經正確初始化
-        //           // setTimeout(() => {
-        //           //   db.ref('/user/login/').push({
-        //           //       username: displayName,
-        //           //       userID: userId
-        //           //   })
-        //           //   .then(() => {
-        //           //       alert('User added successfully');
-        //           //   })
-        //           //   .catch((error) => {
-        //           //       console.error('Error adding user:', error);
-        //           //       alert('Failed to add user');
-        //           //   });
-        //           // }, 3000); // 延遲 1 秒
-                  
-        //       })
-        //       .catch(error => {
-        //           console.error('Error:', error);
-        //           alert('An error occurred');
-        //       });
-        //     })
-        //     .catch(error => console.error('Error:', error));
-        // }
+        function filterSports(input) {
+        const filter = input.value.toLowerCase();
+        const items = document.querySelectorAll('#sport-list li:not(.select-all)');
+        items.forEach(item => {
+            const term = item.getAttribute('data-search-term');
+            if (term.includes(filter)) {
+            item.style.display = "";
+            } else {
+            item.style.display = "none";
+            }
+        });
+        }
     </script>
+
     <script>
       document.getElementById("form-login-name-1").value = "";
       // Your web app's Firebase configuration
