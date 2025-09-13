@@ -120,16 +120,20 @@
       margin-right: 5px;
     }
     .dropdown-button {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 15px;
-    border: 1px solid #ccc;
-    background-color: #fff;
-    cursor: pointer;
-    width: 300px;
-    font-size: 16px;
-    border-radius: 5px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        cursor: pointer;
+        min-height: 60px;
+        padding: 17px 19px;
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 24px;
+        color: #9b9b9b;
+        background-color: #fff;
+        background-image: none;
+        border-radius: 3px;
+        border: 1px solid #e1e1e1;
     }
 
     .arrow-icon {
@@ -750,10 +754,10 @@
   <!-- JavaScript 功能 -->
     <script>
         function toggleDropdown() {
-            // const dropdownButton = document.querySelector('.dropdown-button');
+            const dropdownButton = document.querySelector('.dropdown-button');
             const dropdownList = document.querySelector('.dropdown-list');
 
-            // dropdownButton.classList.toggle('open');
+            dropdownButton.classList.toggle('open');
             dropdownList.classList.toggle('open');
 
         }
