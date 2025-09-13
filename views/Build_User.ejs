@@ -119,6 +119,11 @@
     input[type="checkbox"] {
       margin-right: 5px;
     }
+    .dropdown-button {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    }
     </style>
   </head>
   <body>
@@ -387,8 +392,10 @@
                     </div>
                     <div class="form-wrap">
                           <div class="dropdown-container">
-                            <div class="dropdown-button" onclick="toggleDropdown()">Select States</div>
-                            <div class="dropdown-list" id="dropdownList">
+                            <div class="dropdown-button" onclick="toggleDropdown()">
+                                <span id="selected-text">選擇球類</span>
+                                <span style="float: right;">&#9662;</span> <!-- ▼ 箭頭 -->
+                            </div>                      <div class="dropdown-list" id="dropdownList">
                             <div class="search-box">
                                 <input type="text" placeholder="Search States..." onkeyup="filterStates(this)">
                             </div>
@@ -720,12 +727,20 @@
 
   <!-- JavaScript 功能 -->
     <script>
-        function toggleDropdown() {
-            document.getElementById("dropdownList").classList.toggle("show");
-        }
+       function toggleDropdown() {
+            const list = document.getElementById("dropdownList");
+            list.classList.toggle("show");
+
+            const arrow = document.getElementById("dropdown-arrow");
+            if (list.classList.contains("show")) {
+                arrow.innerHTML = "&#9650;"; // ▲
+            } else {
+                arrow.innerHTML = "&#9662;"; // ▼
+            }
+            }
         function toggleAll(source) {
-        const checkboxes = document.querySelectorAll('#sport-list input[type="checkbox"]:not(#select-all)');
-        checkboxes.forEach(cb => cb.checked = source.checked);
+            const checkboxes = document.querySelectorAll('#sport-list input[type="checkbox"]:not(#select-all)');
+            checkboxes.forEach(cb => cb.checked = source.checked);
         }
 
         function filterSports(input) {
