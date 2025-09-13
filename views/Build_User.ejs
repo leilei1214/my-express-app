@@ -31,6 +31,67 @@
         border-color: #35ad79 !important;
     }
     .ie-panel{display: none;background: #212121;padding: 10px 0;box-shadow: 3px 3px 5px 0 rgba(0,0,0,.3);clear: both;text-align:center;position: relative;z-index: 1;} html.ie-10 .ie-panel, html.lt-ie-10 .ie-panel {display: block;}
+    
+        .dropdown-container {
+      width: 300px;
+      position: relative;
+    }
+
+    .dropdown-button {
+      width: 100%;
+      padding: 10px;
+      font-size: 16px;
+      cursor: pointer;
+      border: 1px solid #ccc;
+      background-color: #fff;
+    }
+
+    .dropdown-list {
+      display: none;
+      position: absolute;
+      width: 100%;
+      max-height: 300px;
+      overflow-y: auto;
+      border: 1px solid #ccc;
+      background-color: #fff;
+      z-index: 1000;
+      margin-top: 2px;
+    }
+
+    .dropdown-list.show {
+      display: block;
+    }
+
+    .dropdown-list input[type="checkbox"] {
+      margin-right: 8px;
+    }
+
+    .dropdown-list label {
+      display: block;
+      padding: 8px;
+      cursor: pointer;
+    }
+
+    .dropdown-list label:hover {
+      background-color: #f1f1f1;
+    }
+
+    .search-box {
+      padding: 8px;
+      border-bottom: 1px solid #ccc;
+    }
+
+    .search-box input {
+      width: 100%;
+      padding: 6px;
+      font-size: 14px;
+    }
+
+    .select-all {
+      font-weight: bold;
+      padding: 8px;
+      border-bottom: 1px solid #ccc;
+    }
     </style>
   </head>
   <body>
