@@ -782,7 +782,7 @@
             .filter(cb => cb.parentElement.className !== "select-all")
             .map(cb => cb.parentElement.textContent.trim());
 
-            document.querySelector("#selectedItem").textContent = selected.length > 0
+            document.getElementById('selectedItem').textContent = selected.length > 0
             ? selected.join(", ")
             : "選擇球類";
         }
