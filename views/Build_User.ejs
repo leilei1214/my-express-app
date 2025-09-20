@@ -459,7 +459,19 @@
                     </div>
                     <div class="form-wrap">
                         <label class="form-label rd-input-label" for="form-login-name-2">團體名稱 : </label>
-                        <input class="form-input " id="form-input-2" type="text" name="form-input" data-constraints="@Required" style="padding-left: 95px;">
+                        <input class="form-input " id="club" type="text" name="form-input" data-constraints="@Required" style="padding-left: 95px;">
+                    </div>
+                    <div class="form-wrap">
+                        <label class="form-label rd-input-label" for="form-login-name-2">活動標籤 1 : </label>
+                        <input class="form-input " id="club_level_1" type="text" name="form-input" data-constraints="@Required" style="padding-left: 95px;">
+                    </div>
+                    <div class="form-wrap">
+                        <label class="form-label rd-input-label" for="form-login-name-2">活動標籤 2 : </label>
+                        <input class="form-input " id="club_level_2" type="text" name="form-input" data-constraints="@Required" style="padding-left: 95px;">
+                    </div>
+                    <div class="form-wrap">
+                        <label class="form-label rd-input-label" for="form-login-name-2">活動標籤 3 : </label>
+                        <input class="form-input " id="club_level_3" type="text" name="form-input" data-constraints="@Required" style="padding-left: 95px;">
                     </div>
                     <!-- <div class="form-wrap">
                       <label class="form-label rd-input-label" for="form-login-name-2">position 1 (位置 1) : </label>
@@ -705,11 +717,14 @@
         const urlParams = new URLSearchParams(window.location.search);
 
           // 獲取 `list_id` 的值
-        let club = urlParams.get('club');
-        let level = urlParams.get('level');
-        if(!level){
-          level = 4
-        }
+        let club =document.getElementById("club").value
+        let club_level_1 = document.getElementById("club_level_1").value
+        let club_level_2 = document.getElementById("club_level_2").value
+        let club_level_3 = document.getElementById("club_level_3").value
+
+        // 公會經營者
+        let level = 5
+      
         if(!club){
           club = "圖斯特宇宙"
         }
@@ -731,7 +746,18 @@
               headers: {
                   'Content-Type': 'application/json;charset=utf-8'
               },
-              body: JSON.stringify({ birthday: birthday, position1: position1, position2: position2,Guild:club,level:level,Gender:Gender }),
+              body: JSON.stringify({ 
+                birthday: birthday, 
+                position1: position1, 
+                position2: position2,
+                Guild:club,
+                level:level,
+                Gender:Gender,
+                club_level_1:club_level_1,
+                club_level_2:club_level_2,
+                club_level_3:club_level_3,
+                
+            }),
           })
           .then(response => response.json())
           .then(data => {
