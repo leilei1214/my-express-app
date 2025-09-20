@@ -461,9 +461,8 @@
                         <label class="form-label rd-input-label" for="form-login-name-2">團體名稱 : </label>
                         <input class="form-input " id="form-input-2" type="text" name="form-input" data-constraints="@Required" style="padding-left: 95px;">
                     </div>
-                    <div class="form-wrap">
+                    <!-- <div class="form-wrap">
                       <label class="form-label rd-input-label" for="form-login-name-2">position 1 (位置 1) : </label>
-                      <!-- <input class="form-input form-control-has-validation form-control-last-child" id="form-login-name-2" type="text" name="form-input" data-constraints="@Required"><span class="form-validation"></span> -->
                       <select class="form-select form-input" aria-label="Default select example" id="form-login-name-2" name="position1"  data-constraints="@Required" style="padding-left: 131px;">
                         <option selected></option>
                         <option value="GK">GK(守門員)</option>
@@ -486,7 +485,7 @@
                         <option value="libero">libero(自由人)</option>
 
                       </select>
-                    </div>
+                    </div> -->
                     <div class="form-wrap">
                     </div>
                     <div class="form-wrap">
@@ -881,7 +880,7 @@
           });
       }
     </script>
-    <script>
+    <!-- <script>
         const positionData = {
         football: [
             { value: "GK", label: "GK(守門員)" },
@@ -998,9 +997,9 @@
         });
         }
 
-        document.querySelectorAll('#sportList input[type="checkbox"]').forEach(checkbox => {
+        document.querySelectorAll('#state-list input[type="checkbox"]').forEach(checkbox => {
         checkbox.addEventListener('change', () => {
-            const selected = Array.from(document.querySelectorAll('#sportList input[type="checkbox"]:checked'))
+            const selected = Array.from(document.querySelectorAll('#state-list input[type="checkbox"]:checked'))
                                 .map(cb => cb.value);
 
             if (selected.length === 0) {
@@ -1012,6 +1011,6 @@
             }
         });
         });
-</script>
+</script> -->
   </body>
 </html>
