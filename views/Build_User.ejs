@@ -428,12 +428,12 @@
                             <!-- 复选框列表 -->
                             <ul class="columns" id="state-list">
                                 <!-- 全选 -->
-                                <li class="select-all">
+                                <!-- <li class="select-all">
                                 <label>
                                     <input type="checkbox" id="select-all" onchange="toggleAll(this)">
                                     全选
                                 </label>
-                                </li>
+                                </li> -->
 
                                 <!-- 州列表开始 -->
                                 <!-- 球類清單 -->
@@ -766,13 +766,13 @@
 
         }
 
-        function toggleAll(source) {
-            const checkboxes = document.querySelectorAll('.dropdown-list input[type="checkbox"]');
-            checkboxes.forEach((cb, index) => {
-            if (index > 0) cb.checked = source.checked; // skip the search box
-            });
-            updateButton();
-        }
+        // function toggleAll(source) {
+        //     const checkboxes = document.querySelectorAll('.dropdown-list input[type="checkbox"]');
+        //     checkboxes.forEach((cb, index) => {
+        //     if (index > 0) cb.checked = source.checked; // skip the search box
+        //     });
+        //     updateButton();
+        // }
 
         function filterSports(input) {
             const filter = input.value.toLowerCase();
@@ -881,5 +881,137 @@
           });
       }
     </script>
+    <script>
+        const positionData = {
+        football: [
+            { value: "GK", label: "GK(守門員)" },
+            { value: "DF", label: "DF(後衛)" },
+            { value: "MF", label: "MF(中場)" },
+            { value: "FW", label: "FW(前鋒)" },
+            { value: "libero", label: "libero(自由人)" }
+        ],
+        basketball: [
+            { value: "PG", label: "PG(控球後衛)" },
+            { value: "SG", label: "SG(得分後衛)" },
+            { value: "SF", label: "SF(小前鋒)" },
+            { value: "PF", label: "PF(大前鋒)" },
+            { value: "C", label: "C(中鋒)" }
+        ],
+        volleyball: [
+            { value: "S", label: "S(舉球員)" },
+            { value: "OH", label: "OH(主攻手)" },
+            { value: "MB", label: "MB(中間攔網手)" },
+            { value: "OP", label: "OP(副攻手)" },
+            { value: "L", label: "L(自由球員)" }
+        ],
+        baseball: [
+            { value: "P", label: "P(投手)" },
+            { value: "C", label: "C(捕手)" },
+            { value: "1B", label: "1B(一壘手)" },
+            { value: "2B", label: "2B(二壘手)" },
+            { value: "3B", label: "3B(三壘手)" },
+            { value: "SS", label: "SS(游擊手)" },
+            { value: "OF", label: "OF(外野手)" }
+        ],
+        badminton: [
+            { value: "front", label: "前場" },
+            { value: "back", label: "後場" }
+        ],
+        tennis: [
+            { value: "baseline", label: "底線球員" },
+            { value: "net", label: "網前球員" }
+        ],
+        pingpong: [
+            { value: "offense", label: "進攻型" },
+            { value: "defense", label: "防守型" },
+            { value: "fast", label: "快攻型" },
+            { value: "loop", label: "弧圈型" }
+        ],
+        rugby: [
+            { value: "prop", label: "Prop" },
+            { value: "hooker", label: "Hooker" },
+            { value: "lock", label: "Lock" },
+            { value: "flanker", label: "Flanker" },
+            { value: "flyhalf", label: "Fly-half" },
+            { value: "center", label: "Center" },
+            { value: "wing", label: "Wing" },
+            { value: "fullback", label: "Fullback" }
+        ],
+        hockey: [
+            { value: "goalie", label: "Goalie" },
+            { value: "defense", label: "Defenseman" },
+            { value: "center", label: "Center" },
+            { value: "winger", label: "Winger" }
+        ],
+        handball: [
+            { value: "GK", label: "GK(守門員)" },
+            { value: "LB", label: "LB(左後衛)" },
+            { value: "CB", label: "CB(中後衛)" },
+            { value: "RB", label: "RB(右後衛)" },
+            { value: "LW", label: "LW(左翼)" },
+            { value: "RW", label: "RW(右翼)" },
+            { value: "P", label: "P(樞紐)" }
+        ],
+        tabletennis: [
+            { value: "fast", label: "快攻" },
+            { value: "loop", label: "弧圈" },
+            { value: "defense", label: "防守" },
+            { value: "counter", label: "對拉" }
+        ],
+        fieldhockey: [
+            { value: "GK", label: "GK(守門員)" },
+            { value: "DF", label: "DF(後衛)" },
+            { value: "MF", label: "MF(中場)" },
+            { value: "FW", label: "FW(前鋒)" }
+        ],
+        softball: [
+            { value: "P", label: "投手" },
+            { value: "C", label: "捕手" },
+            { value: "1B", label: "一壘手" },
+            { value: "2B", label: "二壘手" },
+            { value: "3B", label: "三壘手" },
+            { value: "SS", label: "游擊手" },
+            { value: "OF", label: "外野手" }
+        ]
+        };
+
+        function updatePositionSelect(sportKey) {
+        const pos1 = document.getElementById("form-login-name-2");
+        const pos2 = document.getElementById("form-login-name-1");
+
+        // 清除選項
+        pos1.innerHTML = "<option selected></option>";
+        pos2.innerHTML = "<option selected></option>";
+
+        const positions = positionData[sportKey];
+        if (!positions) return;
+
+        positions.forEach(pos => {
+            const option1 = document.createElement("option");
+            option1.value = pos.value;
+            option1.textContent = pos.label;
+
+            const option2 = option1.cloneNode(true);
+
+            pos1.appendChild(option1);
+            pos2.appendChild(option2);
+        });
+        }
+
+        document.querySelectorAll('#sportList input[type="checkbox"]').forEach(checkbox => {
+        checkbox.addEventListener('change', () => {
+            const selected = Array.from(document.querySelectorAll('#sportList input[type="checkbox"]:checked'))
+                                .map(cb => cb.value);
+
+            if (selected.length === 0) {
+            // 沒選運動，清空位置選單
+            updatePositionSelect(null);
+            } else {
+            // 只用第一個被勾選的運動來決定位置（你可以改成多個合併）
+            updatePositionSelect(selected[0]);
+            }
+        });
+        });
+</script>
   </body>
 </html>
