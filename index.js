@@ -241,8 +241,10 @@ app.get('/login_data', async (req, res) => {
                 if(level == 5){
                   sql = 'INSERT INTO users (username, userid, identifier, birthday, Guild, level,Gender,user_img,club_level_1,club_level_2,club_level_3) VALUES (?,?,?,?,?,?,?,?,?,?,?)';
                   values = [displayName, userId, identifier, birthday, Guild, level,Gender,user_img,club_level_1,club_level_2,club_level_3];
-
-
+                  
+                  sql_GUILD = 'INSERT INTO `guilds`(`name`) VALUES (?)';
+                  values_GUILD = [Guild];
+                  await MS_query(sql_GUILD, values_GUILD);
                 }else{
                   sql = 'INSERT INTO users (username, userid, identifier, birthday, preferred_position1, preferred_position2, Guild, level,Gender,user_img) VALUES (?,?,?,?,?,?,?,?,?,?)';
                   values = [displayName, userId, identifier, birthday, position1, position2, Guild, level,Gender,user_img];
@@ -277,7 +279,7 @@ app.get('/login_data', async (req, res) => {
           // }
           // catch(error){
           //   console.error('Error:', error);
-          //   res.status(500).send(' error occurred');
+          //   res.status(500).send(' error occurred');/
           // } 
           // finally {
           //   res.redirect('/');
