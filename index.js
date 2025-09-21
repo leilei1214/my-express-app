@@ -265,7 +265,7 @@ app.get('/login_data', async (req, res) => {
                     let guildId = 0;
                     if (existingGuild) {
                       // 已存在
-                      guildId = existingGuild.id;
+                      guildId = existingGuild.guild_id;
                     }
                     for (const sport of tag) {
                       // 假設你有一個 user_id，要把每個選項寫入資料庫
