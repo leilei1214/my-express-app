@@ -235,8 +235,8 @@ app.get('/login_data', async (req, res) => {
 
                 }
                 // Insert new user into PostgreSQL database
-                const sql = '';
-                const values = [];
+                let sql = '';
+                let values = [];
                 if(level == 5){
                   sql = 'INSERT INTO users (username, userid, identifier, birthday, Guild, level,Gender,user_img,club_level_1,club_level_2,club_level_3) VALUES (?,?,?,?,?,?,?,?,?,?,?)';
                   values = [displayName, userId, identifier, birthday, Guild, level,Gender,user_img,club_level_1,club_level_2,club_level_3];
