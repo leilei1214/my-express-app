@@ -221,12 +221,10 @@ app.get('/login_data', async (req, res) => {
                 const identifier = await generateUniqueIdentifier(MS_query); // 生成唯一的 identifier
                 const userSession = req.session.user;
                 let user_img ="";
-                const {} = userSession;
+                const {birthday, position1, position2,Guild,level,Gender} = userSession;
                 if(level == 5){
                    ({ birthday, position1, position2,Guild,level,Gender,club_level_1,club_level_2,club_level_3} = userSession);
 
-                }else{
-                   ({ birthday, position1, position2,Guild,level,Gender} = userSession);
                 }
                 // 設定輸出路徑（請確認資料夾已存在）
                                  
