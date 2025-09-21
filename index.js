@@ -271,7 +271,6 @@ app.get('/login_data', async (req, res) => {
                   }
                   catch (error) {
                     if (error.code === 'ER_DUP_ENTRY') {
-                      console.log("⚠️ 工會已存在，跳過新增");
                        res.status(500).send(`
                         <html>
                           <head>
@@ -289,7 +288,6 @@ app.get('/login_data', async (req, res) => {
                         </html>
                       `);
                     } else {
-                      console.error("❌ 新增工會發生錯誤：", error);
                       res.status(500).send(`
                         <html>
                           <head>
@@ -306,8 +304,7 @@ app.get('/login_data', async (req, res) => {
                           </body>
                         </html>
                       `);
-                      // 可選：拋出錯誤讓上層處理
-                      throw error;
+                
                     }
                   }
 
