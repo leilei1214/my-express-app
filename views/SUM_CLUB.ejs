@@ -648,6 +648,7 @@
     </script>
 
     <script>
+
         const posts = Array.from({ length: 30 }, (_, i) => ({
             title: `文章標題 ${i + 1}`,
             image: "https://via.placeholder.com/150x100.png?text=IMG",
@@ -661,26 +662,27 @@
 
         // 渲染文章列表
         function renderPosts() {
-        const list = document.getElementById("post-list");
-        list.innerHTML = "";
+            const list = document.getElementById("post-list");
+            list.innerHTML = "";
 
-        const start = (currentPage - 1) * postsPerPage;
-        const end = start + postsPerPage;
-        const currentPosts = posts.slice(start, end);
+            const start = (currentPage - 1) * postsPerPage;
+            const end = start + postsPerPage;
+            const currentPosts = posts.slice(start, end);
 
-        currentPosts.forEach(post => {
-            const div = document.createElement("div");
-            div.className = "post";
-            div.innerHTML = `
-            <img src="${post.image}" alt="文章圖片">
-            <div>
-                <span><strong>${post.category}</strong> | ${post.date}</span>
-                <h3>${post.title}</h3>
-                <p>${post.excerpt}</p>
-            </div>
-            `;
-            list.appendChild(div);
-        });
+            console.log("目前顯示的資料：", currentPosts); // <--- 加這行
+            currentPosts.forEach(post => {
+                const div = document.createElement("div");
+                div.className = "post";
+                div.innerHTML = `
+                <img src="${post.image}" alt="文章圖片">
+                <div>
+                    <span><strong>${post.category}</strong> | ${post.date}</span>
+                    <h3>${post.title}</h3>
+                    <p>${post.excerpt}</p>
+                </div>
+                `;
+                list.appendChild(div);
+            });
         }
 
         // 渲染分頁按鈕
