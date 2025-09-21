@@ -710,6 +710,13 @@
           // const LineLoginUrl = "https://access.line.me/oauth2/v2.1/authorize?scope=profile%20openid&client_id=" + client_id + "&response_type=" + response_type + "&redirect_uri=" + redirect_uri + "&state=randomstring&nonce=randomnonce";
           // window.location.href = LineLoginUrl;
       }
+      function getSelectedSports() {
+        const selected = Array.from(document.querySelectorAll('#state-list input[type="checkbox"]:checked'))
+            .map(cb => cb.value); // 只取 value，如 ["basketball", "football"]
+
+        console.log("選擇的球類:", selected);
+        return selected;
+    }
       function line_register(){
         
         // 使用 URLSearchParams 提取查詢參數
@@ -720,6 +727,7 @@
         let club_level_1 = document.getElementById("club_level_1").value
         let club_level_2 = document.getElementById("club_level_2").value
         let club_level_3 = document.getElementById("club_level_3").value
+        const sports = getSelectedSports();
 
         // 公會經營者
         let level = 5
@@ -751,6 +759,7 @@
                 Guild:club,
                 level:level,
                 Gender:Gender,
+                tag:sports,
                 club_level_1:club_level_1,
                 club_level_2:club_level_2,
                 club_level_3:club_level_3,

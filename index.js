@@ -143,9 +143,9 @@ app.post('/submit_event', upload.none(), handleActivitySubmission);
 app.post('/save-to-session', (req, res) => {
   let { birthday, position1,position2,Guild,level,Gender } = req.body;
    if(level == 5){
-      ({club_level_1,club_level_2,club_level_3} =  req.body);
+      ({club_level_1,club_level_2,club_level_3,tag} =  req.body);
         // 保存用戶資料到 session 中
-        req.session.user = { birthday, position1,position2,Guild,level,Gender,club_level_1,club_level_2,club_level_3 };
+        req.session.user = { birthday, position1,position2,Guild,level,Gender,club_level_1,club_level_2,club_level_3,tag };
         res.json({ message: 200 });
 
     }else{
@@ -249,10 +249,70 @@ app.get('/login_data', async (req, res) => {
                 if(level == 5){
                   sql = 'INSERT INTO users (username, userid, identifier, birthday, Guild, level,Gender,user_img,club_level_1,club_level_2,club_level_3) VALUES (?,?,?,?,?,?,?,?,?,?,?)';
                   values = [displayName, userId, identifier, birthday, Guild, level,Gender,user_img,club_level_1,club_level_2,club_level_3];
-                  
-                  sql_GUILD = 'INSERT INTO guilds(name) VALUES (?)';
-                  values_GUILD = [Guild];
-                  await MS_query(sql_GUILD, values_GUILD);
+                  try{
+                    sql_GUILD = 'INSERT INTO guilds(name,tag) VALUES (?,?)';
+                    values_GUILD = [Guild,tag];
+                    await MS_query(sql_GUILD, values_GUILD);
+
+                    sql_selectID= 'SELECT * FROM `guilds` WHERE name = ?';
+                    values_selectId = [Guild];
+                    const [existingGuild] = await MS_query(sql_selectID, values_selectId);
+                    let guildId = 0;
+                    if (existingGuild) {
+                      // 已存在
+                      guildId = existingGuild.id;
+                    }
+                    for (const sport of tag) {
+                      // 假設你有一個 user_id，要把每個選項寫入資料庫
+                      const sql_member = 'INSERT INTO `union_members`(`guild_id`, `name`, `level`, `is_active`, `class`) VALUES (?,?,?,?,?)';
+                      await MS_query(sql_member, [guildId,Guild, 5,1,sport]);
+                    }
+
+                  }
+                  catch (error) {
+                    if (error.code === 'ER_DUP_ENTRY') {
+                      console.log("⚠️ 工會已存在，跳過新增");
+                       res.status(500).send(`
+                        <html>
+                          <head>
+                            <meta charset="UTF-8">
+                            <title>⚠️ 工會</title>
+                            <script>
+                              setTimeout(() => {
+                                window.location.href = './Build_User'; // 或你想導向的網址
+                              }, 1000); // 1000 毫秒 = 1 秒
+                            </script>
+                          </head>
+                          <body>
+                            <h1>⚠️ 工會已存在</h1>
+                          </body>
+                        </html>
+                      `);
+                    } else {
+                      console.error("❌ 新增工會發生錯誤：", error);
+                      res.status(500).send(`
+                        <html>
+                          <head>
+                            <meta charset="UTF-8">
+                            <title>⚠️ 工會</title>
+                            <script>
+                              setTimeout(() => {
+                                window.location.href = './Build_User'; // 或你想導向的網址
+                              }, 1000); // 1000 毫秒 = 1 秒
+                            </script>
+                          </head>
+                          <body>
+                            <h1>❌ 新增工會發生錯誤：${error}</h1>
+                          </body>
+                        </html>
+                      `);
+                      // 可選：拋出錯誤讓上層處理
+                      throw error;
+                    }
+                  }
+
+
+
                 }else{
                   sql = 'INSERT INTO users (username, userid, identifier, birthday, preferred_position1, preferred_position2, Guild, level,Gender,user_img) VALUES (?,?,?,?,?,?,?,?,?,?)';
                   values = [displayName, userId, identifier, birthday, position1, position2, Guild, level,Gender,user_img];
