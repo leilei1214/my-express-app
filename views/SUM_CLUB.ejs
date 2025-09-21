@@ -388,8 +388,12 @@
         <div class="container">
           <div class="row row-50 justify-content-center">
 
-              <div class="pagination" id="pagination"></div>
+            <div id="post-list"></div>
 
+            <!-- 分頁區塊 -->
+            <nav>
+                <ul class="pagination" id="pagination"></ul>
+            </nav>
           </div>
         </div>
       </section>
@@ -681,24 +685,27 @@
 
         // 渲染分頁按鈕
         function renderPagination() {
-        const totalPages = Math.ceil(posts.length / postsPerPage);
-        const pag = document.getElementById("pagination");
-        pag.innerHTML = "";
+            const totalPages = Math.ceil(posts.length / postsPerPage);
+            const pag = document.getElementById("pagination");
+            pag.innerHTML = "";
 
-        for (let i = 1; i <= totalPages; i++) {
-            const btn = document.createElement("button");
-            btn.textContent = i;
-            if (i === currentPage) btn.classList.add("active");
+            for (let i = 1; i <= totalPages; i++) {
+                const li = document.createElement("li");
+                li.className = i === currentPage ? "active" : "";
 
-            btn.addEventListener("click", () => {
-            currentPage = i;
-            renderPosts();
-            renderPagination();
-            });
+                const btn = document.createElement("button");
+                btn.textContent = i;
+                btn.addEventListener("click", () => {
+                currentPage = i;
+                renderPosts();
+                renderPagination();
+                });
 
-            pag.appendChild(btn);
+                li.appendChild(btn);
+                pag.appendChild(li);
+            }
         }
-        }
+
 
         // 初始化
         renderPosts();
