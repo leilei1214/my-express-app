@@ -281,7 +281,7 @@ app.get('/login_data', async (req, res) => {
                             <script>
                               setTimeout(() => {
                                 window.location.href = './Build_User'; // 或你想導向的網址
-                              }, 1000); // 1000 毫秒 = 1 秒
+                              }, 5000); // 1000 毫秒 = 1 秒
                             </script>
                           </head>
                           <body>
@@ -298,7 +298,7 @@ app.get('/login_data', async (req, res) => {
                             <script>
                               setTimeout(() => {
                                 window.location.href = './Build_User'; // 或你想導向的網址
-                              }, 1000); // 1000 毫秒 = 1 秒
+                              }, 5000); // 1000 毫秒 = 1 秒
                             </script>
                           </head>
                           <body>
