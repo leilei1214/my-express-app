@@ -249,8 +249,9 @@ app.get('/login_data', async (req, res) => {
                 if(level == 5){
 
                   try{
+                    const tagJson = JSON.stringify(tag);
                     sql_GUILD = 'INSERT INTO guilds(name,tag) VALUES (?,?)';
-                    values_GUILD = [Guild,tag];
+                    values_GUILD = [Guild,tagJson];
                     await MS_query(sql_GUILD, values_GUILD);
                     console.log('📘 sql_GUILD:', sql_GUILD);
                     console.log('📘 values_GUILD值:', values_GUILD);
@@ -270,7 +271,7 @@ app.get('/login_data', async (req, res) => {
                       // 假設你有一個 user_id，要把每個選項寫入資料庫
                       const sql_member = 'INSERT INTO `union_members`(`guild_id`, `name`, `level`, `is_active`, `class`) VALUES (?,?,?,?,?)';
                       await MS_query(sql_member, [guildId,Guild, 5,1,sport]);
-                      
+
                     }
 
                   }
