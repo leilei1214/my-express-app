@@ -272,7 +272,7 @@ app.get('/login_data', async (req, res) => {
                     for (const sport of tag) {
                       // 假設你有一個 user_id，要把每個選項寫入資料庫
                       const sql_member = 'INSERT INTO `union_members`(`guild_id`, `name`, `level`, `is_active`, `class`) VALUES (?,?,?,?,?)';
-                      await MS_query(sql_member, [guildId,Guild, 5,1,sport]);
+                      await MS_query(sql_member, [guildId,identifier, 5,1,sport]);
 
                     }
 
