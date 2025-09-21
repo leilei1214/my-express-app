@@ -141,10 +141,19 @@ const upload = multer();
 app.post('/submit_event', upload.none(), handleActivitySubmission);
 // 處理前端發來的 POST 請求，將用戶資料存儲到 session
 app.post('/save-to-session', (req, res) => {
-  const { birthday, position1,position2,Guild,level,Gender } = req.body;
-  // 保存用戶資料到 session 中
-  req.session.user = { birthday, position1,position2,Guild,level,Gender };
-  res.json({ message: 200 });
+  let { birthday, position1,position2,Guild,level,Gender } = req.body;
+   if(level == 5){
+      ({club_level_1,club_level_2,club_level_3} =  req.body);
+        // 保存用戶資料到 session 中
+        req.session.user = { birthday, position1,position2,Guild,level,Gender,club_level_1,club_level_2,club_level_3 };
+        res.json({ message: 200 });
+
+    }else{
+        // 保存用戶資料到 session 中
+        req.session.user = { birthday, position1,position2,Guild,level,Gender };
+        res.json({ message: 200 });
+    }
+
   // res.redirect('/line_login');
 });
 // LINE credentials
@@ -223,7 +232,7 @@ app.get('/login_data', async (req, res) => {
                 let user_img ="";
                 let  {birthday, position1, position2,Guild,level,Gender} = userSession;
                 if(level == 5){
-                   ({ birthday, position1, position2,Guild,level,Gender,club_level_1,club_level_2,club_level_3} = userSession);
+                   ({club_level_1,club_level_2,club_level_3} = userSession);
 
                 }
                 // 設定輸出路徑（請確認資料夾已存在）
