@@ -247,12 +247,14 @@ app.get('/login_data', async (req, res) => {
                 let sql = '';
                 let values = [];
                 if(level == 5){
-                  sql = 'INSERT INTO users (username, userid, identifier, birthday, Guild, level,Gender,user_img,club_level_1,club_level_2,club_level_3) VALUES (?,?,?,?,?,?,?,?,?,?,?)';
-                  values = [displayName, userId, identifier, birthday, Guild, level,Gender,user_img,club_level_1,club_level_2,club_level_3];
+
                   try{
                     sql_GUILD = 'INSERT INTO guilds(name,tag) VALUES (?,?)';
                     values_GUILD = [Guild,tag];
                     await MS_query(sql_GUILD, values_GUILD);
+
+                    sql = 'INSERT INTO users (username, userid, identifier, birthday, Guild, level,Gender,user_img,club_level_1,club_level_2,club_level_3) VALUES (?,?,?,?,?,?,?,?,?,?,?)';
+                    values = [displayName, userId, identifier, birthday, Guild, level,Gender,user_img,club_level_1,club_level_2,club_level_3];
 
                     sql_selectID= 'SELECT * FROM `guilds` WHERE name = ?';
                     values_selectId = [Guild];
