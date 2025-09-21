@@ -390,10 +390,7 @@
 
             <div id="post-list"></div>
 
-            <!-- 分頁區塊 -->
-            <nav>
-                <ul class="pagination" id="pagination"></ul>
-            </nav>
+            <ul id="pagination" style="list-style: none; display: flex; gap: 5px; padding: 0;"></ul>
           </div>
         </div>
       </section>
@@ -710,8 +707,10 @@
 
 
         // 初始化
-        renderPosts();
-        renderPagination();
+        document.addEventListener("DOMContentLoaded", function () {
+            renderPosts();
+            renderPagination();
+        });
     </script>
 
 
