@@ -957,4 +957,7 @@ app.get('/Sign_Qrcode', (req, res) => {
 app.get('/liff_signin', (req, res) => {
   res.render('liff_signin', { pageTitle: 'Sign_Qrcode' });
 });
+app.get('/SUM_CLUB', (req, res) => {
+  res.render('SUM_CLUB', { pageTitle: 'SUM_CLUB' });
+});
 
