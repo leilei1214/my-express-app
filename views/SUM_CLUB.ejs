@@ -691,10 +691,10 @@
             console.log("目前顯示的資料：", currentPosts); // <--- 加這行
 
             currentPosts.forEach(post => {
-                // let div = document.createElement("div");
-                // div.className = "post";
-                let div = `
-                <article class="post-future post-future-horizontal"><a class="post-future-figure" href="blog-post.html"><img src="${post.image}" alt="" width="370" height="325"></a>
+                let div = document.createElement("article");
+                div.className = "post-future post-future-horizontal";
+                div.innerHTML = `
+                  <a class="post-future-figure" href="blog-post.html"><img src="${post.image}" alt="" width="370" height="325"></a>
                   <div class="post-future-main">
                         <h4 class="post-future-title"><a href="blog-post.html">${post.title}</a></h4>
                         <div class="post-future-meta">
@@ -711,7 +711,7 @@
 
                     </div>
                   </div>
-                </article>
+                
                 `;
                 //<span><strong>${post.category}</strong> | ${post.date}</span>
                 // <h3>${post.title}</h3>
