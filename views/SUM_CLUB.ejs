@@ -689,43 +689,29 @@
             const currentPosts = posts.slice(start, end);
             list.innerHTML = "";
             console.log("目前顯示的資料：", currentPosts); // <--- 加這行
-            // <div class="post-future-main">
-            //     <h4 class="post-future-title"><a href="blog-post.html">Zidane: “We’re not going to change the way we play at the Calderón”</a></h4>
-            //     <div class="post-future-meta">
-            //       <!-- Badge-->
-            //       <div class="badge badge-red">Hot<span class="icon mdi mdi-fire"></span>
-            //       </div>
-            //       <div class="post-future-time"><span class="icon mdi mdi-clock"></span>
-            //         <time datetime="2024">April 15, 2024</time>
-            //       </div>
-            //     </div>
-            //     <hr>
-            //     <div class="post-future-text">
-            //       <p>Zidane spoke to the media at the Real Madrid City. The Whites coach explained how the team is going in to the second leg of the Champions...</p>
-            //     </div>
-            //   </div>
+
             currentPosts.forEach(post => {
                 let div = document.createElement("div");
                 div.className = "post";
                 div.innerHTML = `
-               
-                <img src="${post.image}" alt="文章圖片">
-                <div class="post-future-main">
-                      <h4 class="post-future-title"><a href="blog-post.html">${post.title}</a></h4>
-                      <div class="post-future-meta">
-                         <div class="post-future-time"><span class="icon mdi mdi-clock"></span>
-                          <time datetime="2024">April 15, 2024</time>
+                <article class="post-future post-future-horizontal"><a class="post-future-figure" href="blog-post.html"><img src="${post.image}" alt="" width="370" height="325"></a>
+                  <div class="post-future-main">
+                        <h4 class="post-future-title"><a href="blog-post.html">${post.title}</a></h4>
+                        <div class="post-future-meta">
+                          <div class="post-future-time"><span class="icon mdi mdi-clock"></span>
+                            <time datetime="2024">April 15, 2024</time>
+                          </div>
                         </div>
-                      </div>
-                      <hr>
-                      <div class="post-future-text">
-                        <div class="badge badge-red">標籤一<span class="icon mdi mdi-fire"></span>
-                        <div class="badge badge-red">標籤二<span class="icon mdi mdi-fire"></span>
-                        <div class="badge badge-red">標籤三<span class="icon mdi mdi-fire"></span>
-                      </div>
+                        <hr>
+                        <div class="post-future-text">
+                          <div class="badge badge-red">標籤一<span class="icon mdi mdi-fire"></span>
+                          <div class="badge badge-red">標籤二<span class="icon mdi mdi-fire"></span>
+                          <div class="badge badge-red">標籤三<span class="icon mdi mdi-fire"></span>
+                        </div>
 
+                    </div>
                   </div>
-                </div>
+                </article>
                 `;
                 //<span><strong>${post.category}</strong> | ${post.date}</span>
                 // <h3>${post.title}</h3>
