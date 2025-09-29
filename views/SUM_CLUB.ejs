@@ -680,14 +680,14 @@
         // 渲染文章列表
         const list = document.getElementById("post-list");
 
-        list.innerHTML = "";
+        
         function renderPosts() {
 
 
             const start = (currentPage - 1) * postsPerPage;
             const end = start + postsPerPage;
             const currentPosts = posts.slice(start, end);
-
+            list.innerHTML = "";
             console.log("目前顯示的資料：", currentPosts); // <--- 加這行
             currentPosts.forEach(post => {
                 let div = document.createElement("div");
