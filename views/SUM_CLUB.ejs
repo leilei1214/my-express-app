@@ -681,9 +681,10 @@
         let currentPage = 1;
 
         // 渲染文章列表
+        list.innerHTML = "";
         function renderPosts() {
             const list = document.getElementById("post-list");
-            list.innerHTML = "";
+
 
             const start = (currentPage - 1) * postsPerPage;
             const end = start + postsPerPage;
@@ -703,7 +704,7 @@
                 `;
 
                 list.innerHTML += div;
-                console.log("目前顯示的資料：", div); // <--- 加這行
+                console.log("目前顯示的資料：", list); // <--- 加這行
 
             });
         }
