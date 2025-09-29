@@ -704,7 +704,8 @@
                 </div>
                 `;
 
-                list.innerHTML += div;
+                list.appendChild(div);  // 用 appendChild 加元素節點
+
                 console.log("目前顯示的資料：", list); // <--- 加這行
 
             });
