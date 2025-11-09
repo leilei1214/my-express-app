@@ -250,14 +250,14 @@ app.get('/login_data', async (req, res) => {
 
                   try{
                     const tagJson = JSON.stringify(tag);
-                    sql_GUILD = 'INSERT INTO guilds(name,tag) VALUES (?,?)';
-                    values_GUILD = [Guild,tagJson];
+                    sql_GUILD = 'INSERT INTO guilds(name,tag,club_level_1,club_level_2,club_level_3) VALUES (?,?,?,?,?)';
+                    values_GUILD = [Guild,tagJson,club_level_1,club_level_2,club_level_3];
                     await MS_query(sql_GUILD, values_GUILD);
                     console.log('📘 sql_GUILD:', sql_GUILD);
                     console.log('📘 values_GUILD值:', values_GUILD);
 
-                    sql = 'INSERT INTO users (username, userid, identifier, birthday, Guild, level,Gender,user_img,club_level_1,club_level_2,club_level_3) VALUES (?,?,?,?,?,?,?,?,?,?,?)';
-                    values = [displayName, userId, identifier, birthday, Guild, level,Gender,user_img,club_level_1,club_level_2,club_level_3];
+                    sql = 'INSERT INTO users (username, userid, identifier, birthday, Guild, level,Gender,user_img) VALUES (?,?,?,?,?,?,?,?)';
+                    values = [displayName, userId, identifier, birthday, Guild, level,Gender,user_img];
 
                     sql_selectID= 'SELECT * FROM `guilds` WHERE name = ?';
                     values_selectId = [Guild];
@@ -961,3 +961,23 @@ app.get('/SUM_CLUB', (req, res) => {
   res.render('SUM_CLUB', { pageTitle: 'SUM_CLUB' });
 });
 
+app.post('/api/guilds', async (req, res) => {
+
+  try {
+    // 獲取數據庫連接並查詢資料
+    const { identifier, Search_level } = req.body;
+    const query = 'SELECT * FROM `guilds`  ORDER BY guild_id ASC';
+    const result = await MS_query(query,[Search_level]);
+
+    // 釋放連接
+
+    if (result.length === 0) {
+      res.status(404).send('找不到對應的會員');
+    } else {
+      res.status(200).json({data:result});  // 返回 JSON 格式的查詢結果
+    }
+  } catch (err) {
+    console.error('資料庫查詢失敗:', err);
+    res.status(500).send('資料庫查詢錯誤');
+  }
+});

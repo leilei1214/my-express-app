@@ -426,7 +426,7 @@
                             <div class="dropdown-list" id="dropdownList">
                            
                             <!-- 复选框列表 -->
-                            <ul class="columns" id="state-list footer-classic-dark link" >
+                            <ul class="columns state-list" id="state-list footer-classic-dark link" >
                                 <!-- 全选 -->
                                 <!-- <li class="select-all">
                                 <label>
@@ -711,7 +711,7 @@
           // window.location.href = LineLoginUrl;
       }
       function getSelectedSports() {
-        const selected = Array.from(document.querySelectorAll('#state-list input[type="checkbox"]:checked'))
+        const selected = Array.from(document.querySelectorAll('.state-list input[type="checkbox"]:checked'))
             .map(cb => cb.value); // 只取 value，如 ["basketball", "football"]
 
         console.log("選擇的球類:", selected);
