@@ -232,7 +232,7 @@ app.get('/login_data', async (req, res) => {
                 let user_img ="";
                 let  {birthday, position1, position2,Guild,level,Gender} = userSession;
                 if(level == 5){
-                   ({club_level_1,club_level_2,club_level_3} = userSession);
+                   ({club_level_1,club_level_2,club_level_3,tag} = userSession);
 
                 }
                 // 設定輸出路徑（請確認資料夾已存在）
