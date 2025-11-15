@@ -962,20 +962,43 @@ app.get('/SUM_CLUB', (req, res) => {
 });
 
 app.post('/api/guilds', async (req, res) => {
-
   try {
-    // 獲取數據庫連接並查詢資料
     const { identifier, Search_level } = req.body;
-    const query = 'SELECT * FROM `guilds`  ORDER BY guild_id ASC';
-    const result = await MS_query(query,[Search_level]);
 
-    // 釋放連接
+    const query = 'SELECT guild_id, name, tag, created_at, guild_logo FROM guilds ORDER BY guild_id ASC';
+    const result = await MS_query(query);
 
     if (result.length === 0) {
-      res.status(404).send('找不到對應的會員');
-    } else {
-      res.status(200).json({data:result});  // 返回 JSON 格式的查詢結果
+      return res.status(404).send('尚未建立公會');
     }
+
+    // 預設圖片
+    const defaultImage = "./images/logo-soccer-default-95x126.png";
+
+    // 轉換格式 → posts[]
+    const posts = result.map(row => {
+      // tag 是 JSON 字串 → 轉換成陣列
+      let tags = [];
+      try {
+        tags = JSON.parse(row.tag);
+      } catch (error) {
+        tags = [];
+      }
+
+      const category = tags[0] || "unknown";
+
+      return {
+        id: row.guild_id,
+        title: row.name,
+        image: row.guild_logo || defaultImage,
+        category: category,
+        date: row.created_at?.toISOString().slice(0, 10),
+        excerpt: "這是一段文章的摘要..."
+      };
+    });
+
+    res.status(200).json({ data: posts });
+
   } catch (err) {
     console.error('資料庫查詢失敗:', err);
     res.status(500).send('資料庫查詢錯誤');
