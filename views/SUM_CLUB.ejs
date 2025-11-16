@@ -698,7 +698,7 @@
             const currentPosts = posts.slice(start, end);
             list.innerHTML = "";
             console.log("目前顯示的資料：", currentPosts); // <--- 加這行
-            fetch('./api/event', {
+            fetch('./api/guilds', {
                   method: 'POST',
                   headers: {
                       'Content-Type': 'application/json;charset=utf-8'
