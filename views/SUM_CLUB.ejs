@@ -722,7 +722,7 @@
               })
               .then(data => {
                     console.log('Response data:', data);  // 查看完整響應
-                    posts = res.data;
+                    posts = data;
                     currentPosts.forEach(post => {
                         let div = document.createElement("article");
                         div.className = "post-future post-future-horizontal";
