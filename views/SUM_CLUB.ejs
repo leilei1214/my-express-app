@@ -718,7 +718,7 @@
                   return response.json();  // 解析 JSON 響應
               })
               .then(data => {
-                    posts = data;
+                    const posts = Array.isArray(data) ? data : [];
                     const start = (currentPage - 1) * postsPerPage;
                     const end = start + postsPerPage;
                     const currentPosts = posts.slice(start, end);
