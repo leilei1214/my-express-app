@@ -693,11 +693,8 @@
         function renderPosts() {
 
 
-            const start = (currentPage - 1) * postsPerPage;
-            const end = start + postsPerPage;
-            const currentPosts = posts.slice(start, end);
             list.innerHTML = "";
-            console.log("目前顯示的資料：", currentPosts); // <--- 加這行
+
             fetch('./api/guilds', {
                   method: 'POST',
                   headers: {
@@ -721,8 +718,12 @@
                   return response.json();  // 解析 JSON 響應
               })
               .then(data => {
-                    console.log('Response data:', data);  // 查看完整響應
                     posts = data;
+                    const start = (currentPage - 1) * postsPerPage;
+                    const end = start + postsPerPage;
+                    const currentPosts = posts.slice(start, end);
+                    console.log('Response data:', data);  // 查看完整響應
+                    console.log("目前顯示的資料：", currentPosts); // <--- 加這行
                     currentPosts.forEach(post => {
                         let div = document.createElement("article");
                         div.className = "post-future post-future-horizontal";
