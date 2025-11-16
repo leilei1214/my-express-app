@@ -674,14 +674,7 @@
     </script>
 
     <script>
-
-        let posts = Array.from({ length: 30 }, (_, i) => ({
-            title: `文章標題 ${i + 1}`,
-            image: "./images/logo-soccer-default-95x126.png",
-            category: "THE BLOG",
-            date: "2024-04-18",
-            excerpt: "這是一段文章的摘要..."
-        }));
+        let posts = []; // 全域變數
 
         const postsPerPage = 6;
         let currentPage = 1;
@@ -718,7 +711,7 @@
                   return response.json();  // 解析 JSON 響應
               })
               .then(data => {
-                    const posts = Array.isArray(data.data) ? data.data : [];
+                    posts = Array.isArray(data.data) ? data.data : [];
                     const start = (currentPage - 1) * postsPerPage;
                     const end = start + postsPerPage;
                     const currentPosts = posts.slice(start, end);
