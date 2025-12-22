@@ -1,7 +1,7 @@
 {
   "name": "my-express-app",
   "version": "1.0.0",
-  "description": "",
+  "description": "git init git add . git commit -m \"Initial commit\"",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -20,6 +20,18 @@
     "firebase-admin": "^12.5.0",
     "instascan": "^1.0.0",
     "multer": "^1.4.5-lts.1",
-    "pg": "^8.13.0"
-  }
+    "mysql2": "^3.14.1",
+    "pg": "^8.13.0",
+    "pm2": "^6.0.10",
+    "qrcode": "^1.5.4"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/leilei1214/my-express-app.git"
+  },
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/leilei1214/my-express-app/issues"
+  },
+  "homepage": "https://github.com/leilei1214/my-express-app#readme"
 }

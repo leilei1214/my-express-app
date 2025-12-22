@@ -1,0 +1,64 @@
+  .post-future-figure {
+    display: flex;
+    overflow: hidden;
+    width: 50%;
+    justify-content: center;
+    align-items: center;
+    background: #fff;
+    padding-top: 20px;
+  }
+  #post-list img {
+    width: 95px;
+    height: 126px;
+  }
+    /* 加一點簡單的樣式方便看出排版 */
+  #post-list {
+    /* display: flex; */
+    width: 80%;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 10px;
+  }
+  .post-future-text p{
+    text-align: left;  
+  }
+  .post-future-text button{
+    padding: 6px;
+  }
+  .button + .button {
+    margin-top: 13px !important;
+  }
+  .button-block {
+    display: inline;
+    width: 65%;
+    max-width: 84px;
+  }
+  * + .button {
+    margin-top: 13px !important;
+  }
+  
+  @media (max-width: 991.98px) {
+    .post-future-figure {
+        width: 100%;
+    }
+    .post-future-title {
+        text-align: center;
+    }
+    #post-list {
+        width: 70% !important;
+    }
+    .post-future-text{
+        text-align: center;
+        
+    }
+
+    .post-future-meta > * {
+        display: flex;
+        justify-content: center;
+    }
+    .button-block {
+        display: inline;
+        width: 100%;
+        max-width: 100%;
+    }
+}

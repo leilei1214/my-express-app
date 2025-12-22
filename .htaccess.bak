@@ -1,0 +1,5 @@
+RewriteEngine On 
+RewriteRule ^$ http://127.0.0.1: 50080 / [P,L] 
+RewriteCond %{REQUEST_FILENAME} !-f RewriteCond 
+RewriteCond %{REQUEST_FILENAME} !-f 
+RewriteCond rite-DQUEST_FILEN] _F$. http://127.0.0.1: 50080 /$1 [P,L]

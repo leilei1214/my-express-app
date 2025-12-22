@@ -965,7 +965,7 @@ app.post('/api/guilds', async (req, res) => {
   try {
     const { identifier, Search_level } = req.body;
 
-    const query = 'SELECT guild_id, name, tag, created_at, guild_logo FROM guilds ORDER BY guild_id ASC';
+    const query = 'SELECT guild_id, name, tag, created_at, guild_logo,club_level_1,club_level_2,club_level_3,description FROM guilds ORDER BY guild_id ASC';
     const result = await MS_query(query);
 
     if (result.length === 0) {
@@ -993,7 +993,10 @@ app.post('/api/guilds', async (req, res) => {
         image: row.guild_logo || defaultImage,
         category: category,
         date: row.created_at?.toISOString().slice(0, 10),
-        excerpt: "這是一段文章的摘要..."
+        club_level_1:row.club_level_1,
+        club_level_2:row.club_level_2,
+        club_level_3:row.club_level_3,
+        excerpt: row.description
       };
     });
 
