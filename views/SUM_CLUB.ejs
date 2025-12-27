@@ -511,10 +511,11 @@
                                       ${post.excerpt}
                                     </p>
                                   </div>
-                                  <button class="button button-lg button-primary button-block" type="submit" onclick="read_club()">
+                                  
+                                  <button class="button button-lg button-primary button-block" type="submit" onclick="read_club(${post.id})">
                                     查看球隊
                                   </button>
-                                  <button class="button button-lg button-primary button-block" type="submit" onclick="register_club()">
+                                  <button class="button button-lg button-primary button-block" type="submit" onclick="register_club(${post.id})">
                                     申請加入
                                   </button>
                                 </div>
@@ -571,7 +572,14 @@
         });
     </script>
 
-
+    <script>
+      function read_club(id){
+	      window.location.href = `./read_club?list_id=${id}`
+      }
+      function register_club(id){
+        window.location.href = `./register_club?list_id=${id}`
+      }
+    </script>
  
   </body>
 </html>

@@ -1007,3 +1007,6 @@ app.post('/api/guilds', async (req, res) => {
     res.status(500).send('資料庫查詢錯誤');
   }
 });
+app.get('/read_club', (req, res) => {
+  res.render('read_club', { pageTitle: 'read_club' });
+});
