@@ -1011,7 +1011,7 @@ app.get('/read_club', (req, res) => {
   res.render('read_club', { pageTitle: 'read_club' });
 });
 // 定義 API 路由來查詢活動內容
-app.get('/api/event_content', async (req, res) => {
+app.get('/api/read_club', async (req, res) => {
   const listId = req.query.list_id; // 從查詢參數中取得 list_id
 
   if (!listId || isNaN(listId)) {
@@ -1022,10 +1022,7 @@ app.get('/api/event_content', async (req, res) => {
     // 獲取數據庫連接並查詢資料
     const query = 'SELECT guild_id, name, tag, created_at, guild_logo,club_level_1,club_level_2,club_level_3,description FROM guilds WHERE guild_id = ?';
     const result = await MS_query(query, [listId]);
-    const registrationQuery = `
-      SELECT registrations.*, users.preferred_position1,users.preferred_position2,users.username FROM registrations JOIN users ON registrations.identifier = users.identifier WHERE registrations.activity_id = ? ORDER BY registrations.id ASC;
-    `;
-    const registrationResult = await MS_query(registrationQuery, [listId]);
+
 
     if (result.length === 0) {
       return res.status(404).send('尚未建立公會');
