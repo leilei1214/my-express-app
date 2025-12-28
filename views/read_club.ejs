@@ -145,9 +145,9 @@
                   <div class="blog-post-meta">
                     <time class="blog-post-time" datetime="2024"><span class="icon mdi mdi-clock"></span><span class="active_date"></span></time>
                     <div class="blog-post-comment"><span class="icon mdi mdi-map-marker"></span><span class="location"></span></div>
-                    <div class="blog-post-view"><span class="icon mdi mdi-account-multiple"></span><span class="current_participants"></span>/<span class="max_participants"></span> </div>
+                    <!-- <div class="blog-post-view"><span class="icon mdi mdi-account-multiple"></span><span class="current_participants"></span>/<span class="max_participants"></span> </div>
                     <div class="blog-post-view "><span class="icon">$</span><span class="icon amount"></div>
-                    <div class="blog-post-view Boss_edit"><span class="icon">應收:</span><span class="icon sum_amount"></div>
+                    <div class="blog-post-view Boss_edit"><span class="icon">應收:</span><span class="icon sum_amount"></div> -->
 
 
                   </div>
@@ -414,21 +414,21 @@
                   $(".blog-post-title").html(data.title)
                   // const taiwanTime = new Date(data.time).toLocaleString('zh-TW', { timeZone: 'Asia/Taipei', hour12: false });
 
-                  const taiwanDate = new Date(data.date);
-                  taiwanDate.setHours(taiwanDate.getHours()-7 );
-                  // const taiwanDate =  new Date(new Date(date.getTime() + 8 * 60 * 60 * 1000));
-                  // 提取年月日和小時分鐘
-                  const year = taiwanDate.getFullYear();
+                  // const taiwanDate = new Date(data.date);
+                  // taiwanDate.setHours(taiwanDate.getHours()-7 );
+                  // // const taiwanDate =  new Date(new Date(date.getTime() + 8 * 60 * 60 * 1000));
+                  // // 提取年月日和小時分鐘
+                  // const year = taiwanDate.getFullYear();
 
-                  const month = String(taiwanDate.getMonth() + 1).padStart(2, '0'); // 月份從0開始，需要+1
-                  const day = String(taiwanDate.getDate()).padStart(2, '0');
-                  // const hours = String(taiwanDate.getHours()).padStart(2, '0');
-                  // const minutes = String(taiwanDate.getMinutes()).padStart(2, '0');
+                  // const month = String(taiwanDate.getMonth() + 1).padStart(2, '0'); // 月份從0開始，需要+1
+                  // const day = String(taiwanDate.getDate()).padStart(2, '0');
+                  // // const hours = String(taiwanDate.getHours()).padStart(2, '0');
+                  // // const minutes = String(taiwanDate.getMinutes()).padStart(2, '0');
 
-                  // 組合成所需格式
-                  const formattedDate = `${year}-${month}-${day}`;
+                  // // 組合成所需格式
+                  // const formattedDate = `${year}-${month}-${day}`;
                   // console.log(formattedDate); // "2024-11-01 06:00"
-
+                  $(".active_date").html(data.date)
                   // $(".location").html(data.location)
 
                   $(".activity_intro").html(data.excerpt)
