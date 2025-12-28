@@ -1010,3 +1010,60 @@ app.post('/api/guilds', async (req, res) => {
 app.get('/read_club', (req, res) => {
   res.render('read_club', { pageTitle: 'read_club' });
 });
+// 定義 API 路由來查詢活動內容
+app.get('/api/event_content', async (req, res) => {
+  const listId = req.query.list_id; // 從查詢參數中取得 list_id
+
+  if (!listId || isNaN(listId)) {
+    return res.status(400).send('無效的 list_id 參數');
+  }
+
+  try {
+    // 獲取數據庫連接並查詢資料
+    const query = 'SELECT guild_id, name, tag, created_at, guild_logo,club_level_1,club_level_2,club_level_3,description FROM guilds WHERE guild_id = ?';
+    const result = await MS_query(query, [listId]);
+    const registrationQuery = `
+      SELECT registrations.*, users.preferred_position1,users.preferred_position2,users.username FROM registrations JOIN users ON registrations.identifier = users.identifier WHERE registrations.activity_id = ? ORDER BY registrations.id ASC;
+    `;
+    const registrationResult = await MS_query(registrationQuery, [listId]);
+
+    if (result.length === 0) {
+      return res.status(404).send('尚未建立公會');
+    }
+
+    // 預設圖片
+    const defaultImage = "./images/logo-soccer-default-95x126.png";
+
+    // 轉換格式 → posts[]
+    const posts = result.map(row => {
+      // tag 是 JSON 字串 → 轉換成陣列
+      let tags = [];
+      try {
+        tags = JSON.parse(row.tag);
+      } catch (error) {
+        tags = [];
+      }
+
+      const category = tags[0] || "unknown";
+
+      return {
+        id: row.guild_id,
+        title: row.name,
+        image: row.guild_logo || defaultImage,
+        category: category,
+        date: row.created_at?.toISOString().slice(0, 10),
+        club_level_1:row.club_level_1,
+        club_level_2:row.club_level_2,
+        club_level_3:row.club_level_3,
+        excerpt: row.description
+      };
+    });
+
+    res.status(200).json({ data: posts });
+    // 釋放連接
+
+  } catch (err) {
+    console.error('資料庫查詢失敗:', err);
+    res.status(500).send('資料庫查詢錯誤');
+  }
+});
