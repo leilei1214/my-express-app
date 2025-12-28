@@ -388,9 +388,8 @@
             // <div class="badge badge-secondary">The Team
             // </div>
             if (response.ok) {
-                const res = await response.json();
+                const data = await response.json();
 
-                const data = res.event
                 console.log(data)
                 // 遍歷陣列並輸出每個元素
                 // for (const item of data.activity_category) {
