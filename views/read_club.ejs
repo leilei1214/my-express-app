@@ -389,7 +389,7 @@
             // </div>
             if (response.ok) {
                 const data = await response.json();
-
+                data = Array.isArray(data.data) ? data.data : [];
                 console.log(data)
                 // 遍歷陣列並輸出每個元素
                 // for (const item of data.activity_category) {
@@ -398,44 +398,44 @@
                 //     </div>
                 //   `
                 // }
-
-                document.getElementById('activity_level').innerHTML += `
-                    <div class="badge badge-primary">${data.club_level_1}
-                    </div>
-                  `
+                currentPosts.forEach(data => {
                   document.getElementById('activity_level').innerHTML += `
-                    <div class="badge badge-primary">${data.club_level_2}
-                    </div>
-                  `
-                  document.getElementById('activity_level').innerHTML += `
-                    <div class="badge badge-primary">${data.club_level_3}
-                    </div>
-                  `
-                $(".blog-post-title").html(data.title)
-                // const taiwanTime = new Date(data.time).toLocaleString('zh-TW', { timeZone: 'Asia/Taipei', hour12: false });
+                      <div class="badge badge-primary">${data.club_level_1}
+                      </div>
+                    `
+                    document.getElementById('activity_level').innerHTML += `
+                      <div class="badge badge-primary">${data.club_level_2}
+                      </div>
+                    `
+                    document.getElementById('activity_level').innerHTML += `
+                      <div class="badge badge-primary">${data.club_level_3}
+                      </div>
+                    `
+                  $(".blog-post-title").html(data.title)
+                  // const taiwanTime = new Date(data.time).toLocaleString('zh-TW', { timeZone: 'Asia/Taipei', hour12: false });
 
-                const taiwanDate = new Date(data.date);
-                taiwanDate.setHours(taiwanDate.getHours()-7 );
-                // const taiwanDate =  new Date(new Date(date.getTime() + 8 * 60 * 60 * 1000));
-                // 提取年月日和小時分鐘
-                const year = taiwanDate.getFullYear();
+                  const taiwanDate = new Date(data.date);
+                  taiwanDate.setHours(taiwanDate.getHours()-7 );
+                  // const taiwanDate =  new Date(new Date(date.getTime() + 8 * 60 * 60 * 1000));
+                  // 提取年月日和小時分鐘
+                  const year = taiwanDate.getFullYear();
 
-                const month = String(taiwanDate.getMonth() + 1).padStart(2, '0'); // 月份從0開始，需要+1
-                const day = String(taiwanDate.getDate()).padStart(2, '0');
-                // const hours = String(taiwanDate.getHours()).padStart(2, '0');
-                // const minutes = String(taiwanDate.getMinutes()).padStart(2, '0');
+                  const month = String(taiwanDate.getMonth() + 1).padStart(2, '0'); // 月份從0開始，需要+1
+                  const day = String(taiwanDate.getDate()).padStart(2, '0');
+                  // const hours = String(taiwanDate.getHours()).padStart(2, '0');
+                  // const minutes = String(taiwanDate.getMinutes()).padStart(2, '0');
 
-                // 組合成所需格式
-                const formattedDate = `${year}-${month}-${day}`;
-                // console.log(formattedDate); // "2024-11-01 06:00"
+                  // 組合成所需格式
+                  const formattedDate = `${year}-${month}-${day}`;
+                  // console.log(formattedDate); // "2024-11-01 06:00"
 
-                // $(".location").html(data.location)
+                  // $(".location").html(data.location)
 
-                $(".activity_intro").html(data.excerpt)
+                  $(".activity_intro").html(data.excerpt)
 
-                localStorage.setItem('Guild',data.club);
+                  localStorage.setItem('Guild',data.club);
 
-
+                })
                 // activity_level
                 // eventContentDiv.innerHTML = `
                 //     <p><strong>活動名稱：</strong> ${data.activity_name || '無資料'}</p>
