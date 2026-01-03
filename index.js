@@ -209,7 +209,7 @@ app.get('/login_data', async (req, res) => {
 
 
             const result = await MS_query('SELECT * FROM users WHERE userid = ? and Guild = ?', [userId,Guild]);
-
+            console.log(result.length);  
             if (result.length > 0) {
               // User exists, redirect to homepage
               const user = result[0]; // 取出第一条记录
