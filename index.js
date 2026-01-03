@@ -208,7 +208,7 @@ app.get('/login_data', async (req, res) => {
 
 
 
-            const result = await MS_query('SELECT * FROM users WHERE userid = ?', [userId]);
+            const result = await MS_query('SELECT * FROM users WHERE userid = ? and Guild = ?', [userId,Guild]);
 
             if (result.length > 0) {
               // User exists, redirect to homepage
@@ -227,6 +227,26 @@ app.get('/login_data', async (req, res) => {
               res.redirect('./home');
             } else {
               try{
+               
+                const result_row = await MS_query('SELECT * FROM users WHERE userid = ? and Guild = ?', [userId,Guild]);
+                if (result_row.length > 2) {
+                  res.status(500).send(`
+                    <html>
+                      <head>
+                        <meta charset="UTF-8">
+                        <title>註冊工會已達上限</title>
+                        <script>
+                          setTimeout(() => {
+                            window.location.href = './login?status=register&club=${Guild}&level=${level}'; // 或你想導向的網址
+                          }, 1000); // 1000 毫秒 = 1 秒
+                        </script>
+                      </head>
+                      <body>
+                        <h1>請先註冊:${error}</h1>
+                      </body>
+                    </html>
+                  `);
+                }
                 const identifier = await generateUniqueIdentifier(MS_query); // 生成唯一的 identifier
                 const userSession = req.session.user;
                 let user_img ="";
