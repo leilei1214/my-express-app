@@ -205,7 +205,8 @@ app.get('/login_data', async (req, res) => {
           console.log(userId);
           console.log(displayName);  
       
-
+          const userSession = req.session.user;
+          let  {Guild} = userSession;
 
 
             const result = await MS_query('SELECT * FROM users WHERE userid = ? and Guild = ?', [userId,Guild]);
